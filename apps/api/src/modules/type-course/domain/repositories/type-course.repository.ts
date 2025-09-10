@@ -1,0 +1,10 @@
+import { Injectable } from '@nestjs/common';
+import { TypeCourse } from '../entities/type-course.entity';
+
+@Injectable()
+export abstract class TypeCourseRepository {
+  abstract create(pack: TypeCourse): Promise<TypeCourse>;
+  abstract update(pack: TypeCourse): Promise<TypeCourse>;
+  abstract findAll(): Promise<TypeCourse[]>;
+  abstract delete(id: string): Promise<TypeCourse>;
+}

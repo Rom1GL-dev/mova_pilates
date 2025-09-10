@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="53da6d2f-78bc-4241-a6fc-b43e7fabbe7c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/apps/mobile/src/app/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/src/app/provider.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/src/app/router.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/src/app/screens/home/home.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/src/config/app.config.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/src/config/routes.config.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/src/env.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/src/global.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/src/libs/fetcher.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/src/libs/react-query.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/mobile/src/types/file.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/mobile/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/mobile/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/mobile/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/mobile/app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/mobile/assets/adaptive-icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/apps/mobile/public/adaptive-icon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/mobile/assets/favicon.png" beforeDir="false" afterPath="$PROJECT_DIR$/apps/mobile/public/favicon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/mobile/assets/icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/apps/mobile/public/icon.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/mobile/assets/splash.png" beforeDir="false" afterPath="$PROJECT_DIR$/apps/mobile/public/splash.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/mobile/components/Container.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/mobile/components/EditScreenInfo.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/mobile/components/ScreenContent.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/mobile/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/mobile/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/mobile/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/mobile/tailwind.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/mobile/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/mobile/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/mobile/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/apps/mobile/yarn.lock" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/apps/mobile" />
+  </component>
+  <component name="OptimizeOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="32KP81VZE9Fw1dRqaZlfSMdbXX3" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/romaingilot/Desktop/Personnel/projects/marie/apps",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "pnpm",
+    "prettierjs.PrettierConfiguration.Package": "/Users/romaingilot/Desktop/Personnel/projects/marie/node_modules/prettier",
+    "rearrange.code.on.save": "true",
+    "settings.editor.selected.configurable": "actions.on.save",
+    "ts.external.directory.path": "/Users/romaingilot/Desktop/Personnel/projects/marie/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/apps" />
+      <recent name="$PROJECT_DIR$/apps/api/src/modules/auth/usecases" />
+      <recent name="$PROJECT_DIR$/apps/api/src/modules" />
+      <recent name="$PROJECT_DIR$/apps/api/src/modules/pack" />
+      <recent name="$PROJECT_DIR$/packages/shared/src/courses-type" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/apps/mobile/src" />
+      <recent name="$PROJECT_DIR$/apps/mobile" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-WS-242.23726.96" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="53da6d2f-78bc-4241-a6fc-b43e7fabbe7c" name="Changes" comment="" />
+      <created>1757166128394</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1757166128394</updated>
+      <workItem from="1757166129894" duration="8447000" />
+      <workItem from="1757252165529" duration="1583000" />
+      <workItem from="1757495866109" duration="13328000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/apps/api/src/modules/session/session.module.ts</url>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
