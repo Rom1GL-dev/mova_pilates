@@ -14,7 +14,8 @@ export class SessionMiddleware implements NestMiddleware {
   ) {}
 
   async use(req: Request, res: Response, next: NextFunction) {
-    const sessionId = req.cookies['sessionId'];
+    const sessionId =
+      req.cookies['sessionId'] || req.cookies['sessionId_admin'];
 
     if (!sessionId) {
       next();

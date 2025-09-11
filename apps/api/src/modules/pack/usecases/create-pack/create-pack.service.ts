@@ -28,8 +28,8 @@ export class CreatePackService {
     const packRow = await this.packRepository.create(packToSave);
 
     if (!packRow) {
-      throw new Error('Une erreur est survenue lors de la création du pack.');
+      throw new Error('Une erreur est survenue lors de la création du packs.');
     }
-    return { message: 'Le pack a bien été crée.' };
+    return { message: 'Le packs a bien été crée.' };
   }
 }

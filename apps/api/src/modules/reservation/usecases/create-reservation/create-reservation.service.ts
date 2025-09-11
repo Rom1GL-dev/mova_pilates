@@ -26,8 +26,8 @@ export class CreateReservationService {
       await this.reservationRepository.create(reservationToSave);
 
     if (!reservationRow) {
-      throw new Error("Le pack n'a pas pu être crée.");
+      throw new Error("Le packs n'a pas pu être crée.");
     }
-    return { message: 'Le pack a bien été crée.' };
+    return { message: 'Le packs a bien été crée.' };
   }
 }

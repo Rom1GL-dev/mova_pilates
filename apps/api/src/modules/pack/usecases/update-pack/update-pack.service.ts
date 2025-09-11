@@ -28,8 +28,8 @@ export class UpdatePackService {
     const userRow = await this.packRepository.update(packToSave);
 
     if (!userRow) {
-      throw new Error("Le pack n'a pas pu être modifié.");
+      throw new Error("Le packs n'a pas pu être modifié.");
     }
-    return { message: 'Le pack a bien été modifié.' };
+    return { message: 'Le packs a bien été modifié.' };
   }
 }

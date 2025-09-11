@@ -16,8 +16,8 @@ export class DeletePackService {
     const userRow = await this.packRepository.delete(data.id);
 
     if (!userRow) {
-      throw new Error("Le pack n'a pas pu être supprimé.");
+      throw new Error("Le packs n'a pas pu être supprimé.");
     }
-    return { message: 'Le pack a bien été supprimé.' };
+    return { message: 'Le packs a bien été supprimé.' };
   }
 }

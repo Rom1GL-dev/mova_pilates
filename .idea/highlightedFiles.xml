@@ -3,6 +3,7 @@
   <component name="ProjectTreeColorHighlighter">
     <files>
       <node color="1" path="$PROJECT_DIR$/apps/api" />
+      <node color="5" path="$PROJECT_DIR$/apps/dashboard" />
       <node color="4" path="$PROJECT_DIR$/apps/mobile" />
     </files>
     <colors>

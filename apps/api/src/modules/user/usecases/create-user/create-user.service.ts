@@ -41,7 +41,7 @@ export class CreateUserService {
         email: data.email,
         firstname: data.firstname,
         lastname: data.lastname,
-        credit: data.credit || 0,
+        credit: 0,
         role: (data.role as RoleType) || Role.enum.USER,
         dob: data.dob,
         tel: data.tel,
