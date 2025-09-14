@@ -32,7 +32,8 @@ export class UpdateUserService {
       email: data.email,
       firstname: data.firstname,
       lastname: data.lastname,
-      isActive: data.isActive,
+      tel: data.tel,
+      role: data.role,
     };
 
     if (

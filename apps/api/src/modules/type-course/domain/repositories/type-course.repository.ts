@@ -7,4 +7,5 @@ export abstract class TypeCourseRepository {
   abstract update(pack: TypeCourse): Promise<TypeCourse>;
   abstract findAll(): Promise<TypeCourse[]>;
   abstract delete(id: string): Promise<TypeCourse>;
+  abstract findById(id: string): Promise<TypeCourse | null>;
 }

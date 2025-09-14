@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { Book, Box, Users } from 'lucide-react';
+import { Book, Box, CoinsIcon, Users } from 'lucide-react';
 
 import { NavMain } from '@/components/nav-main';
 import { NavUser } from '@/components/nav-user';
@@ -19,7 +19,7 @@ import { APP_ROUTES } from '@/config/routes.config.tsx';
 const data = {
   navMain: [
     {
-      title: 'Utilisteurs',
+      title: 'Utilisateurs',
       url: APP_ROUTES.users.getHref(),
       icon: Users
     },
@@ -29,9 +29,14 @@ const data = {
       icon: Book
     },
     {
-      title: 'Packs',
+      title: 'Type de packs',
       url: APP_ROUTES.packs.getHref(),
       icon: Box
+    },
+    {
+      title: 'Type de crédits',
+      url: APP_ROUTES.credits.getHref(),
+      icon: CoinsIcon
     }
   ]
 };

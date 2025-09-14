@@ -11,6 +11,8 @@ import { DeleteUserController } from './usecases/delete-user/delete-user.control
 import { UpdateUserController } from './usecases/update-user/update-user.controller';
 import { UserRepository } from './domain/repositories/user.repository';
 import { UserPrismaRepository } from './infrastructure/repositories/user.prisma.repository';
+import { GetUserService } from './usecases/get-user/get-user.service';
+import { GetUserController } from './usecases/get-user/get-user.controller';
 
 @Module({
   imports: [SharedModule],
@@ -19,6 +21,7 @@ import { UserPrismaRepository } from './infrastructure/repositories/user.prisma.
     DeleteUserService,
     ListUsersService,
     UpdateUserService,
+    GetUserService,
     {
       provide: UserRepository,
       useClass: UserPrismaRepository,
@@ -29,6 +32,7 @@ import { UserPrismaRepository } from './infrastructure/repositories/user.prisma.
     DeleteUserController,
     ListUsersController,
     UpdateUserController,
+    GetUserController,
   ],
   exports: [],
 })

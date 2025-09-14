@@ -37,7 +37,15 @@ export class SessionMiddleware implements NestMiddleware {
       await this.cache.set(sessionId, req.session, SESSION_TTL_MS);
     });
 
-    res.cookie('sessionId', sessionId, getCookiesOptions(this.configService));
+    const sessionIdLabel = req.cookies['sessionId']
+      ? 'sessionId'
+      : 'sessionId_admin';
+
+    res.cookie(
+      sessionIdLabel,
+      sessionId,
+      getCookiesOptions(this.configService),
+    );
 
     next();
   }

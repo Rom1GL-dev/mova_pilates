@@ -1,5 +1,5 @@
 const authRoot = '/auth';
-const usersRoot = '/users';
+const usersRoot = '/user';
 const typeCourseRoot = '/type-course';
 const packsRoot = '/packs';
 const sessionsRoot = '/sessions';
@@ -19,7 +19,7 @@ export const routesV1 = {
   },
   users: {
     root: usersRoot,
-    byId: `${usersRoot}/:userEmail`,
+    byId: `${usersRoot}/:id`,
   },
   typeCourse: {
     root: typeCourseRoot,

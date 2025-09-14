@@ -1,48 +1,39 @@
 FROM node:23-alpine AS base
 
-FROM base AS builder
-ARG YARN_VERSION=4.7.0
-
 RUN apk add --no-cache openssl
-RUN corepack enable && corepack prepare yarn@$YARN_VERSION
 RUN yarn global add turbo
 
 WORKDIR /app
 
+# Copier tout le monorepo
 COPY . .
-RUN turbo prune api --docker
 
-FROM base AS installer
-ARG YARN_VERSION=4.7.0
+# Installer toutes les dépendances et lier les workspaces
+RUN yarn install --frozen-lockfile
 
-WORKDIR /app
+# Générer Prisma pour la base de données
+RUN yarn workspace @mova_pilates/database db:generate
 
-RUN apk add --no-cache openssl
-RUN corepack enable && corepack prepare yarn@$YARN_VERSION
-
-COPY --from=builder /app/out/json/ .
-COPY --from=builder /app/out/yarn.lock /yarn.lock
-RUN yarn install
-
-
-COPY --from=builder /app/out/full/ .
-COPY turbo.json turbo.json
-
-RUN yarn generate
-
+# Build API uniquement
 RUN yarn turbo run build --filter=api...
 
-FROM installer AS production
-
+# =========================
+# Production
+# =========================
+FROM node:23-alpine AS production
 ARG PORT=3001
+ENV PORT=$PORT
 
 WORKDIR /app
-
 RUN apk add --no-cache openssl
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nestjs
 
-COPY --from=installer --chown=nodejs:nestjs /app .
-CMD sh -c "node apps/api/dist/main.js"
+# User non-root
+RUN addgroup --system --gid 1001 nodejs \
+  && adduser --system --uid 1001 nestjs
+USER nestjs
+
+# Copier le build complet depuis le builder
+COPY --from=0 /app .
 
 EXPOSE $PORT
+CMD sh -c "yarn workspace @mova_pilates/database db:migrate:deploy && node apps/api/dist/main.js"

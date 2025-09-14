@@ -22,6 +22,7 @@ export class LogoutController {
     await this.logoutService.logout(req.session.id);
 
     res.clearCookie('sessionId');
+    res.clearCookie('sessionId_admin');
 
     res.status(HttpStatus.NO_CONTENT).send();
   }

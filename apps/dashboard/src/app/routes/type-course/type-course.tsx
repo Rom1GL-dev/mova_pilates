@@ -1,5 +1,5 @@
-import Layout from '@/components/layout.tsx';
+import { TypesCourse } from '@/features/type-course/types-course.tsx';
 
 export default function TypeCourseRoot() {
-  return <Layout title={'Type de cours'}></Layout>;
+  return <TypesCourse />;
 }

@@ -11,6 +11,8 @@ import { DeleteTypeCourseController } from './usecases/delete-type-course/delete
 import { UpdateTypeCourseController } from './usecases/update-type-course/update-type-course.controller';
 import { TypeCourseRepository } from './domain/repositories/type-course.repository';
 import { TypeCoursePrismaRepository } from './infrastructure/repositories/course-type.prisma.repository';
+import { GetTypeCourseService } from './usecases/get-type-course/get-type-course.service';
+import { GetTypeCourseController } from './usecases/get-type-course/get-type-course.controller';
 
 @Module({
   imports: [SharedModule],
@@ -19,6 +21,7 @@ import { TypeCoursePrismaRepository } from './infrastructure/repositories/course
     DeleteTypeCourseService,
     ListTypeCourseService,
     UpdateTypeCourseService,
+    GetTypeCourseService,
     {
       provide: TypeCourseRepository,
       useClass: TypeCoursePrismaRepository,
@@ -29,6 +32,7 @@ import { TypeCoursePrismaRepository } from './infrastructure/repositories/course
     DeleteTypeCourseController,
     ListTypeCourseController,
     UpdateTypeCourseController,
+    GetTypeCourseController,
   ],
   exports: [],
 })

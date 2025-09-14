@@ -38,6 +38,9 @@ model User {
   reservations Reservation[]
 }
 
+// créer wallet credit associé a un user
+// creer une type credit
+
 model Reservation {
   id        String     @id @default(uuid())
   userId    String

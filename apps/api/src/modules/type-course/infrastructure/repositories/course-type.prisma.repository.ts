@@ -73,4 +73,10 @@ export class TypeCoursePrismaRepository implements TypeCourseRepository {
       updatedAt: deletedTypeCourse.updatedAt ?? undefined,
     };
   }
+
+  async findById(id: string): Promise<TypeCourseEntity | null> {
+    return this.prisma.typeCourse.findUnique({
+      where: { id },
+    });
+  }
 }

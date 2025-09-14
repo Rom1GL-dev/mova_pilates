@@ -1,47 +1,36 @@
 FROM node:23-alpine AS base
 
-ARG VITE_API_URL=http://localhost:3000
-
 FROM base AS builder
-ARG YARN_VERSION=4.7.0
-
-RUN apk add --no-cache libc6-compat
-RUN corepack enable && corepack prepare yarn@$YARN_VERSION
-RUN apk update
+RUN apk add --no-cache openssl
 RUN yarn global add turbo
 
 WORKDIR /app
-
 COPY . .
 RUN turbo prune dashboard --docker
 
 FROM base AS installer
-ARG YARN_VERSION=4.7.0
-
-RUN apk add --no-cache libc6-compat
-RUN corepack enable && corepack prepare yarn@$YARN_VERSION
-RUN apk update
-
 WORKDIR /app
-
-ENV VITE_API_URL=${VITE_API_URL}
+RUN apk add --no-cache openssl
 
 COPY --from=builder /app/out/json/ .
 COPY --from=builder /app/out/yarn.lock ./yarn.lock
-RUN yarn install
-
+RUN yarn install --frozen-lockfile
 
 COPY --from=builder /app/out/full/ .
-COPY turbo.json turbo.json
+RUN yarn turbo run build --filter=dashboard...
 
-RUN yarn turbo build --filter=dashboard...
+FROM base AS production
+ARG PORT=3000
+ENV PORT=$PORT
 
-FROM nginx:1.27.4-alpine-slim AS production
+WORKDIR /app
+RUN apk add --no-cache openssl
 
-COPY --from=installer /app/apps/dashboard/dist ./var/www/html/
-COPY --from=builder /app/apps/dashboard/nginx.conf /etc/nginx/conf.d/default.conf
+RUN addgroup --system --gid 1001 nodejs \
+  && adduser --system --uid 1001 react
+USER react
 
-ENTRYPOINT ["nginx","-g","daemon off;"]
+COPY --from=installer --chown=nodejs:react /app .
 
-EXPOSE 80
-
+EXPOSE $PORT
+CMD ["serve", "-s", "apps/dashboard/dist", "-l", "3000"]

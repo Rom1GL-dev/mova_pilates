@@ -6,16 +6,16 @@ export const APP_ROUTES = {
     path: '/utilisateurs',
     getHref: () => '/utilisateurs',
     details: {
-      path: '/utilisateur/:id',
-      getHref: () => `/utilisateur/:id`
+      path: '/utilisateurs/:id',
+      getHref: () => `/utilisateurs/:id`
     }
   },
   typesCourse: {
     path: '/types-cours',
     getHref: () => '/types-cours',
     details: {
-      path: '/type-cours/:id',
-      getHref: () => `/type-cours/:id`
+      path: '/types-cours/:id',
+      getHref: () => `/types-cours/:id`
     }
   },
   packs: {
@@ -23,7 +23,15 @@ export const APP_ROUTES = {
     getHref: () => '/packs',
     details: {
       path: '/packs/:id',
-      getHref: () => `/pack/:id`
+      getHref: () => `/packs/:id`
+    }
+  },
+  credits: {
+    path: '/credits',
+    getHref: () => '/credits',
+    details: {
+      path: '/credits/:id',
+      getHref: () => `/credits/:id`
     }
   }
 };
