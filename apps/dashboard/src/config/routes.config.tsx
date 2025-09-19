@@ -33,5 +33,21 @@ export const APP_ROUTES = {
       path: '/credits/:id',
       getHref: () => `/credits/:id`
     }
+  },
+  sessions: {
+    path: '/sessions',
+    getHref: () => '/sessions',
+    details: {
+      path: '/sessions/:id',
+      getHref: () => `/sessions/:id`
+    }
+  },
+  buying: {
+    path: '/paiements',
+    getHref: () => '/paiements',
+    details: {
+      path: '/paiements/:id',
+      getHref: () => `/paiements/:id`
+    }
   }
 };

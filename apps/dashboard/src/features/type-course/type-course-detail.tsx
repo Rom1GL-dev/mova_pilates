@@ -7,6 +7,7 @@ import {
 } from '@/components/ui/tabs.tsx';
 import { useGetTypeCourse } from '@/features/type-course/usecases/get-type-course/use-get-type-course.tsx';
 import { TypeCourseTabInformation } from '@/features/type-course/components/type-course-tab-information.tsx';
+import { TypeCoursePacks } from '@/features/type-course/components/type-course-packs.tsx';
 
 interface Props {
   typeCourseId: string;
@@ -43,7 +44,9 @@ export function TypeCourseDetail({ typeCourseId }: Props) {
         <TabsContent value={'INFORMATIONS'}>
           <TypeCourseTabInformation typeCourse={typeCourseData} />
         </TabsContent>
-        <TabsContent value={'PACKS'}>test2</TabsContent>
+        <TabsContent value={'PACKS'}>
+          <TypeCoursePacks typeCourse={typeCourseData} />
+        </TabsContent>
       </Tabs>
     </Layout>
   );

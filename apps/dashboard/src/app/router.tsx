@@ -12,6 +12,8 @@ import TypeCourseRoot from '@/app/routes/type-course/type-course.tsx';
 import TypeCourseDetailsRoot from '@/app/routes/type-course/type-course-details.tsx';
 import PackRoot from '@/app/routes/packs/packs.tsx';
 import PackDetailsRoot from '@/app/routes/packs/pack-details.tsx';
+import SessionsRoot from '@/app/routes/sessions/sessions.tsx';
+import SessionDetailsRoot from '@/app/routes/sessions/session-details.tsx';
 
 const queryClient = new QueryClient();
 
@@ -57,6 +59,14 @@ export const createAppRouter = () =>
     {
       path: APP_ROUTES.packs.details.getHref(),
       element: <PackDetailsRoot />
+    },
+    {
+      path: APP_ROUTES.sessions.getHref(),
+      element: <SessionsRoot />
+    },
+    {
+      path: APP_ROUTES.sessions.details.getHref(),
+      element: <SessionDetailsRoot />
     },
     {
       path: APP_ROUTES.login.getHref(),

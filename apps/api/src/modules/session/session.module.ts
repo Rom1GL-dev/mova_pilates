@@ -11,6 +11,8 @@ import { DeleteSessionController } from './usecases/delete-session/delete-sessio
 import { UpdateSessionController } from './usecases/update-session/update-session.controller';
 import { SessionRepository } from './domain/repositories/session.repository';
 import { SessionPrismaRepository } from './infrastructure/repositories/session.prisma.repository';
+import { GetSessionService } from './usecases/get-session/get-session.service';
+import { GetSessionController } from './usecases/get-session/get-session.controller';
 
 @Module({
   imports: [SharedModule],
@@ -19,6 +21,7 @@ import { SessionPrismaRepository } from './infrastructure/repositories/session.p
     DeleteSessionService,
     ListSessionService,
     UpdateSessionService,
+    GetSessionService,
     {
       provide: SessionRepository,
       useClass: SessionPrismaRepository,
@@ -29,6 +32,7 @@ import { SessionPrismaRepository } from './infrastructure/repositories/session.p
     DeleteSessionController,
     ListSessionController,
     UpdateSessionController,
+    GetSessionController,
   ],
   exports: [],
 })

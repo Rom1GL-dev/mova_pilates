@@ -11,6 +11,7 @@ RUN turbo prune dashboard --docker
 FROM base AS installer
 WORKDIR /app
 RUN apk add --no-cache openssl
+RUN yarn global add serve
 
 COPY --from=builder /app/out/json/ .
 COPY --from=builder /app/out/yarn.lock ./yarn.lock

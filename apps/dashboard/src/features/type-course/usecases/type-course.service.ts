@@ -1,7 +1,7 @@
 import { api } from '@/lib/api.ts';
 import { DeleteTypeCourseDto } from '@/features/type-course/usecases/delete-type-course/delete-type-course.dto.ts';
-import { UpdateTypeCourseForm } from '@/features/type-course/usecases/update-type-course/update-type-course.dto.ts';
 import { CreateTypeCourseForm } from '@/features/type-course/usecases/create-type-course/create-type-course.dto.ts';
+import { UpdateTypeCourseForm } from '@/features/type-course/usecases/update-type-course/update-type-course.dto.ts';
 
 export class TypeCourseService {
   readonly _uri: string = '/v1/type-course';
@@ -26,6 +26,10 @@ export class TypeCourseService {
 
   async create(data: CreateTypeCourseForm) {
     return api.post<CreateTypeCourseForm>(this._uri, data);
+  }
+
+  async getPacksByTypeCourseId(id: string) {
+    return await api.get(this._uri + `/get-packs/${id}`);
   }
 }
 

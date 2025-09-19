@@ -13,6 +13,8 @@ import { TypeCourseRepository } from './domain/repositories/type-course.reposito
 import { TypeCoursePrismaRepository } from './infrastructure/repositories/course-type.prisma.repository';
 import { GetTypeCourseService } from './usecases/get-type-course/get-type-course.service';
 import { GetTypeCourseController } from './usecases/get-type-course/get-type-course.controller';
+import { GetPacksByTypeCourseController } from './usecases/get-packs-by-type-course/get-packs-by-type-course.controller';
+import { GetPacksByTypeCourseService } from './usecases/get-packs-by-type-course/get-packs-by-type-course.service';
 
 @Module({
   imports: [SharedModule],
@@ -22,6 +24,7 @@ import { GetTypeCourseController } from './usecases/get-type-course/get-type-cou
     ListTypeCourseService,
     UpdateTypeCourseService,
     GetTypeCourseService,
+    GetPacksByTypeCourseService,
     {
       provide: TypeCourseRepository,
       useClass: TypeCoursePrismaRepository,
@@ -33,6 +36,7 @@ import { GetTypeCourseController } from './usecases/get-type-course/get-type-cou
     ListTypeCourseController,
     UpdateTypeCourseController,
     GetTypeCourseController,
+    GetPacksByTypeCourseController,
   ],
   exports: [],
 })

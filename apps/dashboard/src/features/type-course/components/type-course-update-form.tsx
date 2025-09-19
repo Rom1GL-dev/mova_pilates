@@ -22,6 +22,7 @@ import {
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select.tsx';
+import { useEffect } from 'react';
 
 interface Props {
   typeCourse: TTypeCourse;
@@ -54,6 +55,17 @@ export function TypeCourseUpdateForm({ typeCourse }: Props) {
       });
     }
   };
+
+  useEffect(() => {
+    if (typeCourse) {
+      form.reset({
+        id: typeCourse.id,
+        label: typeCourse.label,
+        capacity: typeCourse.capacity,
+        typeCourse: typeCourse.typeCourse
+      });
+    }
+  }, [typeCourse, form]);
 
   return (
     <div>

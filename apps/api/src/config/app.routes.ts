@@ -24,6 +24,7 @@ export const routesV1 = {
   typeCourse: {
     root: typeCourseRoot,
     byId: `${typeCourseRoot}/:id`,
+    packsByTypeCourseId: `${typeCourseRoot}/get-packs/:id`,
   },
   packs: {
     root: packsRoot,

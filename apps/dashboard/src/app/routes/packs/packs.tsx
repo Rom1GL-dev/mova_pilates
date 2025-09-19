@@ -1,5 +1,5 @@
-import Layout from '@/components/layout.tsx';
+import { Packs } from '@/features/pack/packs.tsx';
 
 export default function PackRoot() {
-  return <Layout breadcrumbs={['Packs']}></Layout>;
+  return <Packs />;
 }

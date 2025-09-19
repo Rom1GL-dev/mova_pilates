@@ -1,7 +1,15 @@
 'use client';
 
 import * as React from 'react';
-import { Book, Box, CoinsIcon, Users } from 'lucide-react';
+import {
+  Book,
+  Box,
+  Calendar,
+  CoinsIcon,
+  EuroIcon,
+  LayoutDashboardIcon,
+  Users
+} from 'lucide-react';
 
 import { NavMain } from '@/components/nav-main';
 import { NavUser } from '@/components/nav-user';
@@ -17,7 +25,26 @@ import { Link } from 'react-router-dom';
 import { APP_ROUTES } from '@/config/routes.config.tsx';
 
 const data = {
-  navMain: [
+  general: [
+    {
+      title: 'Tableau de bord',
+      url: APP_ROUTES.app.getHref(),
+      icon: LayoutDashboardIcon
+    }
+  ],
+  evenements: [
+    {
+      title: 'Sessions',
+      url: APP_ROUTES.sessions.getHref(),
+      icon: Calendar
+    },
+    {
+      title: 'Paiements',
+      url: APP_ROUTES.buying.getHref(),
+      icon: EuroIcon
+    }
+  ],
+  gestion: [
     {
       title: 'Utilisateurs',
       url: APP_ROUTES.users.getHref(),
@@ -54,7 +81,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent className={'bg-[#f3e8de]'}>
-        <NavMain label={'Gestion'} items={data.navMain} />
+        <NavMain label={'Général'} items={data.general} />
+        <NavMain label={'Évènement'} items={data.evenements} />
+        <NavMain label={'Gestion'} items={data.gestion} />
       </SidebarContent>
       <SidebarFooter className={'bg-[#f3e8de]'}>
         <NavUser />
