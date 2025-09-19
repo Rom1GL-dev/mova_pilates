@@ -59,4 +59,4 @@ jobs:
             cd mova_pilates
             docker pull rom1dev/mova_pilates_dashboard:latest
             docker pull rom1dev/mova_pilates_api:latest
-            docker compose --env-file ../.env -f docker-compose.prod.yml up -d
+            docker compose --env-file .env -f docker-compose.prod.yml up -d

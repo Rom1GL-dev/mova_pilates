@@ -5,77 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="53da6d2f-78bc-4241-a6fc-b43e7fabbe7c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.github/workflows/deploy.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/pack/usecases/get-pack/get-pack.controller.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/pack/usecases/get-pack/get-pack.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/session/usecases/get-session/get-session.controller.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/session/usecases/get-session/get-session.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/type-course/domain/entities/pack.entity.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/type-course/usecases/get-packs-by-type-course/get-packs-by-type-course.controller.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/type-course/usecases/get-packs-by-type-course/get-packs-by-type-course.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/app/routes/sessions/session-details.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/app/routes/sessions/sessions.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/pack/components/pack-columns.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/pack/components/pack-create-dialog.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/pack/components/pack-delete-dialog.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/pack/components/pack-dialogs.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/pack/components/pack-listing-toolbar.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/pack/components/pack-tab-information.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/pack/components/pack-table-actions.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/pack/components/pack-update-form.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/pack/context/pack-provider.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/pack/pack-detail.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/pack/packs.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/pack/types/TPack.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/pack/usecases/create-pack/create-pack.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/pack/usecases/create-pack/use-create-pack.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/pack/usecases/delete-pack/delete-pack.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/pack/usecases/delete-pack/use-delete-user.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/pack/usecases/get-pack/use-get-pack.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/pack/usecases/list-pack/use-list-packs.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/pack/usecases/pack.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/pack/usecases/update-pack/update-pack.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/pack/usecases/update-pack/use-update-pack.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/components/session-columns.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/components/session-create-dialog.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/components/session-delete-dialog.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/components/session-dialogs.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/components/session-listing-toolbar.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/components/session-tab-information.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/components/session-table-actions.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/components/session-update-form.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/context/session-provider.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/session-detail.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/sessions.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/types/TSession.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/usecases/create-session/create-session.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/usecases/create-session/use-create-session.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/usecases/delete-session/delete-session.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/usecases/delete-session/use-delete-session.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/usecases/get-session/use-get-session.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/usecases/list-session/use-list-session.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/usecases/session.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/usecases/update-session/update-session.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/usecases/update-session/use-update-session.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/utils/type-course-data.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/type-course/components/type-course-packs.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/type-course/usecases/get-packs-by-type-course/use-get-packs-by-type-course.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/deploy.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/deploy.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/config/app.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/config/app.routes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/pack/pack.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/pack/pack.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/session/session.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/session/session.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/type-course/domain/repositories/type-course.repository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/type-course/domain/repositories/type-course.repository.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/type-course/infrastructure/repositories/course-type.prisma.repository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/type-course/infrastructure/repositories/course-type.prisma.repository.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/type-course/type-course.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/type-course/type-course.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/dashboard/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/app/router.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/app/router.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/app/routes/packs/pack-details.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/app/routes/packs/pack-details.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/app/routes/packs/packs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/app/routes/packs/packs.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/components/app-sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/components/app-sidebar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/config/routes.config.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/config/routes.config.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/features/type-course/components/type-course-update-form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/features/type-course/components/type-course-update-form.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/features/type-course/type-course-detail.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/features/type-course/type-course-detail.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/features/type-course/usecases/type-course.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/features/type-course/usecases/type-course.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,7 +85,7 @@
       <workItem from="1758044066968" duration="3227000" />
       <workItem from="1758222933741" duration="1470000" />
       <workItem from="1758282839082" duration="6000" />
-      <workItem from="1758313341560" duration="2553000" />
+      <workItem from="1758313341560" duration="3147000" />
     </task>
     <servers />
   </component>
