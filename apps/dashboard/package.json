@@ -82,6 +82,7 @@
     "react-router-dom": "^7.6.2",
     "react-toastify": "^11.0.5",
     "recharts": "2.15.4",
+    "serve": "^14.2.5",
     "slate": "^0.112.0",
     "slate-dom": "^0.112.2",
     "slate-history": "^0.110.3",
