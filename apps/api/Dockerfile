@@ -44,10 +44,10 @@ USER nestjs
 # Copier le build complet depuis le builder
 COPY --from=builder /app .
 
-# 🔑 Copier explicitement le dossier Prisma du package database (schema + migrations)
-COPY --from=builder /app/packages/database/prisma ./packages/database/prisma
+# 🔑 Copier explicitement le dossier Prisma du package database
+COPY --from=builder /app/packages/database/prisma ./prisma
 
 EXPOSE $PORT
 
-# Lancer la migration Prisma avec le chemin correct puis démarrer l'API
-CMD sh -c "npx prisma migrate deploy --schema=packages/database/prisma/schema.prisma && node apps/api/dist/main.js"
+# Lancer la migration Prisma avec le bon chemin puis l'app
+CMD sh -c "npx prisma migrate deploy --schema=./prisma/schema.prisma && node apps/api/dist/main.js"
