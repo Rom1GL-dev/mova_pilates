@@ -36,10 +36,18 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       # 6️⃣ Build et tag des images Docker
+      # ⚡️ Ajout des build-args pour Vite à partir des secrets GitHub
       - name: Build Docker images
         run: |
-          docker build -f apps/dashboard/Dockerfile -t rom1dev/mova_pilates_dashboard:latest .
-          docker build -f apps/api/Dockerfile -t rom1dev/mova_pilates_api:latest .
+          docker build \
+            --build-arg VITE_API_URL=${{ secrets.VITE_API_URL }} \
+            --build-arg VITE_APP_URL=${{ secrets.VITE_APP_URL }} \
+            -f apps/dashboard/Dockerfile \
+            -t rom1dev/mova_pilates_dashboard:latest .
+
+          docker build \
+            -f apps/api/Dockerfile \
+            -t rom1dev/mova_pilates_api:latest .
 
       # 7️⃣ Push Docker images vers Docker Hub
       - name: Push Docker images

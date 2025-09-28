@@ -15,18 +15,32 @@ FROM base AS installer
 WORKDIR /app
 RUN apk add --no-cache openssl
 
+# Arguments passés au build pour Vite
+ARG VITE_API_URL
+ARG VITE_APP_URL
+# On les exporte comme ENV pour qu’ils soient visibles pendant le build Vite
+ENV VITE_API_URL=$VITE_API_URL
+ENV VITE_APP_URL=$VITE_APP_URL
+
 # copier les fichiers prunés
 COPY --from=builder /app/out/json/ .
 COPY --from=builder /app/out/yarn.lock ./yarn.lock
 RUN yarn install --frozen-lockfile
 
 COPY --from=builder /app/out/full/ .
+# ⚡ le build Vite lira VITE_* via ENV
 RUN yarn turbo run build --filter=dashboard...
 
 # ----- 3. Image finale -----
 FROM base AS production
 ARG PORT=3000
 ENV PORT=$PORT
+
+# ➜ exposer les mêmes variables si tu veux les retrouver au runtime (facultatif)
+ARG VITE_API_URL
+ARG VITE_APP_URL
+ENV VITE_API_URL=$VITE_API_URL
+ENV VITE_APP_URL=$VITE_APP_URL
 
 WORKDIR /app
 RUN apk add --no-cache openssl
