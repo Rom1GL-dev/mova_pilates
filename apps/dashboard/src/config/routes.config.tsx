@@ -27,10 +27,10 @@ export const APP_ROUTES = {
     }
   },
   credits: {
-    path: '/credits',
-    getHref: () => '/credits',
+    path: '/wallet',
+    getHref: () => '/wallet',
     details: {
-      path: '/credits/:id',
+      path: '/wallet/:id',
       getHref: () => `/credits/:id`
     }
   },

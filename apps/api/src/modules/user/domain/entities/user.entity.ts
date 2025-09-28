@@ -10,7 +10,6 @@ export const UserSchema = z.object({
   role: Role,
   tel: z.string().nullable().optional(),
   dob: z.date().nullable().optional(),
-  credit: z.number().min(0).default(0).nullable().optional(),
   createdAt: z.date(),
   updatedAt: z.date().optional(),
 });

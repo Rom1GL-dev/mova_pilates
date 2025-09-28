@@ -10,6 +10,7 @@ import { TypeCourseModule } from './modules/type-course/type-course.module';
 import { PackModule } from './modules/pack/pack.module';
 import { SessionModule } from './modules/session/session.module';
 import { ReservationModule } from './modules/reservation/reservation.module';
+import { WalletModule } from './modules/wallet/wallet.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { ReservationModule } from './modules/reservation/reservation.module';
     PackModule,
     SessionModule,
     ReservationModule,
+    WalletModule,
   ],
   controllers: [],
   providers: [

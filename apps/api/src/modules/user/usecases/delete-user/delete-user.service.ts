@@ -1,5 +1,4 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import * as bcrypt from 'bcrypt';
 import { DeleteUserDto } from './delete-user.dto';
 import { Session } from '../../../../types/session';
 import { UserRepository } from '../../domain/repositories/user.repository';
@@ -20,9 +19,5 @@ export class DeleteUserService {
       return { message: "L'utilisateur n'a pas pu être supprimé." };
     }
     return { message: "L'utilisateur a bien été supprimé." };
-  }
-
-  private comparePasswords(password: string, hash: string) {
-    return bcrypt.compare(password, hash);
   }
 }

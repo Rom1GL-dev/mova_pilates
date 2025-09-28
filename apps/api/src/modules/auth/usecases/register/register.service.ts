@@ -1,7 +1,4 @@
-import {
-  BadRequestException,
-  Injectable,
-} from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { PrismaService } from '../../../../shared/infrastructure/prisma.service';
 import { CacheStorage } from '../../../../shared/ports/cache-storage';
 import { createSession, generateSessionId } from '../../config/sessions';
@@ -34,7 +31,6 @@ export class RegisterService {
         firstname: registerDto.firstname,
         lastname: registerDto.lastname,
         role: Role.enum.USER,
-        credit: 0,
       },
     });
 

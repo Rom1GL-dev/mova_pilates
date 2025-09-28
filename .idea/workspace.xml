@@ -5,8 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="53da6d2f-78bc-4241-a6fc-b43e7fabbe7c" name="Changes" comment="fix: ci cd + prisma migrate dev">
+      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/wallet/domain/entities/wallet.entity.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/wallet/domain/repositories/wallet.repository.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/wallet/infrastructure/repositories/wallet.prisma.repository.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/wallet/usecases/adjust-credit/adjust-credit.controller.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/wallet/usecases/adjust-credit/adjust-credit.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/wallet/usecases/adjust-credit/adjust-credit.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/wallet/usecases/list-all-wallets-by-user/list-all-wallets-by-user.controller.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/wallet/usecases/list-all-wallets-by-user/list-all-wallets-by-user.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/wallet/wallet.module.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/user/components/user-wallet-credit-modal.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/user/types/TWallet.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/user/usecases/list-all-wallets-by-user/list-all-wallets-by-user.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/user/usecases/update-wallet/update-wallet.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/user/usecases/update-wallet/use-update-wallet.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/register/register.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/register/register.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/config/app.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/config/app.routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/register/register.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/register/register.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/user/domain/entities/user.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/user/domain/entities/user.entity.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/user/infrastructure/repositories/user.prisma.repository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/user/infrastructure/repositories/user.prisma.repository.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/user/usecases/create-user/create-user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/user/usecases/create-user/create-user.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/user/usecases/delete-user/delete-user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/user/usecases/delete-user/delete-user.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/config/routes.config.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/config/routes.config.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/features/user/components/user-tab-information.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/features/user/components/user-tab-information.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/features/user/usecases/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/features/user/usecases/user.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/database/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/packages/database/prisma/schema.prisma" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,32 +51,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/romaingilot/Desktop/Personnel/projects/marie/apps/api/src/modules/session/usecases&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;pnpm&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/romaingilot/Desktop/Personnel/projects/marie/node_modules/prettier&quot;,
-    &quot;rearrange.code.on.save&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;actions.on.save&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/romaingilot/Desktop/Personnel/projects/marie/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/romaingilot/Desktop/Personnel/projects/marie/apps/dashboard/src/features/user/usecases/update-wallet",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "pnpm",
+    "prettierjs.PrettierConfiguration.Package": "/Users/romaingilot/Desktop/Personnel/projects/marie/node_modules/prettier",
+    "rearrange.code.on.save": "true",
+    "settings.editor.selected.configurable": "actions.on.save",
+    "ts.external.directory.path": "/Users/romaingilot/Desktop/Personnel/projects/marie/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/apps/dashboard/src/features/user/usecases/update-wallet" />
+      <recent name="$PROJECT_DIR$/apps/api/src/modules/wallet/usecases" />
+      <recent name="$PROJECT_DIR$/apps/dashboard/src/features/user/types" />
+      <recent name="$PROJECT_DIR$/apps/api/src/modules" />
       <recent name="$PROJECT_DIR$/apps/api/src/modules/session/usecases" />
-      <recent name="$PROJECT_DIR$/apps/dashboard/src/features" />
-      <recent name="$PROJECT_DIR$/apps/dashboard/src/app/routes/sessions" />
-      <recent name="$PROJECT_DIR$/apps/dashboard/src/app/routes" />
-      <recent name="$PROJECT_DIR$/apps/dashboard/src/features/type-course/usecases/get-packs-by-type-course" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/apps/dashboard/public" />
@@ -88,7 +112,7 @@
       <workItem from="1758313341560" duration="4828000" />
       <workItem from="1758895556457" duration="3000" />
       <workItem from="1758906280664" duration="8000" />
-      <workItem from="1758973527067" duration="11508000" />
+      <workItem from="1758973527067" duration="18711000" />
     </task>
     <task id="LOCAL-00001" summary="fix: ci cd + prisma migrate dev">
       <option name="closed" value="true" />

@@ -4,6 +4,7 @@ const typeCourseRoot = '/type-course';
 const packsRoot = '/packs';
 const sessionsRoot = '/sessions';
 const reservationsRoot = '/reservations';
+const wallets = '/wallets';
 
 const v1 = 'v1';
 
@@ -37,5 +38,10 @@ export const routesV1 = {
   reservations: {
     root: reservationsRoot,
     byId: `${reservationsRoot}/:id`,
+  },
+  wallets: {
+    root: wallets,
+    adjustCredit: `${wallets}/adjust-credit`,
+    byUserId: `${wallets}/:id`,
   },
 };

@@ -18,7 +18,6 @@ export class UserPrismaRepository implements UserRepository {
       role: u.role,
       tel: u.tel,
       dob: u.dob,
-      credit: u.credit,
       createdAt: u.createdAt,
       updatedAt: u.updatedAt ?? undefined,
     }));
@@ -35,7 +34,6 @@ export class UserPrismaRepository implements UserRepository {
         role: user.role,
         tel: user.tel,
         dob: user.dob,
-        credit: user.credit,
       },
     });
 
@@ -48,7 +46,6 @@ export class UserPrismaRepository implements UserRepository {
       role: createdUser.role,
       tel: createdUser.tel,
       dob: createdUser.dob,
-      credit: createdUser.credit,
       createdAt: createdUser.createdAt,
       updatedAt: createdUser.updatedAt ?? undefined,
     };
@@ -65,7 +62,6 @@ export class UserPrismaRepository implements UserRepository {
         role: user.role,
         tel: user.tel,
         dob: user.dob,
-        credit: user.credit,
       },
     });
 
@@ -78,7 +74,6 @@ export class UserPrismaRepository implements UserRepository {
       role: updatedUser.role,
       tel: updatedUser.tel,
       dob: updatedUser.dob,
-      credit: updatedUser.credit,
       createdAt: updatedUser.createdAt,
       updatedAt: updatedUser.updatedAt ?? undefined,
     };
@@ -98,7 +93,6 @@ export class UserPrismaRepository implements UserRepository {
       role: deletedUser.role,
       tel: deletedUser.tel,
       dob: deletedUser.dob,
-      credit: deletedUser.credit,
       createdAt: deletedUser.createdAt,
       updatedAt: deletedUser.updatedAt ?? undefined,
     };
