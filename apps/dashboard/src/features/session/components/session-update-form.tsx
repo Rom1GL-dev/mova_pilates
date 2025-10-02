@@ -111,9 +111,7 @@ export function SessionUpdateForm({ session }: Props) {
                   <FormControl>
                     <Input
                       type="datetime-local"
-                      // on utilise field.onChange / onBlur / name / ref depuis {...field}
                       {...field}
-                      // mais on force une string lisible pour <input>
                       value={field.value ?? fallback}
                     />
                   </FormControl>

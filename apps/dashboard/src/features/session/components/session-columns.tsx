@@ -3,6 +3,7 @@ import { Checkbox } from '@/components/ui/checkbox.tsx';
 import { TSession } from '@/features/session/types/TSession.ts';
 import dayjs from 'dayjs';
 import { SessionTableActions } from '@/features/session/components/session-table-actions.tsx';
+import { SessionColumnTypeCourse } from '@/features/session/components/session-column-type-course.tsx';
 
 export const sessionColumns: ColumnDef<TSession>[] = [
   {
@@ -28,7 +29,19 @@ export const sessionColumns: ColumnDef<TSession>[] = [
     enableHiding: false
   },
 
-  { accessorKey: 'typeCourseId', header: 'Type de cours' },
+  {
+    accessorKey: 'typeCourseId',
+    header: 'Type de cours',
+    cell: ({ row }) => {
+      return (
+        <>
+          <SessionColumnTypeCourse
+            typeCourseId={row.getValue('typeCourseId')}
+          />{' '}
+        </>
+      );
+    }
+  },
   {
     accessorKey: 'startDate',
     header: 'Date de début',

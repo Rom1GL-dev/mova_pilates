@@ -33,6 +33,7 @@ export class UpdateUserService {
       firstname: data.firstname,
       lastname: data.lastname,
       tel: data.tel,
+      dob: data.dob,
       role: data.role,
     };
 

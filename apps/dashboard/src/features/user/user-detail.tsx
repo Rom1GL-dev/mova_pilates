@@ -43,11 +43,13 @@ export function UserDetail({ userId }: Props) {
           <TabsTrigger value={'HISTORIQUES_SESSIONS'}>
             Historique Sessions
           </TabsTrigger>
+          <TabsTrigger value={'ACHATS'}>Achats</TabsTrigger>
         </TabsList>
         <TabsContent value={'INFORMATIONS'}>
           <UserTabInformation user={userData} />
         </TabsContent>
         <TabsContent value={'HISTORIQUES_SESSIONS'}>test2</TabsContent>
+        <TabsContent value={'ACHATS'}>test2</TabsContent>
       </Tabs>
     </Layout>
   );

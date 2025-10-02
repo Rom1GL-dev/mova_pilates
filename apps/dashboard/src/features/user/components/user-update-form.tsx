@@ -21,6 +21,7 @@ import { useMe } from '@/lib/auth.tsx';
 import { useToast } from '@/providers/toast-provider.tsx';
 import { useForm } from 'react-hook-form';
 import { TUser } from '@/features/user/types/TUser.ts';
+import dayjs from 'dayjs';
 
 interface Props {
   user: TUser;
@@ -30,6 +31,7 @@ export function UserUpdateForm({ user }: Props) {
   const updateUser = useUpdateUser();
   const me = useMe();
   const { showToast } = useToast();
+
   const form = useForm<TUser>({
     defaultValues: {
       id: user.id,
@@ -37,12 +39,16 @@ export function UserUpdateForm({ user }: Props) {
       lastname: user.lastname,
       tel: user.tel,
       email: user.email,
-      role: user.role
+      role: user.role,
+      dob: dayjs(user.dob).format('YYYY-MM-DD')
     }
   });
 
   const onSubmit = async (data: TUser) => {
-    const response = await updateUser.mutateAsync(data);
+    const response = await updateUser.mutateAsync({
+      ...data,
+      dob: new Date(data.dob)
+    });
     if (response) {
       showToast({
         type: 'success',
@@ -119,6 +125,27 @@ export function UserUpdateForm({ user }: Props) {
                 <FormMessage />
               </FormItem>
             )}
+          />
+
+          <FormField
+            control={form.control}
+            name="dob"
+            render={({ field }) => {
+              const fallback = dayjs(user.dob).format('YYYY-MM-DD');
+              return (
+                <FormItem>
+                  <FormLabel>Date de fin</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="date"
+                      {...field}
+                      value={field.value ?? fallback}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              );
+            }}
           />
 
           <FormField

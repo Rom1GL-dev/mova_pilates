@@ -4,8 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="53da6d2f-78bc-4241-a6fc-b43e7fabbe7c" name="Changes" comment="fix: ci cd + prisma migrate dev">
+    <list default="true" id="53da6d2f-78bc-4241-a6fc-b43e7fabbe7c" name="Changes" comment="feat: stats pack">
+      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/components/session-column-type-course.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/user/usecases/update-user/update-user.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/user/usecases/update-user/update-user.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/user/usecases/update-user/update-user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/user/usecases/update-user/update-user.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/shared/shared.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/shared/shared.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/features/session/components/session-columns.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/components/session-columns.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/features/session/components/session-update-form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/components/session-update-form.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/features/type-course/components/type-course-packs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/features/type-course/components/type-course-packs.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/features/user/components/user-update-form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/features/user/components/user-update-form.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/features/user/types/TUser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/features/user/types/TUser.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/features/user/user-detail.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/features/user/user-detail.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +99,7 @@
       <workItem from="1758313341560" duration="4828000" />
       <workItem from="1758895556457" duration="3000" />
       <workItem from="1758906280664" duration="8000" />
-      <workItem from="1758973527067" duration="18770000" />
+      <workItem from="1758973527067" duration="25921000" />
     </task>
     <task id="LOCAL-00001" summary="fix: ci cd + prisma migrate dev">
       <option name="closed" value="true" />
@@ -145,7 +157,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fix: ci cd + prisma migrate dev" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: ci cd + prisma migrate dev" />
+    <MESSAGE value="feat: stats pack" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: stats pack" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

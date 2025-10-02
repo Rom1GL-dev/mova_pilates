@@ -5,7 +5,7 @@ export interface TUser {
   email: string;
   role: UserRole;
   tel: string;
-  dob: Date;
+  dob: string;
   createdAt: Date;
   updatedAt?: Date;
 }
