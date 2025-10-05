@@ -3,24 +3,22 @@ import { Input } from '@/components/ui/input';
 
 interface Props {
   placeholder?: string;
-  column: string;
   table: any;
 }
 
 export function DataTableSearch({
   placeholder = 'Rechercher...',
-  column,
   table
 }: Props) {
   const [value, setValue] = useState('');
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      table.getColumn(column)?.setFilterValue(value || undefined);
-    }, 200); // debounce
+      table.setGlobalFilter(value || undefined);
+    }, 200);
 
     return () => clearTimeout(timeout);
-  }, [value, column, table]);
+  }, [value, table]);
 
   return (
     <Input

@@ -14,7 +14,7 @@ export function NavMain({
   label: string;
   items: {
     title: string;
-    url: string;
+    url?: string;
     icon: LucideIcon;
     isActive?: boolean;
     items?: {
@@ -31,7 +31,11 @@ export function NavMain({
           const isActive = location.pathname === item.url;
           return (
             <SidebarMenuItem
-              className={isActive ? 'rounded-md bg-[#b28053] text-white' : ''}
+              className={
+                isActive
+                  ? 'rounded-md bg-[#b28053] text-white'
+                  : `${!item.url && 'cursor-not-allowed opacity-50'} rounded-md hover:bg-[#b28053] hover:text-white`
+              }
               key={item.title}
             >
               <SidebarMenuButton asChild tooltip={item.title}>

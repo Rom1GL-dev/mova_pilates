@@ -1,47 +1,65 @@
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useEffect, useState } from 'react';
 import { login } from '@/features/auth/usecases/login/login.ts';
+import { verifyOtp } from '@/features/auth/usecases/verify-otp/verify-otp.ts';
 import { APP_ROUTES } from '@/config/routes.config.tsx';
-import { Loader2 } from 'lucide-react';
-import { Button } from '@/components/ui/button.tsx';
-import {
-  LoginFormFields,
-  LoginFormInputs
-} from '@/features/auth/components/login-form-fields.tsx';
+import { useMe } from '@/lib/auth.tsx';
+import { LoginStepForm } from './login-step-form.tsx';
+import { OtpStepForm } from './otp-step-form.tsx';
 
 export function Login() {
   const navigate = useNavigate();
+  const me = useMe();
+  const [step, setStep] = useState<'login' | 'otp'>('login');
+  const [email, setEmail] = useState<string | null>(null);
   const [loginError, setLoginError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [otpMEssage, setOtpMessage] = useState<string | null>(null);
 
-  const {
-    control,
-    handleSubmit,
-    formState: { errors }
-  } = useForm<LoginFormInputs>({
-    defaultValues: {
-      email: '',
-      password: ''
+  useEffect(() => {
+    if (me) {
+      navigate(APP_ROUTES.app.getHref());
     }
-  });
+  }, [me, navigate]);
 
-  const onSubmit = async (data: LoginFormInputs) => {
+  const handleLogin = async (data: { email: string; password: string }) => {
     setLoginError(null);
     setLoading(true);
     try {
       const loginUser = await login(data);
-      if (loginUser) {
-        navigate(APP_ROUTES.app.getHref());
+      if (loginUser?.email) {
+        setEmail(loginUser.email);
+        setOtpMessage(
+          'Un code à 6 chiffres vous a été envoyé à votre adresse email.'
+        );
+        setStep('otp');
       }
     } catch (error: any) {
-      if (error?.response?.data?.message) {
-        setLoginError(error.response.data.message);
-      } else if (error instanceof Error) {
-        setLoginError(error.message);
-      } else {
-        setLoginError('Une erreur est survenue. Veuillez réessayer plus tard.');
+      setLoginError(
+        error?.response?.data?.message ||
+          error?.message ||
+          'Une erreur est survenue. Veuillez réessayer plus tard.'
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleOtp = async (data: { otp: string }) => {
+    if (!email) return;
+    setLoginError(null);
+    setLoading(true);
+    try {
+      const verified = await verifyOtp({ email, otp: data.otp });
+      if (verified) {
+        window.location.href = APP_ROUTES.app.getHref();
       }
+    } catch (error: any) {
+      setLoginError(
+        error?.response?.data?.message ||
+          error?.message ||
+          'Une erreur est survenue. Veuillez réessayer plus tard.'
+      );
     } finally {
       setLoading(false);
     }
@@ -61,24 +79,23 @@ export function Login() {
           </div>
         )}
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-          <LoginFormFields control={control} errors={errors} />
+        {otpMEssage && (
+          <div className="mb-4 rounded-lg bg-blue-100 px-4 py-2 text-sm text-blue-600">
+            {otpMEssage}
+          </div>
+        )}
 
-          <Button
-            type="submit"
-            disabled={loading}
-            className="w-full cursor-pointer rounded-lg bg-[#b28053] py-2 font-semibold text-white shadow-md transition duration-200 hover:bg-[#8b6f55] disabled:opacity-70"
-          >
-            {loading ? (
-              <span className="flex items-center justify-center gap-2">
-                <Loader2 className="h-5 w-5 animate-spin" />
-                Connexion...
-              </span>
-            ) : (
-              'Se connecter'
-            )}
-          </Button>
-        </form>
+        {step === 'login' && (
+          <LoginStepForm onSubmit={handleLogin} loading={loading} />
+        )}
+
+        {step === 'otp' && (
+          <OtpStepForm
+            onSubmit={handleOtp}
+            loading={loading}
+            onBack={() => setStep('login')}
+          />
+        )}
       </div>
     </div>
   );

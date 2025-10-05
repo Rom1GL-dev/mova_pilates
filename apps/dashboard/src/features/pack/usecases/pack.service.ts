@@ -4,7 +4,7 @@ import { CreatePackForm } from '@/features/pack/usecases/create-pack/create-pack
 import { UpdatePackForm } from '@/features/pack/usecases/update-pack/update-pack.dto.ts';
 
 export class PackService {
-  readonly _uri: string = '/v1/packs';
+  readonly _uri: string = '/v1/backoffice/packs';
 
   constructor() {}
 

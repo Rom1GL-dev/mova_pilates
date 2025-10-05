@@ -6,6 +6,9 @@ import { UserCreateDialog } from '@/features/user/components/user-create-dialog.
 import { DataTableFilter } from '@/components/data-table/data-table-filter.tsx';
 import { USER_ROLE_DATA } from '@/features/user/utils/user-data.tsx';
 import { UserRole } from '@/features/user/types/TUser.ts';
+import { BiExport } from 'react-icons/bi';
+import { Tooltip, TooltipTrigger } from '@/components/ui/tooltip.tsx';
+import { TooltipContent } from '@radix-ui/react-tooltip';
 
 interface Props {
   table: any;
@@ -18,7 +21,7 @@ export function UserListingToolbar({ table }: Props) {
     <div className="flex items-center justify-between gap-2">
       <div className={'flex items-center gap-x-3'}>
         <DataTableViewOptions table={table} />
-        <DataTableSearch column={'firstname'} table={table} />
+        <DataTableSearch table={table} />
         <DataTableFilter
           title="Rôle"
           column="role"
@@ -39,7 +42,19 @@ export function UserListingToolbar({ table }: Props) {
           </Button>
         )}
       </div>
-      <UserCreateDialog />
+      <div className={'flex gap-x-3'}>
+        <UserCreateDialog />
+        <Tooltip>
+          <TooltipTrigger>
+            <Button className="flex cursor-pointer items-center gap-2  bg-slate-400 text-white hover:bg-green-800 hover:text-white">
+              <BiExport className="h-4 w-4" />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent className={'mb-2 rounded bg-slate-100 p-2 text-sm'}>
+            Exporter
+          </TooltipContent>
+        </Tooltip>
+      </div>
     </div>
   );
 }

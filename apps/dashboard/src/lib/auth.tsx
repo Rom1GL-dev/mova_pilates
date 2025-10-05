@@ -5,8 +5,7 @@ import { AxiosError } from 'axios';
 import { APP_ROUTES } from '@/config/routes.config.tsx';
 
 const getUser = async () => {
-  const response = await api.get('/v1/auth/me');
-  console.log(response);
+  const response = await api.get('/v1/backoffice/auth/me');
   return response.data.user;
 };
 

@@ -11,6 +11,8 @@ import { PackModule } from './modules/pack/pack.module';
 import { SessionModule } from './modules/session/session.module';
 import { ReservationModule } from './modules/reservation/reservation.module';
 import { WalletModule } from './modules/wallet/wallet.module';
+import { AnalyticsModule } from './modules/analytics/analytics.module';
+import { LogModule } from './modules/logs/log.module';
 
 @Module({
   imports: [
@@ -18,6 +20,7 @@ import { WalletModule } from './modules/wallet/wallet.module';
       isGlobal: true,
     }),
     SharedModule,
+    LogModule,
     AuthModule,
     UserModule,
     TypeCourseModule,
@@ -25,6 +28,7 @@ import { WalletModule } from './modules/wallet/wallet.module';
     SessionModule,
     ReservationModule,
     WalletModule,
+    AnalyticsModule,
   ],
   controllers: [],
   providers: [

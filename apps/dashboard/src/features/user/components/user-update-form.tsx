@@ -134,7 +134,7 @@ export function UserUpdateForm({ user }: Props) {
               const fallback = dayjs(user.dob).format('YYYY-MM-DD');
               return (
                 <FormItem>
-                  <FormLabel>Date de fin</FormLabel>
+                  <FormLabel>Date de naissance</FormLabel>
                   <FormControl>
                     <Input
                       type="date"

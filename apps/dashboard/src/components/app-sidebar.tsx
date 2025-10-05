@@ -5,7 +5,6 @@ import {
   Book,
   Box,
   Calendar,
-  CoinsIcon,
   EuroIcon,
   LayoutDashboardIcon,
   Users
@@ -40,7 +39,7 @@ const data = {
     },
     {
       title: 'Paiements',
-      url: APP_ROUTES.buying.getHref(),
+      url: '',
       icon: EuroIcon
     }
   ],
@@ -59,11 +58,6 @@ const data = {
       title: 'Type de packs',
       url: APP_ROUTES.packs.getHref(),
       icon: Box
-    },
-    {
-      title: 'Type de crédits',
-      url: APP_ROUTES.credits.getHref(),
-      icon: CoinsIcon
     }
   ]
 };

@@ -1,5 +1,5 @@
-import Layout from '@/components/layout.tsx';
+import { Dashboard } from '@/features/dashboard/dashboard.tsx';
 
-export const AppRoute = async () => {
-  return <Layout breadcrumbs={['Tableau de bord']}></Layout>;
-};
+export async function AppRoute() {
+  return <Dashboard />;
+}

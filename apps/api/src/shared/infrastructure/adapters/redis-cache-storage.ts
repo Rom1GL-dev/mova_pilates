@@ -22,7 +22,8 @@ export class RedisCacheStorage implements CacheStorage {
   }
 
   async set<T>(key: string, value: T, ttl?: number): Promise<boolean> {
-    return this.keyv.set(key, value, ttl);
+    const ttlMs = ttl ? ttl * 1000 : undefined;
+    return this.keyv.set(key, value, ttlMs);
   }
 
   async del(key: string): Promise<boolean> {

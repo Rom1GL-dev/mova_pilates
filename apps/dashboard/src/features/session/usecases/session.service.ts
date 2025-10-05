@@ -4,7 +4,7 @@ import { DeleteSessionDto } from '@/features/session/usecases/delete-session/del
 import { CreateSessionForm } from '@/features/session/usecases/create-session/create-session.dto.ts';
 
 export class SessionService {
-  readonly _uri: string = '/v1/sessions';
+  readonly _uri: string = '/v1/backoffice/sessions';
 
   constructor() {}
 

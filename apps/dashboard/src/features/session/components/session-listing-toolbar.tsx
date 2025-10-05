@@ -15,7 +15,7 @@ export function SessionListingToolbar({ table }: Props) {
     <div className="flex items-center justify-between gap-2">
       <div className={'flex items-center gap-x-3'}>
         <DataTableViewOptions table={table} />
-        <DataTableSearch column={'label'} table={table} />
+        <DataTableSearch table={table} />
 
         {isFiltered && (
           <Button

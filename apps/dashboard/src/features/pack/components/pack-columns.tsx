@@ -27,7 +27,7 @@ export const packColumns: ColumnDef<TPack>[] = [
     enableHiding: false
   },
 
-  { accessorKey: 'label', header: 'Nom du cours' },
+  { accessorKey: 'label', header: 'Nom du cours', filterFn: 'includesString' },
   { accessorKey: 'nbCourse', header: 'Nombre de cours' },
   {
     accessorKey: 'price',

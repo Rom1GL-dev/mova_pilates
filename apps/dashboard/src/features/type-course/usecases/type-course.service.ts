@@ -4,7 +4,7 @@ import { CreateTypeCourseForm } from '@/features/type-course/usecases/create-typ
 import { UpdateTypeCourseForm } from '@/features/type-course/usecases/update-type-course/update-type-course.dto.ts';
 
 export class TypeCourseService {
-  readonly _uri: string = '/v1/type-course';
+  readonly _uri: string = '/v1/backoffice/type-course';
 
   constructor() {}
 

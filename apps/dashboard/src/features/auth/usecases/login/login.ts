@@ -1,7 +1,7 @@
 import { api } from '@/lib/api';
 import { z } from 'zod/v4';
 
-const BASE_URL = '/v1/auth/admin';
+const BASE_URL = '/v1/backoffice/auth/admin';
 
 export const LoginInputSchema = z.object({
   email: z.string(),

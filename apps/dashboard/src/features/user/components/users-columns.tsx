@@ -5,6 +5,7 @@ import { UserTableActions } from '@/features/user/components/user-table-actions.
 import dayjs from 'dayjs';
 import { USER_ROLE_DATA } from '@/features/user/utils/user-data.tsx';
 import { Badge } from '@/components/ui/badge.tsx';
+import { Calendar } from 'lucide-react';
 
 export const usersColumns: ColumnDef<TUser>[] = [
   {
@@ -37,18 +38,25 @@ export const usersColumns: ColumnDef<TUser>[] = [
       return <Badge className={userRole.className}>{userRole.label}</Badge>;
     }
   },
-  { accessorKey: 'firstname', header: 'Prénom' },
-  { accessorKey: 'lastname', header: 'Nom de famille' },
+  { accessorKey: 'firstname', header: 'Prénom', filterFn: 'includesString' },
+  {
+    accessorKey: 'lastname',
+    header: 'Nom de famille',
+    filterFn: 'includesString'
+  },
   { accessorKey: 'email', header: 'Email' },
+  { accessorKey: 'tel', header: 'Tel' },
   {
     accessorKey: 'dob',
-    header: 'Date de naissance',
+    header: 'Crée le',
     cell: ({ row }) => (
-      <span>{dayjs(row.getValue('dob')).format('DD/MM/YYYY')}</span>
+      <Badge className={'rounded bg-gray-200 p-1 text-gray-500'}>
+        <Calendar />
+        {dayjs(row.getValue('createdAt')).format('DD/MM/YYYY HH:mm')}
+      </Badge>
     )
   },
 
-  { accessorKey: 'tel', header: 'Numéro' },
   {
     id: 'actions',
     header: 'Actions',

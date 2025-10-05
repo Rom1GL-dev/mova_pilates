@@ -5,8 +5,8 @@ import { UpdateUserForm } from '@/features/user/usecases/update-user/update-user
 import { UpdateWalletForm } from '@/features/user/usecases/update-wallet/update-wallet.dto.ts';
 
 export class UserService {
-  readonly _uri: string = '/v1/user';
-  readonly _uriWallet: string = '/v1/wallets';
+  readonly _uri: string = '/v1/backoffice/user';
+  readonly _uriWallet: string = '/v1/backoffice/wallets';
 
   constructor() {}
 
