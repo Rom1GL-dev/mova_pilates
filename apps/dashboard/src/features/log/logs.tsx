@@ -1,26 +1,26 @@
 import { DataTable } from '@/components/data-table/data-table.tsx';
+import Layout from '@/components/layout.tsx';
 import { logsColumns } from '@/features/log/components/logs-columns.tsx';
 import { LogsListingToolbar } from '@/features/log/components/logs-listing-toolbar.tsx';
-import { useGetLogs } from '@/features/log/usecases/get-type-course/use-get-logs.tsx';
+import { useListLogs } from '@/features/log/usecases/list-logs/use-list-logs.tsx';
 
-interface Props {
-  userId: string;
-}
-
-export function UserLogs({ userId }: Props) {
-  const { data: logsResponse } = useGetLogs(userId);
+export function Logs() {
+  const { data: logsResponse } = useListLogs();
   const { data } = logsResponse ?? {
     data: []
   };
 
   return (
-    <div>
-      {' '}
+    <Layout
+      breadcrumbs={['Logs']}
+      title={'Liste des logs'}
+      description={'Retrouvrez la liste de tous les logs'}
+    >
       <DataTable
         columns={logsColumns}
         data={data.logs ?? []}
         Toolbar={LogsListingToolbar}
       />
-    </div>
+    </Layout>
   );
 }
