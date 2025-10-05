@@ -24,7 +24,7 @@ RUN yarn install --frozen-lockfile
 RUN yarn workspace @mova_pilates/database db:generate
 
 # Builder uniquement l'API
-RUN yarn turbo run build --filter=usecases...
+RUN yarn turbo run build --filter=api...
 
 # =========================
 # 3. Production
