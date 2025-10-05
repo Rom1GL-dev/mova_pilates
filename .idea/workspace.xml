@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="53da6d2f-78bc-4241-a6fc-b43e7fabbe7c" name="Changes" comment="feat: stats pack">
+    <list default="true" id="53da6d2f-78bc-4241-a6fc-b43e7fabbe7c" name="Changes" comment="fix: build">
+      <change afterPath="$PROJECT_DIR$/apps/api/src/shared/utils/generate-password.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/user/usecases/admin/create-user/create-user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/user/usecases/admin/create-user/create-user.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,11 +56,11 @@
       <recent name="$PROJECT_DIR$/apps/dashboard/src/features/user/usecases/update-wallet" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/apps/dashboard/src/features/log" />
+      <recent name="$PROJECT_DIR$/apps/dashboard/src/app/routes/log" />
+      <recent name="$PROJECT_DIR$/apps/dashboard/src/app/routes" />
       <recent name="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/mobile" />
       <recent name="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/admin" />
-      <recent name="$PROJECT_DIR$/apps/api/src/modules/pack/usecases/admin" />
-      <recent name="$PROJECT_DIR$/apps/api/src/modules/reservation/usecases/admin" />
-      <recent name="$PROJECT_DIR$/apps/api/src/modules/session/usecases/admin" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -91,7 +93,7 @@
       <workItem from="1758906280664" duration="8000" />
       <workItem from="1758973527067" duration="35834000" />
       <workItem from="1759587131059" duration="4674000" />
-      <workItem from="1759667367276" duration="9288000" />
+      <workItem from="1759667367276" duration="11739000" />
     </task>
     <task id="LOCAL-00001" summary="fix: ci cd + prisma migrate dev">
       <option name="closed" value="true" />
@@ -157,7 +159,23 @@
       <option name="project" value="LOCAL" />
       <updated>1759427125658</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="fix: build">
+      <option name="closed" value="true" />
+      <created>1759683774949</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1759683774949</updated>
+    </task>
+    <task id="LOCAL-00010" summary="fix: build">
+      <option name="closed" value="true" />
+      <created>1759683944493</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1759683944493</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -177,7 +195,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fix: ci cd + prisma migrate dev" />
     <MESSAGE value="feat: stats pack" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: stats pack" />
+    <MESSAGE value="fix: build" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: build" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -5,18 +5,20 @@ import {
 } from '@nestjs/common';
 import { PrismaService } from '../../../../../shared/infrastructure/prisma.service';
 import { Session } from '../../../../../types/session';
-import { hashPassword } from '../../../../../shared/utils/hashPassword';
 import { CreateUserDto } from './create-user.dto';
 import { RoleType } from '@mova_pilates/database';
 import { Role } from '@mova_pilates/shared';
 import { AppType, LogType } from '../../../../logs/domain/entities/log.entity';
 import { CreateLogService } from '../../../../logs/usecases/create-log/create-log.service';
+import { generateAndHashPassword } from '../../../../../shared/utils/generate-password';
+import { MailerService } from '../../../../../shared/infrastructure/mailer.service';
 
 @Injectable()
 export class CreateUserService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly createLogService: CreateLogService,
+    private readonly mailer: MailerService,
   ) {}
 
   async execute(data: CreateUserDto, user: Session['user']) {
@@ -40,7 +42,7 @@ export class CreateUserService {
       throw new ConflictException("L'utilisateur existe déjà");
     }
 
-    const hashedPassword = await hashPassword(data.password);
+    const { hashed, plain } = await generateAndHashPassword(14);
     const newUser = await this.prisma.user.create({
       data: {
         email: data.email,
@@ -49,8 +51,14 @@ export class CreateUserService {
         role: (data.role as RoleType) || Role.enum.USER,
         dob: data.dob,
         tel: data.tel,
-        password: hashedPassword,
+        password: hashed,
       },
+    });
+
+    await this.mailer.sendMail({
+      to: data.email,
+      subject: 'Votre mot de passe OTP Mova Pilates',
+      html: `<p>Voici votre mot de passe : <b>${plain}</b></p>`,
     });
 
     await this.createLogService.execute(
