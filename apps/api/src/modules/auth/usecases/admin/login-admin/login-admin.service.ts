@@ -13,12 +13,14 @@ import {
 } from '../../../config/sessions';
 import { Role } from '@mova_pilates/shared';
 import { generateOtpCode } from '../../../../../shared/utils/generate-otp';
+import { MailerService } from '../../../../../shared/infrastructure/mailer.service';
 
 @Injectable()
 export class LoginAdminService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly cache: CacheStorage,
+    private readonly mailer: MailerService,
   ) {}
 
   async login(loginDto: LoginDto) {
@@ -53,6 +55,12 @@ export class LoginAdminService {
       `[LOGIN] OTP généré pour ${user.email} | key=${cacheKey} | otp=${otp}`,
     );
 
+    await this.mailer.sendMail({
+      to: user.email,
+      subject: 'Votre code OTP Mova Pilates',
+      html: `<p>Voici votre code OTP : <b>${otp}</b></p>`,
+    });
+
     return { email: user.email, message: 'Code envoyé par e-mail' };
   }
 
@@ -62,8 +70,6 @@ export class LoginAdminService {
 
     const cacheKey = `otp:${user.email}`;
     const storedOtp = await this.cache.get(cacheKey);
-
-    console.log(`[VERIFY] key=${cacheKey} | stored=${storedOtp} | reçu=${otp}`);
 
     if (!storedOtp || storedOtp !== otp) {
       throw new BadGatewayException('Code OTP invalide ou expiré');
@@ -84,10 +90,6 @@ export class LoginAdminService {
     };
 
     await createSession(this.cache, sessionId, session.user);
-
-    console.log(
-      `[SESSION] Créée pour user=${user.email} | sessionId=${sessionId}`,
-    );
 
     return { sessionId, user: session };
   }
