@@ -5,5 +5,5 @@ import { Log } from '../entities/log.entity';
 export abstract class LogRepository {
   abstract create(pack: Log): Promise<Log>;
   abstract findAll(): Promise<Log[]>;
-  abstract findById(id: string): Promise<Log | null>;
+  abstract findById(id: string): Promise<Log[] | null>;
 }

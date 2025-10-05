@@ -17,6 +17,9 @@ export class LogPrismaRepository implements LogRepository {
       appType: log.appType as AppType,
       logType: log.logType as LogType,
       userId: log.userId,
+      fullName: log.User
+        ? `${log.User.firstname} ${log.User.lastname}`
+        : undefined,
       message: log.message,
       createdAt: log.createdAt,
     }));
@@ -44,21 +47,24 @@ export class LogPrismaRepository implements LogRepository {
     };
   }
 
-  async findById(id: string): Promise<Log | null> {
-    const log = await this.prisma.log.findUnique({
-      where: { id },
+  async findById(userId: string): Promise<Log[] | null> {
+    const logs = await this.prisma.log.findMany({
+      where: { userId: userId },
       include: { User: true },
     });
 
-    if (!log) return null;
+    if (!logs) return null;
 
-    return {
+    return logs.map((log) => ({
       id: log.id,
       appType: log.appType as AppType,
       logType: log.logType as LogType,
       userId: log.userId,
+      fullName: log.User
+        ? `${log.User.firstname} ${log.User.lastname}`
+        : undefined,
       message: log.message,
       createdAt: log.createdAt,
-    };
+    }));
   }
 }

@@ -14,6 +14,7 @@ import PackRoot from '@/app/routes/packs/packs.tsx';
 import PackDetailsRoot from '@/app/routes/packs/pack-details.tsx';
 import SessionsRoot from '@/app/routes/sessions/sessions.tsx';
 import SessionDetailsRoot from '@/app/routes/sessions/session-details.tsx';
+import { LogsRoute } from '@/app/routes/logs/logs.tsx';
 
 const queryClient = new QueryClient();
 
@@ -71,6 +72,10 @@ export const createAppRouter = () =>
     {
       path: APP_ROUTES.login.getHref(),
       element: <LoginRoute />
+    },
+    {
+      path: APP_ROUTES.logs.getHref(),
+      element: <LogsRoute />
     },
     {
       path: '*',

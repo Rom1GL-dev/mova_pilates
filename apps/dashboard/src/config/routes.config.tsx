@@ -26,6 +26,10 @@ export const APP_ROUTES = {
       getHref: () => `/packs/:id`
     }
   },
+  logs: {
+    path: '/logs',
+    getHref: () => '/logs'
+  },
   credits: {
     path: '/wallet',
     getHref: () => '/wallet',

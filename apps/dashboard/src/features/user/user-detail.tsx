@@ -7,6 +7,7 @@ import {
   TabsTrigger
 } from '@/components/ui/tabs.tsx';
 import { UserTabInformation } from '@/features/user/components/user-tab-information.tsx';
+import { UserLogs } from '@/features/user/components/user-logs.tsx';
 
 interface Props {
   userId: string;
@@ -53,7 +54,9 @@ export function UserDetail({ userId }: Props) {
           Historique sessions
         </TabsContent>
         <TabsContent value={'ACHATS'}>Achats</TabsContent>
-        <TabsContent value={'LOGS'}>logs</TabsContent>
+        <TabsContent value={'LOGS'}>
+          <UserLogs userId={userId} />
+        </TabsContent>
       </Tabs>
     </Layout>
   );

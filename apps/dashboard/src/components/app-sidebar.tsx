@@ -7,6 +7,7 @@ import {
   Calendar,
   EuroIcon,
   LayoutDashboardIcon,
+  LogsIcon,
   Users
 } from 'lucide-react';
 
@@ -58,6 +59,11 @@ const data = {
       title: 'Type de packs',
       url: APP_ROUTES.packs.getHref(),
       icon: Box
+    },
+    {
+      title: 'Type de logs',
+      url: APP_ROUTES.logs.getHref(),
+      icon: LogsIcon
     }
   ]
 };

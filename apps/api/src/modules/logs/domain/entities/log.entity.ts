@@ -23,6 +23,7 @@ export const LogSchema = z.object({
   appType: z.enum(AppType),
   logType: z.enum(LogType),
   userId: z.string(),
+  fullName: z.string().optional(),
   message: z.string(),
   createdAt: z.date(),
 });
