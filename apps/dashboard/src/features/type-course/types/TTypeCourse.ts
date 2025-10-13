@@ -1,7 +1,6 @@
 export interface TTypeCourse {
   id: string;
   label: string;
-  typeCourse: TypeOfCourse;
   capacity: number;
 }
 

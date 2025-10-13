@@ -1,12 +1,12 @@
-import { ColumnDef } from '@tanstack/react-table';
-import { Checkbox } from '@/components/ui/checkbox.tsx';
 import { Badge } from '@/components/ui/badge.tsx';
+import { Checkbox } from '@/components/ui/checkbox.tsx';
+import { TypeCourseTableActions } from '@/features/type-course/components/type-course-table-actions.tsx';
 import {
   TTypeCourse,
   TypeOfCourse
 } from '@/features/type-course/types/TTypeCourse.ts';
 import { TYPE_COURSE_DATA } from '@/features/type-course/utils/type-course-data.tsx';
-import { TypeCourseTableActions } from '@/features/type-course/components/type-course-table-actions.tsx';
+import { ColumnDef } from '@tanstack/react-table';
 
 export const typeCourseColumns: ColumnDef<TTypeCourse>[] = [
   {
@@ -38,8 +38,11 @@ export const typeCourseColumns: ColumnDef<TTypeCourse>[] = [
     accessorKey: 'typeCourse',
     header: 'Type de cours',
     cell: ({ row }) => {
+      const { capacity } = row.original;
       const typeCourseRole =
-        TYPE_COURSE_DATA[row.original.typeCourse as TypeOfCourse];
+        TYPE_COURSE_DATA[
+          capacity > 1 ? 'COLLECTIVE' : ('INDIVIDUAL' as TypeOfCourse)
+        ];
       return (
         <Badge className={typeCourseRole.className}>
           {typeCourseRole.label}

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { Button } from '@/components/ui/button.tsx';
 import {
   Dialog,
   DialogContent,
@@ -9,23 +9,15 @@ import {
   DialogTitle,
   DialogTrigger
 } from '@/components/ui/dialog.tsx';
-import { Button } from '@/components/ui/button.tsx';
 import { Input } from '@/components/ui/input.tsx';
 import { Label } from '@/components/ui/label.tsx';
-import { PlusIcon } from '@radix-ui/react-icons';
-import { useCreateTypeCourse } from '@/features/type-course/usecases/create-type-course/use-create-type-course.tsx';
 import {
   CreateTypeCourseDto,
   CreateTypeCourseForm
 } from '@/features/type-course/usecases/create-type-course/create-type-course.dto.ts';
-import { TypeOfCourse } from '@/features/type-course/types/TTypeCourse.ts';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue
-} from '@/components/ui/select.tsx';
+import { useCreateTypeCourse } from '@/features/type-course/usecases/create-type-course/use-create-type-course.tsx';
+import { PlusIcon } from '@radix-ui/react-icons';
+import { useState } from 'react';
 
 export function TypeCourseCreateDialog() {
   const [open, setOpen] = useState(false);
@@ -34,8 +26,7 @@ export function TypeCourseCreateDialog() {
 
   const [formData, setFormData] = useState<CreateTypeCourseForm>({
     label: '',
-    capacity: 0,
-    typeCourse: 'INDIVIDUAL' as TypeOfCourse
+    capacity: 0
   });
 
   const handleInputChange = (
@@ -51,8 +42,7 @@ export function TypeCourseCreateDialog() {
       setOpen(false);
       setFormData({
         label: '',
-        capacity: 0,
-        typeCourse: 'INDIVIDUAL' as TypeOfCourse
+        capacity: 0
       });
     } catch (error) {
       console.error('Erreur lors de la création du  :', error);
@@ -90,22 +80,6 @@ export function TypeCourseCreateDialog() {
               onChange={(e) => handleInputChange('capacity', e.target.value)}
               placeholder="0"
             />
-          </div>
-          <div className="grid gap-2">
-            <Label htmlFor="capacity">Type de cours</Label>
-            <Select onValueChange={(e) => handleInputChange('typeCourse', e)}>
-              <SelectTrigger>
-                <SelectValue placeholder="Sélectionnez un type" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value={TypeOfCourse.INDIVUDUAL}>
-                  Individuel
-                </SelectItem>
-                <SelectItem value={TypeOfCourse.COLLECTIVE}>
-                  Collectif
-                </SelectItem>
-              </SelectContent>
-            </Select>
           </div>
         </div>
 
