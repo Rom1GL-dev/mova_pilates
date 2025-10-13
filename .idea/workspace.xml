@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="53da6d2f-78bc-4241-a6fc-b43e7fabbe7c" name="Changes" comment="fix: build">
-      <change afterPath="$PROJECT_DIR$/apps/api/src/shared/utils/generate-password.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/user/usecases/admin/create-user/create-user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/user/usecases/admin/create-user/create-user.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/app/router.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/app/router.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/features/log/utils/logs-data.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/features/log/utils/logs-data.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +93,7 @@
       <workItem from="1758906280664" duration="8000" />
       <workItem from="1758973527067" duration="35834000" />
       <workItem from="1759587131059" duration="4674000" />
-      <workItem from="1759667367276" duration="11739000" />
+      <workItem from="1759667367276" duration="13181000" />
     </task>
     <task id="LOCAL-00001" summary="fix: ci cd + prisma migrate dev">
       <option name="closed" value="true" />

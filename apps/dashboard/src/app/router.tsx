@@ -39,35 +39,67 @@ export const createAppRouter = () =>
     },
     {
       path: APP_ROUTES.users.getHref(),
-      element: <UserRoot />
+      element: (
+        <ProtectedRoute>
+          <UserRoot />
+        </ProtectedRoute>
+      )
     },
     {
       path: APP_ROUTES.users.details.getHref(),
-      element: <UserDetailsRoot />
+      element: (
+        <ProtectedRoute>
+          <UserDetailsRoot />
+        </ProtectedRoute>
+      )
     },
     {
       path: APP_ROUTES.typesCourse.getHref(),
-      element: <TypeCourseRoot />
+      element: (
+        <ProtectedRoute>
+          <TypeCourseRoot />
+        </ProtectedRoute>
+      )
     },
     {
       path: APP_ROUTES.typesCourse.details.getHref(),
-      element: <TypeCourseDetailsRoot />
+      element: (
+        <ProtectedRoute>
+          <TypeCourseDetailsRoot />
+        </ProtectedRoute>
+      )
     },
     {
       path: APP_ROUTES.packs.getHref(),
-      element: <PackRoot />
+      element: (
+        <ProtectedRoute>
+          <PackRoot />
+        </ProtectedRoute>
+      )
     },
     {
       path: APP_ROUTES.packs.details.getHref(),
-      element: <PackDetailsRoot />
+      element: (
+        <ProtectedRoute>
+          <PackDetailsRoot />
+        </ProtectedRoute>
+      )
     },
     {
       path: APP_ROUTES.sessions.getHref(),
-      element: <SessionsRoot />
+      element: (
+        <ProtectedRoute>
+          <SessionsRoot />
+        </ProtectedRoute>
+      )
     },
     {
       path: APP_ROUTES.sessions.details.getHref(),
-      element: <SessionDetailsRoot />
+      element: (
+        <ProtectedRoute>
+          <SessionDetailsRoot />
+        </ProtectedRoute>
+      )
     },
     {
       path: APP_ROUTES.login.getHref(),

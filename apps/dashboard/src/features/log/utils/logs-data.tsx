@@ -8,7 +8,7 @@ export const APP_TYPE_DATA = {
     className: 'bg-blue-200 text-blue-800'
   },
   [AppType.ADMIN]: {
-    label: 'Administrateur',
+    label: 'Administration',
     icon: ComputerIcon,
     className: 'bg-green-200 text-green-800'
   }
