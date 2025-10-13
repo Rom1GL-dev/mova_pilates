@@ -1,11 +1,11 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { Session } from '../../../../../types/session';
-import { CreateTypeCourseDto } from './create-type-course.dto';
-import { TypeCourseRepository } from '../../../domain/repositories/type-course.repository';
-import { TypeCourse } from '../../../domain/entities/type-course.entity';
 import { v4 as uuidv4 } from 'uuid';
-import { CreateLogService } from '../../../../logs/usecases/create-log/create-log.service';
+import { Session } from '../../../../../types/session';
 import { AppType, LogType } from '../../../../logs/domain/entities/log.entity';
+import { CreateLogService } from '../../../../logs/usecases/create-log/create-log.service';
+import { TypeCourse } from '../../../domain/entities/type-course.entity';
+import { TypeCourseRepository } from '../../../domain/repositories/type-course.repository';
+import { CreateTypeCourseDto } from './create-type-course.dto';
 
 @Injectable()
 export class CreateTypeCourseService {

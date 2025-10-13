@@ -17,6 +17,11 @@ enum StatusType {
   CANCELLED
 }
 
+enum CourseType {
+  INDIVIDUAL
+  COLLECTIVE
+}
+
 enum AppType {
   ADMIN
   MOBILE
@@ -67,6 +72,7 @@ model Reservation {
 model TypeCourse {
   id         String     @id @default(uuid())
   label      String
+  typeCourse CourseType
   capacity   Int
   createdAt  DateTime   @default(now())
   updatedAt  DateTime   @updatedAt
