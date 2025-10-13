@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { TypeCourseRepository } from '../../domain/repositories/type-course.repository';
 import { PrismaService } from '../../../../shared/infrastructure/prisma.service';
-import { TypeCourse as TypeCourseEntity } from '../../domain/entities/type-course.entity';
 import { Pack } from '../../domain/entities/pack.entity';
+import { TypeCourse as TypeCourseEntity } from '../../domain/entities/type-course.entity';
+import { TypeCourseRepository } from '../../domain/repositories/type-course.repository';
 
 @Injectable()
 export class TypeCoursePrismaRepository implements TypeCourseRepository {
@@ -13,7 +13,6 @@ export class TypeCoursePrismaRepository implements TypeCourseRepository {
     return typesCourse.map((u) => ({
       id: u.id,
       label: u.label,
-      typeCourse: u.typeCourse,
       capacity: u.capacity,
       createdAt: u.createdAt,
       updatedAt: u.updatedAt ?? undefined,
@@ -25,7 +24,6 @@ export class TypeCoursePrismaRepository implements TypeCourseRepository {
       data: {
         id: typeCourse.id,
         label: typeCourse.label,
-        typeCourse: typeCourse.typeCourse,
         capacity: typeCourse.capacity,
       },
     });
@@ -33,7 +31,6 @@ export class TypeCoursePrismaRepository implements TypeCourseRepository {
     return {
       id: createdTypeCourse.id,
       label: typeCourse.label,
-      typeCourse: typeCourse.capacity === 1 ? 'INDIVIDUAL' : 'COLLECTIVE',
       capacity: typeCourse.capacity,
       createdAt: createdTypeCourse.createdAt,
       updatedAt: createdTypeCourse.updatedAt ?? undefined,
@@ -45,7 +42,6 @@ export class TypeCoursePrismaRepository implements TypeCourseRepository {
       where: { id: typeCourse.id },
       data: {
         label: typeCourse.label,
-        typeCourse: typeCourse.typeCourse,
         capacity: typeCourse.capacity,
       },
     });
@@ -53,8 +49,6 @@ export class TypeCoursePrismaRepository implements TypeCourseRepository {
     return {
       id: updatedTypeCourse.id,
       label: updatedTypeCourse.label,
-      typeCourse:
-        updatedTypeCourse.capacity === 1 ? 'INDIVIDUAL' : 'COLLECTIVE',
       capacity: updatedTypeCourse.capacity,
       createdAt: updatedTypeCourse.createdAt,
       updatedAt: updatedTypeCourse.updatedAt ?? undefined,
@@ -69,7 +63,6 @@ export class TypeCoursePrismaRepository implements TypeCourseRepository {
     return {
       id: deletedTypeCourse.id,
       label: deletedTypeCourse.label,
-      typeCourse: deletedTypeCourse.typeCourse,
       capacity: deletedTypeCourse.capacity,
       createdAt: deletedTypeCourse.createdAt,
       updatedAt: deletedTypeCourse.updatedAt ?? undefined,
