@@ -19,10 +19,11 @@ interface Props {
 export function UserTabInformation({ user }: Props) {
   const { data: walletsResponse, isLoading } = useListAllWalletsByUser(user.id);
   const wallets = walletsResponse ?? [];
-  const { data: typeCoursesResponse } = useListTypesCourse();
+  const { data: typeCoursesResponse, isLoading: isLoadingTypeCourse } =
+    useListTypesCourse();
   const typesCourses = typeCoursesResponse?.data?.typeCourse ?? [];
 
-  if (isLoading || !wallets) {
+  if (isLoading || !wallets || isLoadingTypeCourse) {
     return (
       <div className={'flex min-h-screen w-full items-center justify-center'}>
         <div
