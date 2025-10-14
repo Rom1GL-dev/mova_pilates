@@ -1,10 +1,10 @@
-import { ColumnDef } from '@tanstack/react-table';
-import { Checkbox } from '@/components/ui/checkbox.tsx';
-import { TUser, UserRole } from '@/features/user/types/TUser.ts';
-import { UserTableActions } from '@/features/user/components/user-table-actions.tsx';
-import dayjs from 'dayjs';
-import { USER_ROLE_DATA } from '@/features/user/utils/user-data.tsx';
 import { Badge } from '@/components/ui/badge.tsx';
+import { Checkbox } from '@/components/ui/checkbox.tsx';
+import { UserTableActions } from '@/features/user/components/user-table-actions.tsx';
+import { TUser, UserRole } from '@/features/user/types/TUser.ts';
+import { USER_ROLE_DATA } from '@/features/user/utils/user-data.tsx';
+import { ColumnDef } from '@tanstack/react-table';
+import dayjs from 'dayjs';
 import { Calendar } from 'lucide-react';
 
 export const usersColumns: ColumnDef<TUser>[] = [
@@ -47,7 +47,7 @@ export const usersColumns: ColumnDef<TUser>[] = [
   { accessorKey: 'email', header: 'Email' },
   { accessorKey: 'tel', header: 'Tel' },
   {
-    accessorKey: 'dob',
+    accessorKey: 'createdAt',
     header: 'Crée le',
     cell: ({ row }) => (
       <Badge className={'rounded bg-gray-200 p-1 text-gray-500'}>

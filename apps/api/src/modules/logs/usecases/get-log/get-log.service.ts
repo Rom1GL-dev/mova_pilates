@@ -3,9 +3,9 @@ import { LogRepository } from '../../domain/repositories/log.repository';
 
 @Injectable()
 export class GetLogService {
-  constructor(private readonly packRepository: LogRepository) {}
+  constructor(private readonly logRepository: LogRepository) {}
 
   execute(id: string) {
-    return this.packRepository.findById(id);
+    return this.logRepository.findById(id);
   }
 }

@@ -1,15 +1,15 @@
+import { Role } from '@mova_pilates/shared';
 import { Body, Controller, Post, Req, UseGuards } from '@nestjs/common';
 import { routesV1 } from 'src/config/app.routes';
 import { AuthGuard } from 'src/shared/applications/guards/auth.guard';
-import { CreateLogDto } from './create-log.dto';
 import { AuthenticatedRequest } from '../../../../types/auth-request';
-import { CreateLogService } from './create-log.service';
 import { Roles, RolesGuard } from '../../../auth/config/role.guard';
-import { Role } from '@mova_pilates/shared';
+import { CreateLogDto } from './create-log.dto';
+import { CreateLogService } from './create-log.service';
 
 @Controller(routesV1.version)
 export class CreateLogController {
-  constructor(private readonly createTypeCourseService: CreateLogService) {}
+  constructor(private readonly createLogService: CreateLogService) {}
 
   @UseGuards(AuthGuard, RolesGuard)
   @Roles(Role.enum.ADMIN)
@@ -18,7 +18,7 @@ export class CreateLogController {
     @Body() createPackDto: CreateLogDto,
     @Req() request: AuthenticatedRequest,
   ) {
-    const log = await this.createTypeCourseService.execute(
+    const log = await this.createLogService.execute(
       createPackDto,
       request.session.user,
     );

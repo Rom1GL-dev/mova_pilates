@@ -1,5 +1,11 @@
+import { Badge } from '@/components/ui/badge';
+import {
+  TTypeCourse,
+  TypeOfCourse
+} from '@/features/type-course/types/TTypeCourse.ts';
 import { useListTypesCourse } from '@/features/type-course/usecases/list-type-course/use-list-types-course.tsx';
-import { TTypeCourse } from '@/features/type-course/types/TTypeCourse.ts';
+import { TYPE_COURSE_DATA } from '@/features/type-course/utils/type-course-data';
+import { cn } from '@/lib/utils';
 
 export function SessionColumnTypeCourse({
   typeCourseId
@@ -25,5 +31,17 @@ export function SessionColumnTypeCourse({
     );
   }
 
-  return <>{typeCourse.label}</>;
+  return (
+    <>
+      {typeCourse.label}
+      <Badge
+        className={cn(
+          TYPE_COURSE_DATA[typeCourse?.typeCourse as TypeOfCourse].className,
+          'rounded px-2'
+        )}
+      >
+        {TYPE_COURSE_DATA[typeCourse.typeCourse as TypeOfCourse].label}
+      </Badge>
+    </>
+  );
 }

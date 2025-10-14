@@ -15,9 +15,9 @@ import {
   SidebarMenuItem,
   useSidebar
 } from '@/components/ui/sidebar';
-import { useMe } from '@/lib/auth.tsx';
-import { logout } from '@/features/auth/usecases/logout/logout.ts';
 import { APP_ROUTES } from '@/config/routes.config.tsx';
+import { logout } from '@/features/auth/usecases/logout/logout.ts';
+import { useMe } from '@/lib/auth.tsx';
 
 export function NavUser() {
   const me = useMe();
@@ -35,9 +35,9 @@ export function NavUser() {
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton
               size="lg"
-              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground bg-white"
+              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground flex items-center justify-center bg-white"
             >
-              <Avatar className="h-8 w-8 rounded-lg bg-[#b28053] text-white">
+              <Avatar className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#b28053] text-white">
                 {me.firstname.split('')[0]}
                 {me.lastname.split('')[0]}
               </Avatar>
@@ -58,7 +58,7 @@ export function NavUser() {
           >
             <DropdownMenuLabel className="p-0 font-normal">
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-                <Avatar className="h-8 w-8 rounded-lg bg-[#b28053] text-white">
+                <Avatar className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#b28053] text-white">
                   {me.firstname.split('')[0]}
                   {me.lastname.split('')[0]}
                 </Avatar>

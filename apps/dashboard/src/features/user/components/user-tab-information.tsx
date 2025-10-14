@@ -1,8 +1,16 @@
-import { TUser } from '@/features/user/types/TUser.ts';
+import {
+  TTypeCourse,
+  TypeOfCourse
+} from '@/features/type-course/types/TTypeCourse';
+import { useListTypesCourse } from '@/features/type-course/usecases/list-type-course/use-list-types-course';
+import { TYPE_COURSE_DATA } from '@/features/type-course/utils/type-course-data';
 import { UserUpdateForm } from '@/features/user/components/user-update-form.tsx';
-import { useListAllWalletsByUser } from '@/features/user/usecases/list-all-wallets-by-user/list-all-wallets-by-user.tsx';
-import { TWallet } from '@/features/user/types/TWallet.ts';
 import { UserWalletCreditModal } from '@/features/user/components/user-wallet-credit-modal.tsx';
+import { TUser } from '@/features/user/types/TUser.ts';
+import { TWallet } from '@/features/user/types/TWallet.ts';
+import { useListAllWalletsByUser } from '@/features/user/usecases/list-all-wallets-by-user/list-all-wallets-by-user.tsx';
+import { cn } from '@/lib/utils';
+import { Badge } from '@mui/material';
 
 interface Props {
   user: TUser;
@@ -11,6 +19,8 @@ interface Props {
 export function UserTabInformation({ user }: Props) {
   const { data: walletsResponse, isLoading } = useListAllWalletsByUser(user.id);
   const wallets = walletsResponse ?? [];
+  const { data: typeCoursesResponse } = useListTypesCourse();
+  const typesCourses = typeCoursesResponse?.data?.typeCourse ?? [];
 
   if (isLoading || !wallets) {
     return (
@@ -42,24 +52,42 @@ export function UserTabInformation({ user }: Props) {
               </div>
             )}
 
-            {wallets.wallets.map((wallet: TWallet) => (
-              <div>
-                <div
-                  key={wallet.typeCourseId}
-                  className={
-                    'flex items-center justify-between rounded-md border border-[#b28053] bg-white p-3'
-                  }
-                >
-                  <div>
-                    <div className={'font-medium'}>{wallet.label}</div>
-                    <div className={'text-sm text-gray-500'}>
-                      Crédit actuel : {wallet.balance} €
+            {wallets.wallets.map((wallet: TWallet) => {
+              const typeCourse = typesCourses?.find(
+                (type: TTypeCourse) => type.id === wallet.typeCourseId
+              );
+
+              const typeCourseData =
+                TYPE_COURSE_DATA[typeCourse.typeCourse as TypeOfCourse];
+              return (
+                <div>
+                  <div
+                    key={wallet.typeCourseId}
+                    className={
+                      'flex items-center justify-between rounded-md border border-[#b28053] bg-white p-3'
+                    }
+                  >
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <div className={'font-medium'}>{wallet.label}</div>
+                        <Badge
+                          className={cn(
+                            typeCourseData.className,
+                            'rounded px-2 text-sm'
+                          )}
+                        >
+                          {typeCourseData.label}
+                        </Badge>
+                      </div>
+                      <div className={'text-sm text-gray-500'}>
+                        Crédit actuel : {wallet.balance}
+                      </div>
                     </div>
+                    <UserWalletCreditModal wallet={wallet} user={user} />
                   </div>
-                  <UserWalletCreditModal wallet={wallet} user={user} />
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>

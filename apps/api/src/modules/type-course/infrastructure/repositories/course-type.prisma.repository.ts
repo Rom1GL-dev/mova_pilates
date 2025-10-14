@@ -14,6 +14,7 @@ export class TypeCoursePrismaRepository implements TypeCourseRepository {
       id: u.id,
       label: u.label,
       capacity: u.capacity,
+      typeCourse: u.capacity > 1 ? 'COLLECTIVE' : 'INDIVIDUAL',
       createdAt: u.createdAt,
       updatedAt: u.updatedAt ?? undefined,
     }));
@@ -70,9 +71,18 @@ export class TypeCoursePrismaRepository implements TypeCourseRepository {
   }
 
   async findById(id: string): Promise<TypeCourseEntity | null> {
-    return this.prisma.typeCourse.findUnique({
+    const typeCourseRaw = await this.prisma.typeCourse.findUnique({
       where: { id },
     });
+
+    if (!typeCourseRaw) {
+      return null;
+    }
+
+    return {
+      ...typeCourseRaw,
+      typeCourse: typeCourseRaw.capacity > 1 ? 'COLLECTIVE' : 'INDIVIDUAL',
+    };
   }
 
   async findByTypeCourseId(id: string): Promise<Pack[] | null> {

@@ -1,9 +1,9 @@
-import { ColumnDef } from '@tanstack/react-table';
 import { Checkbox } from '@/components/ui/checkbox.tsx';
-import { TSession } from '@/features/session/types/TSession.ts';
-import dayjs from 'dayjs';
-import { SessionTableActions } from '@/features/session/components/session-table-actions.tsx';
 import { SessionColumnTypeCourse } from '@/features/session/components/session-column-type-course.tsx';
+import { SessionTableActions } from '@/features/session/components/session-table-actions.tsx';
+import { TSession } from '@/features/session/types/TSession.ts';
+import { ColumnDef } from '@tanstack/react-table';
+import dayjs from 'dayjs';
 
 export const sessionColumns: ColumnDef<TSession>[] = [
   {
@@ -37,7 +37,7 @@ export const sessionColumns: ColumnDef<TSession>[] = [
         <>
           <SessionColumnTypeCourse
             typeCourseId={row.getValue('typeCourseId')}
-          />{' '}
+          />
         </>
       );
     }

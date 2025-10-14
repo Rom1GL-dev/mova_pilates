@@ -1,12 +1,19 @@
-import { ColumnDef } from '@tanstack/react-table';
-import { Checkbox } from '@/components/ui/checkbox.tsx';
-import { TTypeCourse } from '@/features/type-course/types/TTypeCourse.ts';
 import { Badge } from '@/components/ui/badge.tsx';
+import { Checkbox } from '@/components/ui/checkbox.tsx';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger
+} from '@/components/ui/tooltip';
+import { AppType, LogsType } from '@/features/log/types/TLogs.ts';
 import {
   APP_TYPE_DATA,
   LOGS_TYPE_DATA
 } from '@/features/log/utils/logs-data.tsx';
-import { AppType, LogsType } from '@/features/log/types/TLogs.ts';
+import { TTypeCourse } from '@/features/type-course/types/TTypeCourse.ts';
+import { ColumnDef } from '@tanstack/react-table';
+import dayjs from 'dayjs';
+import { Calendar } from 'lucide-react';
 
 export const logsColumns: ColumnDef<TTypeCourse>[] = [
   {
@@ -60,5 +67,42 @@ export const logsColumns: ColumnDef<TTypeCourse>[] = [
       );
     }
   },
-  { accessorKey: 'message', header: 'Message' }
+  {
+    accessorKey: 'message',
+    header: () => <div>Message</div>,
+    cell: ({ row }) => {
+      const message = row.getValue('message') as string;
+      return (
+        <div
+          style={{
+            width: '300px',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap'
+          }}
+        >
+          <Tooltip>
+            <TooltipTrigger>
+              <span className="w-[300px] cursor-pointer truncate underline decoration-dotted underline-offset-2">
+                {message}
+              </span>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p className="max-w-sm whitespace-pre-wrap">{message}</p>
+            </TooltipContent>
+          </Tooltip>
+        </div>
+      );
+    }
+  },
+  {
+    accessorKey: 'createdAt',
+    header: 'Crée le',
+    cell: ({ row }) => (
+      <Badge className={'rounded bg-gray-200 p-1 text-gray-500'}>
+        <Calendar />
+        {dayjs(row.getValue('createdAt')).format('DD/MM/YYYY HH:mm')}
+      </Badge>
+    )
+  }
 ];

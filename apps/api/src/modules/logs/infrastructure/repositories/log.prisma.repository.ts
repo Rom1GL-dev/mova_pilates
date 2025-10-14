@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { LogRepository } from '../../domain/repositories/log.repository';
 import { PrismaService } from '../../../../shared/infrastructure/prisma.service';
 import { AppType, Log, LogType } from '../../domain/entities/log.entity';
+import { LogRepository } from '../../domain/repositories/log.repository';
 
 @Injectable()
 export class LogPrismaRepository implements LogRepository {
@@ -10,6 +10,7 @@ export class LogPrismaRepository implements LogRepository {
   async findAll(): Promise<Log[]> {
     const logs = await this.prisma.log.findMany({
       include: { User: true },
+      orderBy: { createdAt: 'desc' },
     });
 
     return logs.map((log) => ({
@@ -51,6 +52,7 @@ export class LogPrismaRepository implements LogRepository {
     const logs = await this.prisma.log.findMany({
       where: { userId: userId },
       include: { User: true },
+      orderBy: { createdAt: 'desc' },
     });
 
     if (!logs) return null;
