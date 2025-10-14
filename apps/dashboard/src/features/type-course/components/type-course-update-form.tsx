@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/button.tsx';
 import {
   Form,
   FormControl,
@@ -7,22 +8,11 @@ import {
   FormMessage
 } from '@/components/ui/form.tsx';
 import { Input } from '@/components/ui/input.tsx';
-import { Button } from '@/components/ui/button.tsx';
-import { useToast } from '@/providers/toast-provider.tsx';
-import { useForm } from 'react-hook-form';
-import {
-  TTypeCourse,
-  TypeOfCourse
-} from '@/features/type-course/types/TTypeCourse.ts';
+import { TTypeCourse } from '@/features/type-course/types/TTypeCourse.ts';
 import { useUpdateTypeCourse } from '@/features/type-course/usecases/update-type-course/use-update-type-course.tsx';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue
-} from '@/components/ui/select.tsx';
+import { useToast } from '@/providers/toast-provider.tsx';
 import { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 
 interface Props {
   typeCourse: TTypeCourse;
@@ -35,8 +25,7 @@ export function TypeCourseUpdateForm({ typeCourse }: Props) {
     defaultValues: {
       id: typeCourse.id,
       label: typeCourse.label,
-      capacity: typeCourse.capacity,
-      typeCourse: typeCourse.typeCourse
+      capacity: typeCourse.capacity
     }
   });
 
@@ -61,8 +50,7 @@ export function TypeCourseUpdateForm({ typeCourse }: Props) {
       form.reset({
         id: typeCourse.id,
         label: typeCourse.label,
-        capacity: typeCourse.capacity,
-        typeCourse: typeCourse.typeCourse
+        capacity: typeCourse.capacity
       });
     }
   }, [typeCourse, form]);
@@ -96,32 +84,6 @@ export function TypeCourseUpdateForm({ typeCourse }: Props) {
                 <FormLabel>Capacité de personne</FormLabel>
                 <FormControl>
                   <Input {...field} placeholder="Capacité de personne" />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="typeCourse"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Type de cours</FormLabel>
-                <FormControl>
-                  <Select {...field}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Sélectionnez un type" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value={TypeOfCourse.INDIVUDUAL}>
-                        Individuel
-                      </SelectItem>
-                      <SelectItem value={TypeOfCourse.COLLECTIVE}>
-                        Collectif
-                      </SelectItem>
-                    </SelectContent>
-                  </Select>
                 </FormControl>
                 <FormMessage />
               </FormItem>
