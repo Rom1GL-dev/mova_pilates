@@ -1,10 +1,10 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { UpdateTypeCourseDto } from './update-type-course.dto';
 import { Session } from '../../../../../types/session';
-import { TypeCourseRepository } from '../../../domain/repositories/type-course.repository';
-import { TypeCourse } from '../../../domain/entities/type-course.entity';
-import { CreateLogService } from '../../../../logs/usecases/create-log/create-log.service';
 import { AppType, LogType } from '../../../../logs/domain/entities/log.entity';
+import { CreateLogService } from '../../../../logs/usecases/create-log/create-log.service';
+import { TypeCourse } from '../../../domain/entities/type-course.entity';
+import { TypeCourseRepository } from '../../../domain/repositories/type-course.repository';
+import { UpdateTypeCourseDto } from './update-type-course.dto';
 
 @Injectable()
 export class UpdateTypeCourseService {
@@ -23,7 +23,6 @@ export class UpdateTypeCourseService {
     const typeCourseToSave: TypeCourse = {
       id: data.id,
       label: data.label,
-      typeCourse: data.typeCourse,
       capacity: data.capacity,
       createdAt: data.createdAt,
       updatedAt: new Date(),

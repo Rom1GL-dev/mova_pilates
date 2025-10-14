@@ -24,7 +24,6 @@ export class CreateTypeCourseService {
     const typeCourseToSave: TypeCourse = {
       id: uuidv4(),
       label: data.label,
-      typeCourse: data.typeCourse,
       capacity: data.capacity,
       createdAt: new Date(),
     };
