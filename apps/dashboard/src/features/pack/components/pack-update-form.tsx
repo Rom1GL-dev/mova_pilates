@@ -1,3 +1,5 @@
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button.tsx';
 import {
   Form,
   FormControl,
@@ -7,12 +9,6 @@ import {
   FormMessage
 } from '@/components/ui/form.tsx';
 import { Input } from '@/components/ui/input.tsx';
-import { Button } from '@/components/ui/button.tsx';
-import { useToast } from '@/providers/toast-provider.tsx';
-import { useForm } from 'react-hook-form';
-import { useUpdatePack } from '@/features/pack/usecases/update-pack/use-update-pack.tsx';
-import { TPack } from '@/features/pack/types/TPack.ts';
-import { useListTypesCourse } from '@/features/type-course/usecases/list-type-course/use-list-types-course.tsx';
 import {
   Select,
   SelectContent,
@@ -20,8 +16,15 @@ import {
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select.tsx';
+import { TPack } from '@/features/pack/types/TPack.ts';
+import { useUpdatePack } from '@/features/pack/usecases/update-pack/use-update-pack.tsx';
 import { TTypeCourse } from '@/features/type-course/types/TTypeCourse.ts';
+import { useListTypesCourse } from '@/features/type-course/usecases/list-type-course/use-list-types-course.tsx';
+import { TYPE_COURSE_DATA } from '@/features/type-course/utils/type-course-data';
+import { cn } from '@/lib/utils';
+import { useToast } from '@/providers/toast-provider.tsx';
 import { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 
 interface Props {
   pack: TPack;
@@ -157,6 +160,14 @@ export function PackUpdateForm({ pack }: Props) {
                       {typesCourse.map((type: TTypeCourse) => (
                         <SelectItem key={type.id} value={String(type.id)}>
                           {type.label}
+                          <Badge
+                            className={cn(
+                              TYPE_COURSE_DATA[type.typeCourse].className,
+                              'rounded px-2'
+                            )}
+                          >
+                            {TYPE_COURSE_DATA[type.typeCourse].label}
+                          </Badge>
                         </SelectItem>
                       ))}
                     </SelectContent>

@@ -1,9 +1,12 @@
+import { Badge } from '@/components/ui/badge';
 import { Checkbox } from '@/components/ui/checkbox.tsx';
+import { SessionColumnTypeCourseCapacity } from '@/features/session/components/session-column-type-course-capacity';
 import { SessionColumnTypeCourse } from '@/features/session/components/session-column-type-course.tsx';
 import { SessionTableActions } from '@/features/session/components/session-table-actions.tsx';
 import { TSession } from '@/features/session/types/TSession.ts';
 import { ColumnDef } from '@tanstack/react-table';
 import dayjs from 'dayjs';
+import { Calendar } from 'lucide-react';
 
 export const sessionColumns: ColumnDef<TSession>[] = [
   {
@@ -43,15 +46,56 @@ export const sessionColumns: ColumnDef<TSession>[] = [
     }
   },
   {
+    accessorKey: 'typeCourseCapacity',
+    header: 'Capacité',
+    cell: ({ row }) => {
+      return (
+        <>
+          <SessionColumnTypeCourseCapacity
+            typeCourseId={row.getValue('typeCourseId')}
+          />
+        </>
+      );
+    }
+  },
+
+  {
     accessorKey: 'startDate',
     header: 'Date de début',
-    cell: ({ row }) =>
-      dayjs(row.getValue('startDate')).format('DD/MM/YYYY HH:mm')
+    filterFn: (row, columnId, filterValue) => {
+      if (!filterValue?.start && !filterValue?.end) return true;
+
+      const rowDate = new Date(row.getValue(columnId));
+      if (isNaN(rowDate.getTime())) return true;
+
+      const start = filterValue.start ? new Date(filterValue.start) : null;
+      const end = filterValue.end ? new Date(filterValue.end) : null;
+
+      if (start) start.setHours(0, 0, 0, 0);
+      if (end) end.setHours(23, 59, 59, 999);
+
+      if (start && rowDate < start) return false;
+      if (end && rowDate > end) return false;
+
+      return true;
+    },
+
+    cell: ({ row }) => (
+      <Badge className={'rounded bg-gray-200 p-1 text-gray-500'}>
+        <Calendar />
+        {dayjs(row.getValue('startDate')).format('DD/MM/YYYY HH:mm')}
+      </Badge>
+    )
   },
   {
     accessorKey: 'endDate',
     header: 'Date de fin',
-    cell: ({ row }) => dayjs(row.getValue('endDate')).format('DD/MM/YYYY HH:mm')
+    cell: ({ row }) => (
+      <Badge className={'rounded bg-gray-200 p-1 text-gray-500'}>
+        <Calendar />
+        {dayjs(row.getValue('endDate')).format('DD/MM/YYYY HH:mm')}
+      </Badge>
+    )
   },
 
   {

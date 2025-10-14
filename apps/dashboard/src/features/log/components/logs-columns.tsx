@@ -97,9 +97,26 @@ export const logsColumns: ColumnDef<TTypeCourse>[] = [
   },
   {
     accessorKey: 'createdAt',
-    header: 'Crée le',
+    header: 'Créé le',
+    filterFn: (row, columnId, filterValue) => {
+      if (!filterValue?.start && !filterValue?.end) return true;
+
+      const rowDate = new Date(row.getValue(columnId));
+      if (isNaN(rowDate.getTime())) return true; // sécurité
+
+      const start = filterValue.start ? new Date(filterValue.start) : null;
+      const end = filterValue.end ? new Date(filterValue.end) : null;
+
+      if (start) start.setHours(0, 0, 0, 0);
+      if (end) end.setHours(23, 59, 59, 999);
+
+      if (start && rowDate < start) return false;
+      if (end && rowDate > end) return false;
+
+      return true;
+    },
     cell: ({ row }) => (
-      <Badge className={'rounded bg-gray-200 p-1 text-gray-500'}>
+      <Badge className="rounded bg-gray-200 p-1 text-gray-500">
         <Calendar />
         {dayjs(row.getValue('createdAt')).format('DD/MM/YYYY HH:mm')}
       </Badge>

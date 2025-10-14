@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button.tsx';
 import {
   Dialog,
   DialogContent,
@@ -9,10 +10,6 @@ import {
   DialogTitle,
   DialogTrigger
 } from '@/components/ui/dialog.tsx';
-import { Button } from '@/components/ui/button.tsx';
-import { Input } from '@/components/ui/input.tsx';
-import { PlusIcon } from '@radix-ui/react-icons';
-import { useCreatePack } from '@/features/pack/usecases/create-pack/use-create-pack.tsx';
 import {
   Form,
   FormControl,
@@ -21,6 +18,7 @@ import {
   FormLabel,
   FormMessage
 } from '@/components/ui/form.tsx';
+import { Input } from '@/components/ui/input.tsx';
 import {
   Select,
   SelectContent,
@@ -28,11 +26,16 @@ import {
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select.tsx';
-import { TTypeCourse } from '@/features/type-course/types/TTypeCourse.ts';
-import { useToast } from '@/providers/toast-provider.tsx';
-import { useForm } from 'react-hook-form';
 import { TPack } from '@/features/pack/types/TPack.ts';
+import { useCreatePack } from '@/features/pack/usecases/create-pack/use-create-pack.tsx';
+import { TTypeCourse } from '@/features/type-course/types/TTypeCourse.ts';
 import { useListTypesCourse } from '@/features/type-course/usecases/list-type-course/use-list-types-course.tsx';
+import { TYPE_COURSE_DATA } from '@/features/type-course/utils/type-course-data';
+import { cn } from '@/lib/utils';
+import { useToast } from '@/providers/toast-provider.tsx';
+import { PlusIcon } from '@radix-ui/react-icons';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 
 export function PackCreateDialog() {
   const [open, setOpen] = useState(false);
@@ -154,6 +157,14 @@ export function PackCreateDialog() {
                         {typesCourse?.typeCourse.map((type: TTypeCourse) => (
                           <SelectItem key={type.id} value={type.id}>
                             {type.label}
+                            <Badge
+                              className={cn(
+                                TYPE_COURSE_DATA[type.typeCourse].className,
+                                'rounded px-2'
+                              )}
+                            >
+                              {TYPE_COURSE_DATA[type.typeCourse].label}
+                            </Badge>
                           </SelectItem>
                         ))}
                       </SelectContent>
