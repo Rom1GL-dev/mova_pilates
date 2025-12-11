@@ -13,8 +13,11 @@ enum RoleType {
 }
 
 enum StatusType {
+  PENDING
   CONFIRMED
   CANCELLED
+  MISSING
+  PRESENT
 }
 
 enum AppType {
@@ -28,6 +31,7 @@ enum LogType {
   DELETE
   LOGIN
   LOGOUT
+  REGISTER
   PAYMENT
   PASSWORD_RESET
   RESERVATION
@@ -60,16 +64,22 @@ model Reservation {
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
 
+  expiredAt DateTime?
+
   user    User    @relation(fields: [userId], references: [id])
   session Session @relation(fields: [sessionId], references: [id])
+
+  @@unique([sessionId, userId])
 }
 
 model TypeCourse {
-  id         String     @id @default(uuid())
-  label      String
-  capacity   Int
-  createdAt  DateTime   @default(now())
-  updatedAt  DateTime   @updatedAt
+  id          String   @id @default(uuid())
+  label       String
+  capacity    Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  image       String?
+  description String?
 
   packs    Pack[]
   sessions Session[]

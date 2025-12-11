@@ -1,29 +1,35 @@
 import { TTypeCourse } from '@/features/type-course/types/TTypeCourse.ts';
 import { useListTypesCourse } from '@/features/type-course/usecases/list-type-course/use-list-types-course.tsx';
+import { useListReservationsBySession } from '@/features/session/usecases/list-participant-by-session/use-list-reservations-by-session.tsx';
+import { Loading } from '@/components/loading.tsx';
 
 export function SessionColumnTypeCourseCapacity({
-  typeCourseId
+  typeCourseId,
+  sessionId
 }: {
   typeCourseId: string;
+  sessionId: string;
 }) {
   const { data: typeCourseResponse, isLoading } = useListTypesCourse();
-  const typeCourses = typeCourseResponse?.data ?? [];
 
-  const typeCourse = typeCourses.typeCourse.find(
-    (tc: TTypeCourse) => tc.id === typeCourseId
-  );
+  const typeCourses = typeCourseResponse?.data ?? { typeCourse: [] };
 
-  if (isLoading) {
-    return (
-      <div className={'flex min-h-screen w-full items-center justify-center'}>
-        <div
-          className={
-            'border-primary h-10 w-10 animate-spin rounded-full border-4 border-solid border-t-transparent'
-          }
-        ></div>
-      </div>
-    );
+  const typeCourse =
+    typeCourses.typeCourse?.find((tc: TTypeCourse) => tc.id === typeCourseId) ??
+    null;
+
+  const { data: reservationResponse, isLoading: isLoadingReservations } =
+    useListReservationsBySession(sessionId);
+
+  const reservations = reservationResponse?.data ?? { reservations: [] };
+
+  if (isLoading || isLoadingReservations) {
+    return <Loading size={'small'} />;
   }
 
-  return <>0 / {typeCourse.capacity}</>;
+  return (
+    <>
+      {reservations.reservations.length} / {typeCourse.capacity}
+    </>
+  );
 }

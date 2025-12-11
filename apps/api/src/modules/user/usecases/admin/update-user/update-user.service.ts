@@ -60,7 +60,7 @@ export class UpdateUserService {
         logType: LogType.UPDATE,
         message: `Utilisateur : ${updatedUser.firstname} ${updatedUser.lastname}`,
       },
-      user,
+      user.id,
     );
     return { user: updatedUser };
   }

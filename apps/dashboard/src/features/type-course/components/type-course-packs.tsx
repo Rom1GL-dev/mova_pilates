@@ -3,6 +3,7 @@ import { useGetPacksByTypeCourse } from '@/features/type-course/usecases/get-pac
 import { TTypeCourse } from '@/features/type-course/types/TTypeCourse';
 import { TPack } from '@/features/pack/types/TPack.ts';
 import { Button } from '@mui/material';
+import { Loading } from '@/components/loading.tsx';
 
 interface Props {
   typeCourse: TTypeCourse;
@@ -15,11 +16,7 @@ export function TypeCoursePacks({ typeCourse }: Props) {
   const packData = packResponse?.data.packs;
 
   if (isLoading || !packData) {
-    return (
-      <div className="flex min-h-screen w-full items-center justify-center">
-        <div className="border-primary h-10 w-10 animate-spin rounded-full border-4 border-solid border-t-transparent" />
-      </div>
-    );
+    return <Loading />;
   }
 
   if (packData.length === 0) {
@@ -46,11 +43,11 @@ export function TypeCoursePacks({ typeCourse }: Props) {
             </CardHeader>
             <CardContent>
               <p>
-                <span className=" mr-1 font-medium">{pack.nbCourse}</span>
+                <span className="mr-1 font-medium">{pack.nbCourse}</span>
                 séances
               </p>
               <p>
-                <span className=" font-medium">{pack.price}€</span>
+                <span className="font-medium">{pack.price}€</span>
               </p>
               <div className={'flex justify-end'}>
                 <Button

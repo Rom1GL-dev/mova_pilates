@@ -26,6 +26,7 @@ import { useToast } from '@/providers/toast-provider.tsx';
 import dayjs from 'dayjs';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { Loading } from '@/components/loading.tsx';
 
 interface Props {
   session: TSession;
@@ -87,11 +88,7 @@ export function SessionUpdateForm({ session }: Props) {
   };
 
   if (isLoading || !session) {
-    return (
-      <div className="flex h-screen w-screen items-center justify-center">
-        <div className="h-32 w-32 animate-spin rounded-full border-b-2 border-gray-900" />
-      </div>
-    );
+    return <Loading />;
   }
 
   return (

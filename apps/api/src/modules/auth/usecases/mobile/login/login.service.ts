@@ -11,12 +11,15 @@ import {
   createSession,
   generateSessionId,
 } from '../../../config/sessions';
+import { AppType, LogType } from '../../../../logs/domain/entities/log.entity';
+import { CreateLogService } from '../../../../logs/usecases/create-log/create-log.service';
 
 @Injectable()
 export class LoginService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly cache: CacheStorage,
+    private readonly createLogService: CreateLogService,
   ) {}
 
   async login(loginDto: LoginDto) {
@@ -25,7 +28,7 @@ export class LoginService {
     });
 
     if (!user) {
-      throw new NotFoundException('User not found');
+      throw new NotFoundException('USER_NOT_FOUND');
     }
 
     const passwordMatch = await comparePasswords(
@@ -34,7 +37,7 @@ export class LoginService {
     );
 
     if (!passwordMatch) {
-      throw new BadGatewayException('Invalid password');
+      throw new BadGatewayException('INVALID_PASSWORD');
     }
 
     const sessionId = generateSessionId();
@@ -47,10 +50,21 @@ export class LoginService {
         firstname: user.firstname || '',
         lastname: user.lastname || '',
         role: user.role,
+        tel: user.tel || '',
+        dob: user.dob,
       },
     };
 
     await createSession(this.cache, sessionId, session.user);
+
+    await this.createLogService.execute(
+      {
+        appType: AppType.MOBILE,
+        logType: LogType.LOGIN,
+        message: `Connexion de ${user?.email}`,
+      },
+      user.id,
+    );
 
     return { sessionId, user: session };
   }

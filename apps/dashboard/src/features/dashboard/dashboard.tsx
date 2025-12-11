@@ -3,6 +3,8 @@ import Layout from '@/components/layout.tsx';
 import { DashboardStatsCard } from '@/features/dashboard/components/dashboard-stats-card.tsx';
 import { useMe } from '@/lib/auth.tsx';
 import { useGetAnalytics } from '@/features/dashboard/usecases/get-analytics/use-get-analytics.tsx';
+import { DashboardPlanning } from '@/features/dashboard/components/dashboard-planning.tsx';
+import { Loading } from '@/components/loading.tsx';
 
 export function Dashboard() {
   const me = useMe();
@@ -10,14 +12,8 @@ export function Dashboard() {
   const analytics = analyticsResponse?.data.analytics;
 
   if (isLoading) {
-    return (
-      <div className="flex h-screen w-screen items-center justify-center">
-        <div className="h-32 w-32 animate-spin rounded-full border-b-2 border-gray-900"></div>
-      </div>
-    );
+    return <Loading />;
   }
-
-  console.log(analytics);
 
   return (
     <Layout breadcrumbs={['Tableau de bord']}>
@@ -45,6 +41,7 @@ export function Dashboard() {
           optional="ce mois-ci"
         />
       </div>
+      <DashboardPlanning />
     </Layout>
   );
 }

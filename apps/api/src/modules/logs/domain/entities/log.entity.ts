@@ -11,6 +11,7 @@ export enum LogType {
   DELETE = 'DELETE',
   LOGIN = 'LOGIN',
   LOGOUT = 'LOGOUT',
+  REGISTER = 'REGISTER',
   PAYMENT = 'PAYMENT',
   PASSWORD_RESET = 'PASSWORD_RESET',
   RESERVATION = 'RESERVATION',
@@ -18,10 +19,17 @@ export enum LogType {
   OTHER = 'OTHER',
 }
 
+export const AppTypeZod = z.enum(
+  Object.values(AppType) as [string, ...string[]],
+);
+export const LogTypeZod = z.enum(
+  Object.values(LogType) as [string, ...string[]],
+);
+
 export const LogSchema = z.object({
   id: z.string(),
-  appType: z.enum(AppType),
-  logType: z.enum(LogType),
+  appType: AppTypeZod,
+  logType: LogTypeZod,
   userId: z.string(),
   fullName: z.string().optional(),
   message: z.string(),

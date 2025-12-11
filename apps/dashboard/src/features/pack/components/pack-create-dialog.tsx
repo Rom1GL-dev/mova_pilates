@@ -36,6 +36,7 @@ import { useToast } from '@/providers/toast-provider.tsx';
 import { PlusIcon } from '@radix-ui/react-icons';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { Loading } from '@/components/loading.tsx';
 
 export function PackCreateDialog() {
   const [open, setOpen] = useState(false);
@@ -69,11 +70,7 @@ export function PackCreateDialog() {
   };
 
   if (isLoading) {
-    return (
-      <div className="flex h-screen w-screen items-center justify-center">
-        <div className="h-32 w-32 animate-spin rounded-full border-b-2 border-gray-900"></div>
-      </div>
-    );
+    return <Loading />;
   }
 
   return (

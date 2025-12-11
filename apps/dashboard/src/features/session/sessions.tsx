@@ -5,12 +5,17 @@ import { sessionColumns } from './components/session-columns.tsx';
 import SessionProvider from '@/features/session/context/session-provider.tsx';
 import { SessionListingToolbar } from '@/features/session/components/session-listing-toolbar.tsx';
 import { useListSession } from '@/features/session/usecases/list-session/use-list-session.tsx';
+import { Loading } from '@/components/loading.tsx';
 
 export function Sessions() {
-  const { data: sessionResponse } = useListSession();
+  const { data: sessionResponse, isLoading } = useListSession();
   const { data } = sessionResponse ?? {
     data: []
   };
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <Layout

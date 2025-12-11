@@ -1,12 +1,10 @@
 import Layout from '@/components/layout';
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger
-} from '@/components/ui/tabs.tsx';
-import { useGetSession } from '@/features/session/usecases/get-session/use-get-session.tsx';
-import { SessionTabInformation } from '@/features/session/components/session-tab-information.tsx';
+import { TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { UrlTabs } from '@/components/url-tabs';
+import { useGetSession } from '@/features/session/usecases/get-session/use-get-session';
+import { SessionTabInformation } from '@/features/session/components/session-tab-information';
+import { SessionParticipantInformation } from '@/features/session/components/session-participant-information';
+import { Loading } from '@/components/loading.tsx';
 
 interface Props {
   sessionId: string;
@@ -17,33 +15,29 @@ export function SessionDetail({ sessionId }: Props) {
   const session = sessionResponse?.data.session;
 
   if (isLoading || !session) {
-    return (
-      <div className={'flex min-h-screen w-full items-center justify-center'}>
-        <div
-          className={
-            'border-primary h-10 w-10 animate-spin rounded-full border-4 border-solid border-t-transparent'
-          }
-        ></div>
-      </div>
-    );
+    return <Loading />;
   }
 
   return (
     <Layout
       breadcrumbs={['Sessions']}
-      title={`Détail de la session`}
-      description={`Consulter les informations de la session.`}
+      title="Détail de la session"
+      description="Consulter les informations de la session."
     >
-      <Tabs defaultValue={'INFORMATIONS'} className={'space-y-5'}>
+      <UrlTabs defaultValue="INFORMATIONS" paramKey="tab" className="space-y-5">
         <TabsList>
-          <TabsTrigger value={'INFORMATIONS'}>Informations</TabsTrigger>
-          <TabsTrigger value={'PARTICIPANTS'}>Participants</TabsTrigger>
+          <TabsTrigger value="INFORMATIONS">Informations</TabsTrigger>
+          <TabsTrigger value="PARTICIPANTS">Participants</TabsTrigger>
         </TabsList>
-        <TabsContent value={'INFORMATIONS'}>
+
+        <TabsContent value="INFORMATIONS">
           <SessionTabInformation session={session} />
         </TabsContent>
-        <TabsContent value={'PARTICIPANTS'}>test2</TabsContent>
-      </Tabs>
+
+        <TabsContent value="PARTICIPANTS">
+          <SessionParticipantInformation sessionId={session.id} />
+        </TabsContent>
+      </UrlTabs>
     </Layout>
   );
 }

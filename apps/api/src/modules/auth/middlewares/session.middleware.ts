@@ -14,12 +14,16 @@ export class SessionMiddleware implements NestMiddleware {
   ) {}
 
   async use(req: Request, res: Response, next: NextFunction) {
-    const sessionId =
-      req.cookies['sessionId'] || req.cookies['sessionId_admin'];
+    const headerSessionId = req.headers['x-session-id'] as string | undefined;
+    const cookieSessionId = req.cookies['sessionId_admin'] as
+      | string
+      | undefined;
+
+    const sessionId = headerSessionId || cookieSessionId;
 
     if (!sessionId) {
-      next();
-      return;
+      req.session = undefined as any;
+      return next();
     }
 
     const user: Session['user'] | undefined = await this.cache.get(
@@ -27,25 +31,25 @@ export class SessionMiddleware implements NestMiddleware {
     );
 
     if (!user) {
-      next();
-      return;
+      req.session = undefined as any;
+      return next();
     }
 
     req.session = { id: sessionId, user };
 
     res.on('finish', async () => {
-      await this.cache.set(sessionId, req.session, SESSION_TTL_MS);
+      await this.cache.set(
+        getSessionStorageKey(sessionId),
+        user,
+        SESSION_TTL_MS,
+      );
     });
 
-    const sessionIdLabel = req.cookies['sessionId']
-      ? 'sessionId'
-      : 'sessionId_admin';
+    if (cookieSessionId) {
+      const label = 'sessionId_admin';
 
-    res.cookie(
-      sessionIdLabel,
-      sessionId,
-      getCookiesOptions(this.configService),
-    );
+      res.cookie(label, sessionId, getCookiesOptions(this.configService));
+    }
 
     next();
   }

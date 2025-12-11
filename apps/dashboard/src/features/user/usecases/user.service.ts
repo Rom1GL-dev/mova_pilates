@@ -6,12 +6,17 @@ import { UpdateWalletForm } from '@/features/user/usecases/update-wallet/update-
 
 export class UserService {
   readonly _uri: string = '/v1/backoffice/user';
+  readonly _uriReservations: string = '/v1/backoffice/reservations';
   readonly _uriWallet: string = '/v1/backoffice/wallets';
 
   constructor() {}
 
   async listUsers() {
     return await api.get(this._uri);
+  }
+
+  async listUserReservation(userId: string) {
+    return await api.get(this._uriReservations + '/user/' + userId);
   }
 
   async getUser(id: string) {

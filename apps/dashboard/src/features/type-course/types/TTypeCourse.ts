@@ -3,6 +3,8 @@ export interface TTypeCourse {
   label: string;
   typeCourse: TypeOfCourse;
   capacity: number;
+  description: string;
+  image?: File | null;
 }
 
 export enum TypeOfCourse {

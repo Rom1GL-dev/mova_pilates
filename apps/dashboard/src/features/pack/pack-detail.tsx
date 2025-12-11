@@ -7,6 +7,7 @@ import {
 } from '@/components/ui/tabs.tsx';
 import { PackTabInformation } from '@/features/pack/components/pack-tab-information.tsx';
 import { useGetPack } from '@/features/pack/usecases/get-pack/use-get-pack.tsx';
+import { Loading } from '@/components/loading.tsx';
 
 interface Props {
   packId: string;
@@ -17,15 +18,7 @@ export function PackDetail({ packId }: Props) {
   const pack = packResponse?.data.pack;
 
   if (isLoading || !pack) {
-    return (
-      <div className={'flex min-h-screen w-full items-center justify-center'}>
-        <div
-          className={
-            'border-primary h-10 w-10 animate-spin rounded-full border-4 border-solid border-t-transparent'
-          }
-        ></div>
-      </div>
-    );
+    return <Loading />;
   }
 
   return (

@@ -25,6 +25,8 @@ export class UpdateTypeCourseService {
       label: data.label,
       capacity: data.capacity,
       createdAt: data.createdAt,
+      description: data.description,
+      image: data.image,
       updatedAt: new Date(),
     };
 
@@ -41,7 +43,7 @@ export class UpdateTypeCourseService {
         logType: LogType.UPDATE,
         message: `Type de cours : ${typeCourseRaw.label}`,
       },
-      user,
+      user.id,
     );
 
     return { message: 'Le type de cours a bien été modifié.' };

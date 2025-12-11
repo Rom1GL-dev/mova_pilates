@@ -25,6 +25,7 @@ import { cn } from '@/lib/utils';
 import { useToast } from '@/providers/toast-provider.tsx';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { Loading } from '@/components/loading.tsx';
 
 interface Props {
   pack: TPack;
@@ -85,11 +86,7 @@ export function PackUpdateForm({ pack }: Props) {
   };
 
   if (isLoading || !pack) {
-    return (
-      <div className="flex h-screen w-screen items-center justify-center">
-        <div className="h-32 w-32 animate-spin rounded-full border-b-2 border-gray-900" />
-      </div>
-    );
+    return <Loading />;
   }
 
   return (

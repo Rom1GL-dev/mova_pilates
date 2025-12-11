@@ -13,11 +13,8 @@ import {
   createSession,
   generateSessionId,
 } from '../../../config/sessions';
-import {
-  AppType,
-  LogType,
-} from './../../../../logs/domain/entities/log.entity';
-import { CreateLogService } from './../../../../logs/usecases/create-log/create-log.service';
+import { AppType, LogType } from '../../../../logs/domain/entities/log.entity';
+import { CreateLogService } from '../../../../logs/usecases/create-log/create-log.service';
 import { LoginDto } from './login.dto';
 
 @Injectable()
@@ -49,7 +46,7 @@ export class LoginAdminService {
           logType: LogType.LOGIN,
           message: `Échec de connexion pour ${user.email} : mot de passe incorrect`,
         },
-        user,
+        user.id,
       );
       throw new BadGatewayException('Mot de passe incorrect');
     }
@@ -64,10 +61,6 @@ export class LoginAdminService {
     const cacheKey = `otp:${user.email}`;
 
     await this.cache.set(cacheKey, otp, 120);
-
-    console.log(
-      `[LOGIN] OTP généré pour ${user.email} | key=${cacheKey} | otp=${otp}`,
-    );
 
     await this.mailer.sendMail({
       to: user.email,
@@ -99,6 +92,8 @@ export class LoginAdminService {
         email: user.email,
         firstname: user.firstname || '',
         lastname: user.lastname || '',
+        tel: user.tel || '',
+        dob: user.dob,
         role: user.role,
       },
     };
@@ -111,7 +106,7 @@ export class LoginAdminService {
         logType: LogType.LOGIN,
         message: `Connexion réussie pour ${user.email}`,
       },
-      user,
+      user.id,
     );
 
     return { sessionId, user: session };

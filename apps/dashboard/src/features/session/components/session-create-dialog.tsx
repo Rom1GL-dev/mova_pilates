@@ -36,6 +36,7 @@ import { Badge } from '@mui/material';
 import { PlusIcon } from '@radix-ui/react-icons';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { Loading } from '@/components/loading.tsx';
 
 export function SessionCreateDialog() {
   const [open, setOpen] = useState(false);
@@ -75,11 +76,7 @@ export function SessionCreateDialog() {
   };
 
   if (isLoading) {
-    return (
-      <div className="flex h-screen w-screen items-center justify-center">
-        <div className="h-32 w-32 animate-spin rounded-full border-b-2 border-gray-900"></div>
-      </div>
-    );
+    return <Loading />;
   }
 
   return (

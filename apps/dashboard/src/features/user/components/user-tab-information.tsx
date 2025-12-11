@@ -11,6 +11,7 @@ import { TWallet } from '@/features/user/types/TWallet.ts';
 import { useListAllWalletsByUser } from '@/features/user/usecases/list-all-wallets-by-user/list-all-wallets-by-user.tsx';
 import { cn } from '@/lib/utils';
 import { Badge } from '@mui/material';
+import { Loading } from '@/components/loading.tsx';
 
 interface Props {
   user: TUser;
@@ -24,15 +25,7 @@ export function UserTabInformation({ user }: Props) {
   const typesCourses = typeCoursesResponse?.data?.typeCourse ?? [];
 
   if (isLoading || !wallets || isLoadingTypeCourse) {
-    return (
-      <div className={'flex min-h-screen w-full items-center justify-center'}>
-        <div
-          className={
-            'border-primary h-10 w-10 animate-spin rounded-full border-4 border-solid border-t-transparent'
-          }
-        ></div>
-      </div>
-    );
+    return <Loading />;
   }
   return (
     <div className={'grid gap-x-10 lg:grid-cols-2'}>

@@ -30,7 +30,7 @@ export class DeletePackService {
         logType: LogType.DELETE,
         message: `Pack : ${packRow.label}`,
       },
-      user,
+      user.id,
     );
     return { message: 'Le packs a bien été supprimé.' };
   }

@@ -6,4 +6,10 @@ export class CreateTypeCourseDto {
 
   @IsNumber()
   capacity: number;
+
+  @IsString()
+  description: string;
+
+  @IsString()
+  image?: string | null;
 }

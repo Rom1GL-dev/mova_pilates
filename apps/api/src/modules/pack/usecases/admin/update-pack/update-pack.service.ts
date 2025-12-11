@@ -42,7 +42,7 @@ export class UpdatePackService {
         logType: LogType.UPDATE,
         message: `Pack : ${packRow.label}`,
       },
-      user,
+      user.id,
     );
     return { message: 'Le packs a bien été modifié.' };
   }

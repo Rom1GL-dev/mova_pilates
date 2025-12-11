@@ -42,7 +42,7 @@ export class CreatePackService {
         logType: LogType.ADD,
         message: `Pack : ${packRow.label}`,
       },
-      user,
+      user.id,
     );
 
     return { message: 'Le packs a bien été crée.' };

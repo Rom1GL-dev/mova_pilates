@@ -38,7 +38,7 @@ export class AdjustCreditService {
         logType: LogType.UPDATE,
         message: `Crédit : ${adjustCreditRaw.userId}`,
       },
-      user,
+      user.id,
     );
     return { message: 'Le crédit a bien été modifié.' };
   }

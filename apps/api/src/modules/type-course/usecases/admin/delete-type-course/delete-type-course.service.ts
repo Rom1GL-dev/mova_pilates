@@ -30,7 +30,7 @@ export class DeleteTypeCourseService {
         logType: LogType.DELETE,
         message: `Type de cours : ${typeCourseRaw.label}`,
       },
-      user,
+      user.id,
     );
 
     return { message: 'Le type de cours a bien été supprimé.' };

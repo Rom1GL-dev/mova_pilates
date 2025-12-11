@@ -13,6 +13,7 @@ import { ReservationModule } from './modules/reservation/reservation.module';
 import { WalletModule } from './modules/wallet/wallet.module';
 import { AnalyticsModule } from './modules/analytics/analytics.module';
 import { LogModule } from './modules/logs/log.module';
+import { ImagesModule } from './modules/images/images.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { LogModule } from './modules/logs/log.module';
     ReservationModule,
     WalletModule,
     AnalyticsModule,
+    ImagesModule,
   ],
   controllers: [],
   providers: [

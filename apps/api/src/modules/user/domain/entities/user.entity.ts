@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import { Role } from '@mova_pilates/shared';
 
 export const UserSchema = z.object({
   id: z.string(),
@@ -7,7 +6,7 @@ export const UserSchema = z.object({
   password: z.string(),
   firstname: z.string(),
   lastname: z.string(),
-  role: Role,
+  role: z.enum(['ADMIN', 'USER']),
   tel: z.string().nullable().optional(),
   dob: z.date().nullable().optional(),
   createdAt: z.date(),

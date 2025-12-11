@@ -8,6 +8,7 @@ import {
 import { useGetTypeCourse } from '@/features/type-course/usecases/get-type-course/use-get-type-course.tsx';
 import { TypeCourseTabInformation } from '@/features/type-course/components/type-course-tab-information.tsx';
 import { TypeCoursePacks } from '@/features/type-course/components/type-course-packs.tsx';
+import { Loading } from '@/components/loading.tsx';
 
 interface Props {
   typeCourseId: string;
@@ -19,15 +20,7 @@ export function TypeCourseDetail({ typeCourseId }: Props) {
   const typeCourseData = typeCourseResponse?.data.typeCourse;
 
   if (isLoading || !typeCourseData) {
-    return (
-      <div className={'flex min-h-screen w-full items-center justify-center'}>
-        <div
-          className={
-            'border-primary h-10 w-10 animate-spin rounded-full border-4 border-solid border-t-transparent'
-          }
-        ></div>
-      </div>
-    );
+    return <Loading />;
   }
 
   return (

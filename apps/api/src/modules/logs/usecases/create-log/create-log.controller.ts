@@ -20,7 +20,7 @@ export class CreateLogController {
   ) {
     const log = await this.createLogService.execute(
       createPackDto,
-      request.session.user,
+      request.session.user.id,
     );
     return { log: log };
   }

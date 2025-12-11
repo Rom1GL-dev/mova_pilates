@@ -1,13 +1,11 @@
 import Layout from '@/components/layout';
 import { useGetUser } from '@/features/user/usecases/get-user/use-get-user.tsx';
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger
-} from '@/components/ui/tabs.tsx';
+import { TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs.tsx';
+import { UrlTabs } from '@/components/url-tabs';
 import { UserTabInformation } from '@/features/user/components/user-tab-information.tsx';
 import { UserLogs } from '@/features/user/components/user-logs.tsx';
+import { UserReservationsTab } from '@/features/user/components/reservations/user-reservations-tab.tsx';
+import { Loading } from '@/components/loading.tsx';
 
 interface Props {
   userId: string;
@@ -18,15 +16,7 @@ export function UserDetail({ userId }: Props) {
   const userData = userResponse?.data.user;
 
   if (isLoading || !userData) {
-    return (
-      <div className={'flex min-h-screen w-full items-center justify-center'}>
-        <div
-          className={
-            'border-primary h-10 w-10 animate-spin rounded-full border-4 border-solid border-t-transparent'
-          }
-        ></div>
-      </div>
-    );
+    return <Loading />;
   }
 
   return (
@@ -38,26 +28,30 @@ export function UserDetail({ userId }: Props) {
       title={`Détail de ${userData.firstname + ' ' + userData.lastname}`}
       description={`Consulter les informations de ${userData.firstname}.`}
     >
-      <Tabs defaultValue={'INFORMATIONS'} className={'space-y-5'}>
+      <UrlTabs defaultValue="INFORMATIONS" paramKey="tab" className="space-y-5">
         <TabsList>
-          <TabsTrigger value={'INFORMATIONS'}>Informations</TabsTrigger>
-          <TabsTrigger value={'HISTORIQUES_SESSIONS'}>
+          <TabsTrigger value="INFORMATIONS">Informations</TabsTrigger>
+          <TabsTrigger value="HISTORIQUES_SESSIONS">
             Historique Sessions
           </TabsTrigger>
-          <TabsTrigger value={'ACHATS'}>Achats</TabsTrigger>
-          <TabsTrigger value={'LOGS'}>Logs</TabsTrigger>
+          <TabsTrigger value="ACHATS">Achats</TabsTrigger>
+          <TabsTrigger value="LOGS">Logs</TabsTrigger>
         </TabsList>
-        <TabsContent value={'INFORMATIONS'}>
+
+        <TabsContent value="INFORMATIONS">
           <UserTabInformation user={userData} />
         </TabsContent>
-        <TabsContent value={'HISTORIQUES_SESSIONS'}>
-          Historique sessions
+
+        <TabsContent value="HISTORIQUES_SESSIONS">
+          <UserReservationsTab userId={userId} />
         </TabsContent>
-        <TabsContent value={'ACHATS'}>Achats</TabsContent>
-        <TabsContent value={'LOGS'}>
+
+        <TabsContent value="ACHATS">Achats</TabsContent>
+
+        <TabsContent value="LOGS">
           <UserLogs userId={userId} />
         </TabsContent>
-      </Tabs>
+      </UrlTabs>
     </Layout>
   );
 }

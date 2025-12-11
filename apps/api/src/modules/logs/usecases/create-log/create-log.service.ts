@@ -1,5 +1,4 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { Session } from '../../../../types/session';
 import { CreateLogDto } from './create-log.dto';
 import { LogRepository } from '../../domain/repositories/log.repository';
 import { Log } from '../../domain/entities/log.entity';
@@ -9,8 +8,8 @@ import { v4 as uuidv4 } from 'uuid';
 export class CreateLogService {
   constructor(private readonly logRepository: LogRepository) {}
 
-  async execute(data: CreateLogDto, user: Session['user']) {
-    if (!user) {
+  async execute(data: CreateLogDto, userId: string) {
+    if (!userId) {
       throw new UnauthorizedException(
         'Demande non autorisée. Veuillez vous connecter.',
       );
@@ -21,7 +20,7 @@ export class CreateLogService {
       message: data.message,
       logType: data.logType,
       appType: data.appType,
-      userId: user.id,
+      userId: userId,
       createdAt: new Date(),
     };
 

@@ -14,6 +14,8 @@ import { UserPrismaRepository } from './infrastructure/repositories/user.prisma.
 import { GetUserService } from './usecases/admin/get-user/get-user.service';
 import { GetUserController } from './usecases/admin/get-user/get-user.controller';
 import { LogModule } from '../logs/log.module';
+import { UpdateProfileService } from './usecases/mobile/update-profile/update-profile.service';
+import { UpdateProfileController } from './usecases/mobile/update-profile/update-profile.controller';
 
 @Module({
   imports: [SharedModule, LogModule],
@@ -23,6 +25,7 @@ import { LogModule } from '../logs/log.module';
     ListUsersService,
     UpdateUserService,
     GetUserService,
+    UpdateProfileService,
     {
       provide: UserRepository,
       useClass: UserPrismaRepository,
@@ -34,6 +37,7 @@ import { LogModule } from '../logs/log.module';
     ListUsersController,
     UpdateUserController,
     GetUserController,
+    UpdateProfileController,
   ],
   exports: [],
 })

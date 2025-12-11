@@ -9,21 +9,22 @@ import { Role } from '@mova_pilates/shared';
 
 @Controller(routesV1.version)
 export class UpdateReservationsController {
-  constructor(private readonly updatePackService: UpdateReservationsService) {}
+  constructor(
+    private readonly updateReservationservice: UpdateReservationsService,
+  ) {}
 
-  @Put(routesV1.backoffice.packs.root)
-  @UseGuards(AuthGuard)
+  @Put(routesV1.backoffice.reservations.root)
   @UseGuards(AuthGuard, RolesGuard)
   @Roles(Role.enum.ADMIN)
   async execute(
     @Body() updatePackDto: UpdateReservationsDto,
     @Req() request: AuthenticatedRequest,
   ) {
-    const pack = await this.updatePackService.execute(
+    const reservation = await this.updateReservationservice.execute(
       updatePackDto,
       request.session.user,
     );
 
-    return { pack: pack };
+    return { reservation: reservation };
   }
 }

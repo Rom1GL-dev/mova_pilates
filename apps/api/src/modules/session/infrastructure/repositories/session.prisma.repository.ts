@@ -40,7 +40,7 @@ export class SessionPrismaRepository implements SessionRepository {
   }
 
   async update(pack: Session): Promise<Session> {
-    const typeCourse = await this.prisma.typeCourse.findUnique({
+    const typeCourse = await this.prisma.session.findUnique({
       where: { id: pack.typeCourseId },
     });
 

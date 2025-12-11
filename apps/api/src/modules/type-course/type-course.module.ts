@@ -16,6 +16,10 @@ import { GetTypeCourseController } from './usecases/admin/get-type-course/get-ty
 import { GetPacksByTypeCourseController } from './usecases/admin/get-packs-by-type-course/get-packs-by-type-course.controller';
 import { GetPacksByTypeCourseService } from './usecases/admin/get-packs-by-type-course/get-packs-by-type-course.service';
 import { LogModule } from '../logs/log.module';
+import { ListTypeCourseMobileService } from './usecases/mobile/list-type-course-mobile/list-type-course-mobile.service';
+import { ListTypeCourseMobileController } from './usecases/mobile/list-type-course-mobile/list-type-course-mobile.controller';
+import { GetTypeCourseMobileService } from './usecases/mobile/get-type-course-mobile/get-type-course-mobile.service';
+import { GetTypeCourseMobileController } from './usecases/mobile/get-type-course-mobile/get-type-course-mobile.controller';
 
 @Module({
   imports: [SharedModule, LogModule],
@@ -26,6 +30,8 @@ import { LogModule } from '../logs/log.module';
     UpdateTypeCourseService,
     GetTypeCourseService,
     GetPacksByTypeCourseService,
+    ListTypeCourseMobileService,
+    GetTypeCourseMobileService,
     {
       provide: TypeCourseRepository,
       useClass: TypeCoursePrismaRepository,
@@ -38,6 +44,8 @@ import { LogModule } from '../logs/log.module';
     UpdateTypeCourseController,
     GetTypeCourseController,
     GetPacksByTypeCourseController,
+    ListTypeCourseMobileController,
+    GetTypeCourseMobileController,
   ],
   exports: [],
 })

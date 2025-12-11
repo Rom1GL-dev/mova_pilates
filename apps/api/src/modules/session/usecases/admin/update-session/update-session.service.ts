@@ -41,7 +41,7 @@ export class UpdateSessionService {
         logType: LogType.UPDATE,
         message: `Session : ${sessionRaw.startDate.toString()} - ${sessionRaw.endDate.toString()}`,
       },
-      user,
+      user.id,
     );
 
     return { message: 'La session a bien été modifié.' };

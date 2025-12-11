@@ -20,4 +20,12 @@ export class UpdateTypeCourseDto {
   @IsDate()
   @IsOptional()
   createdAt: Date;
+
+  @IsString()
+  @IsOptional()
+  image?: string | null;
+
+  @IsString()
+  @IsOptional()
+  description: string;
 }

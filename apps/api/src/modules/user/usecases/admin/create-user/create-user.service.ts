@@ -67,7 +67,7 @@ export class CreateUserService {
         logType: LogType.ADD,
         message: `Utilisateur : ${newUser.firstname} ${newUser.lastname}`,
       },
-      user,
+      user.id,
     );
 
     return { user: newUser };

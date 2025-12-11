@@ -25,6 +25,8 @@ export class CreateTypeCourseService {
       id: uuidv4(),
       label: data.label,
       capacity: data.capacity,
+      image: data.image,
+      description: data.description,
       createdAt: new Date(),
     };
 
@@ -41,7 +43,7 @@ export class CreateTypeCourseService {
         logType: LogType.ADD,
         message: `Type de cours : ${typeCourseRaw.label}`,
       },
-      user,
+      user.id,
     );
     return { message: 'Le type de cours a bien été crée.' };
   }

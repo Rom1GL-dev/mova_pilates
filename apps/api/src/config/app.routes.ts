@@ -8,6 +8,8 @@ const reservationsRoot = '/reservations';
 const wallets = '/wallets';
 const analyticsRoot = '/analytics';
 const logsRoot = '/logs';
+const profileRoot = '/profile';
+const imagesRoot = '/images';
 
 const v1 = 'v1';
 
@@ -21,6 +23,22 @@ export const routesV1 = {
       logout: `${authRoot}/logout`,
       me: `${authRoot}/me`,
       verifyOtp: `/${authRoot}/verify-otp`,
+      forgotPassword: `${authRoot}/forgot-password/request`,
+      forgotPasswordVerify: `${authRoot}/forgot-password/verify`,
+    },
+    typeCourse: {
+      root: `${typeCourseRoot}`,
+      byId: `${typeCourseRoot}/:id`,
+    },
+    profile: {
+      update: `${profileRoot}/update`,
+      updatePassword: `${profileRoot}/update-password`,
+      updateEmail: `${profileRoot}/update-email`,
+    },
+    reservations: {
+      root: reservationsRoot,
+      byId: `${reservationsRoot}/:id`,
+      byUserId: `${reservationsRoot}/user/:userId`,
     },
   },
   backoffice: {
@@ -36,6 +54,7 @@ export const routesV1 = {
     users: {
       root: `${backofficeRoot}${usersRoot}`,
       byId: `${backofficeRoot}${usersRoot}/:id`,
+      reservationsByUser: `${backofficeRoot}${usersRoot}/reservation/:id`,
     },
     typeCourse: {
       root: `${backofficeRoot}${typeCourseRoot}`,
@@ -52,7 +71,10 @@ export const routesV1 = {
     },
     reservations: {
       root: `${backofficeRoot}${reservationsRoot}`,
+      addReservation: `${backofficeRoot}${reservationsRoot}/session/reservation`,
+      bySessionId: `${backofficeRoot}${reservationsRoot}/session/:sessionId`,
       byId: `${backofficeRoot}${reservationsRoot}/:id`,
+      byUserId: `${backofficeRoot}${reservationsRoot}/user/:userId`,
     },
     wallets: {
       root: `${backofficeRoot}${wallets}`,
@@ -66,5 +88,10 @@ export const routesV1 = {
       root: `${backofficeRoot}${logsRoot}`,
       byId: `${backofficeRoot}${logsRoot}/:id`,
     },
+  },
+  image: {
+    root: imagesRoot,
+    upload: `${imagesRoot}/upload/:category`,
+    getImage: `${imagesRoot}/:category/:imageName`,
   },
 };

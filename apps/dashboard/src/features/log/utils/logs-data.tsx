@@ -35,6 +35,11 @@ export const LOGS_TYPE_DATA = {
     label: 'Déconnexion',
     className: 'bg-gray-200 text-gray-800'
   },
+
+  [LogsType.REGISTER]: {
+    label: 'Inscription',
+    className: 'bg-yellow-200 text-yellow-800'
+  },
   [LogsType.PAYMENT]: {
     label: 'Paiement',
     className: 'bg-purple-200 text-purple-800'

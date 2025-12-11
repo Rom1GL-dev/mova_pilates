@@ -23,7 +23,7 @@ import * as React from 'react';
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
-  Toolbar?: React.ComponentType<{ table: any }>;
+  Toolbar?: React.ComponentType<{ table: any; data?: any }>;
 }
 
 export function DataTable<TData, TValue>({
@@ -61,7 +61,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="w-full space-y-4">
-      {Toolbar && <Toolbar table={table} />}
+      {Toolbar && <Toolbar table={table} data={data} />}
       <div className="overflow-hidden rounded-md border">
         <Table className={'bg-white'}>
           <TableHeader>

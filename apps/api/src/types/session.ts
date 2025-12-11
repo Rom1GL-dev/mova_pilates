@@ -7,6 +7,8 @@ export interface Session {
     email: string;
     firstname: string;
     lastname: string;
+    dob: Date | null;
+    tel: string;
     role: Role;
   };
 }

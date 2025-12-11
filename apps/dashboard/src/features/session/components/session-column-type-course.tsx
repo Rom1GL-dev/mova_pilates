@@ -6,6 +6,7 @@ import {
 import { useListTypesCourse } from '@/features/type-course/usecases/list-type-course/use-list-types-course.tsx';
 import { TYPE_COURSE_DATA } from '@/features/type-course/utils/type-course-data';
 import { cn } from '@/lib/utils';
+import { Loading } from '@/components/loading.tsx';
 
 export function SessionColumnTypeCourse({
   typeCourseId
@@ -13,22 +14,14 @@ export function SessionColumnTypeCourse({
   typeCourseId: string;
 }) {
   const { data: typeCourseResponse, isLoading } = useListTypesCourse();
-  const typeCourses = typeCourseResponse?.data ?? [];
+  const typeCourses = typeCourseResponse?.data ?? { typeCourse: [] };
 
   const typeCourse = typeCourses.typeCourse.find(
     (tc: TTypeCourse) => tc.id === typeCourseId
   );
 
   if (isLoading) {
-    return (
-      <div className={'flex min-h-screen w-full items-center justify-center'}>
-        <div
-          className={
-            'border-primary h-10 w-10 animate-spin rounded-full border-4 border-solid border-t-transparent'
-          }
-        ></div>
-      </div>
-    );
+    return <Loading />;
   }
 
   return (

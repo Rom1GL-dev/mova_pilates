@@ -18,34 +18,72 @@ import {
 import { useCreateTypeCourse } from '@/features/type-course/usecases/create-type-course/use-create-type-course.tsx';
 import { PlusIcon } from '@radix-ui/react-icons';
 import { useState } from 'react';
+import { Textarea } from '@/components/ui/textarea.tsx';
+import { FormImageField } from '@/features/images/components/form-image-field';
+import { useUploadImage } from '@/features/images/api/use-upload-image';
+import { generateImageName, renameFile } from '@/lib/utils';
 
 export function TypeCourseCreateDialog() {
   const [open, setOpen] = useState(false);
 
   const createMutation = useCreateTypeCourse();
+  const uploadImageMutation = useUploadImage();
 
   const [formData, setFormData] = useState<CreateTypeCourseForm>({
     label: '',
-    capacity: 0
+    capacity: 0,
+    description: '',
+    image: ''
   });
 
   const handleInputChange = (
     field: keyof CreateTypeCourseDto,
-    value: string | Date
+    value: string | number
   ) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setFormData((prev) => ({ ...prev, image: file }));
+    }
+  };
+
   const handleSave = async () => {
     try {
-      await createMutation.mutateAsync(formData);
+      let imageToSave: string | undefined = undefined;
+
+      if (formData.image instanceof File) {
+        const imageName = generateImageName(formData.label, formData.image);
+        const renamedImage = renameFile(formData.image, imageName);
+
+        await uploadImageMutation.mutateAsync({
+          file: renamedImage,
+          category: 'typeCourse'
+        });
+
+        imageToSave = imageName;
+      }
+
+      const payload: CreateTypeCourseForm = {
+        label: formData.label,
+        capacity: Number(formData.capacity),
+        description: formData.description,
+        image: imageToSave
+      };
+
+      await createMutation.mutateAsync(payload);
+
       setOpen(false);
       setFormData({
         label: '',
-        capacity: 0
+        capacity: 0,
+        description: '',
+        image: ''
       });
     } catch (error) {
-      console.error('Erreur lors de la création du  :', error);
+      console.error('Erreur lors de la création du type de cours :', error);
     }
   };
 
@@ -68,17 +106,40 @@ export function TypeCourseCreateDialog() {
               id="label"
               value={formData.label}
               onChange={(e) => handleInputChange('label', e.target.value)}
-              placeholder="Loic"
+              placeholder="Ex: Pilates"
             />
           </div>
+
           <div className="grid gap-2">
             <Label htmlFor="capacity">Capacité</Label>
             <Input
               id="capacity"
-              type={'number'}
+              type="number"
               value={formData.capacity}
-              onChange={(e) => handleInputChange('capacity', e.target.value)}
+              onChange={(e) =>
+                handleInputChange('capacity', Number(e.target.value))
+              }
               placeholder="0"
+            />
+          </div>
+
+          <div className="grid gap-2">
+            <Label>Description</Label>
+            <Textarea
+              id="description"
+              value={formData.description || ''}
+              onChange={(e) => handleInputChange('description', e.target.value)}
+              placeholder="Description du type de cours"
+            />
+          </div>
+
+          <div className="grid gap-2">
+            <FormImageField
+              category="typeCourse"
+              name="image"
+              required={true}
+              image={formData.image ?? ''}
+              onImageChange={handleImageChange}
             />
           </div>
         </div>
@@ -89,9 +150,7 @@ export function TypeCourseCreateDialog() {
           </Button>
           <Button
             onClick={handleSave}
-            className={
-              'bg-[#b28053] text-white hover:bg-[#8b6f55] hover:text-white'
-            }
+            className="bg-[#b28053] text-white hover:bg-[#8b6f55] hover:text-white"
           >
             Enregistrer
           </Button>

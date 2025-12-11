@@ -30,7 +30,7 @@ export class DeleteUserService {
         logType: LogType.DELETE,
         message: `Utilisateur : ${userRow.firstname} ${userRow.lastname}`,
       },
-      user,
+      user.id,
     );
 
     return { message: "L'utilisateur a bien été supprimé." };
