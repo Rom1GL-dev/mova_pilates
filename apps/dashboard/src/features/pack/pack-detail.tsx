@@ -1,13 +1,9 @@
 import Layout from '@/components/layout';
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger
-} from '@/components/ui/tabs.tsx';
+import { TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs.tsx';
 import { PackTabInformation } from '@/features/pack/components/pack-tab-information.tsx';
 import { useGetPack } from '@/features/pack/usecases/get-pack/use-get-pack.tsx';
 import { Loading } from '@/components/loading.tsx';
+import { UrlTabs } from '@/components/url-tabs.tsx';
 
 interface Props {
   packId: string;
@@ -27,7 +23,7 @@ export function PackDetail({ packId }: Props) {
       title={`Détail de ${pack.label}`}
       description={`Consulter les informations de ${pack.label}.`}
     >
-      <Tabs defaultValue={'INFORMATIONS'} className={'space-y-5'}>
+      <UrlTabs defaultValue={'INFORMATIONS'} className={'space-y-5'}>
         <TabsList>
           <TabsTrigger value={'INFORMATIONS'}>Informations</TabsTrigger>
           <TabsTrigger value={'PACKS'}>Packs</TabsTrigger>
@@ -36,7 +32,7 @@ export function PackDetail({ packId }: Props) {
           <PackTabInformation pack={pack} />
         </TabsContent>
         <TabsContent value={'PACKS'}>test2</TabsContent>
-      </Tabs>
+      </UrlTabs>
     </Layout>
   );
 }

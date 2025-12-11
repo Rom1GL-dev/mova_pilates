@@ -11,10 +11,9 @@ import { Role } from '@mova_pilates/shared';
 export class UpdatePackController {
   constructor(private readonly updatePackService: UpdatePackService) {}
 
-  @Put(routesV1.backoffice.packs.root)
-  @UseGuards(AuthGuard)
   @UseGuards(AuthGuard, RolesGuard)
   @Roles(Role.enum.ADMIN)
+  @Put(routesV1.backoffice.packs.root)
   async execute(
     @Body() updatePackDto: UpdatePackDto,
     @Req() request: AuthenticatedRequest,

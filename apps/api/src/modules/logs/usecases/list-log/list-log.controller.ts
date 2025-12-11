@@ -9,9 +9,9 @@ import { AuthGuard } from '../../../../shared/applications/guards/auth.guard';
 export class ListLogController {
   constructor(private readonly listLog: ListLogService) {}
 
-  @Get(routesV1.backoffice.logs.root)
   @UseGuards(AuthGuard, RolesGuard)
   @Roles(Role.enum.ADMIN)
+  @Get(routesV1.backoffice.logs.root)
   async list() {
     const logs = await this.listLog.execute();
 

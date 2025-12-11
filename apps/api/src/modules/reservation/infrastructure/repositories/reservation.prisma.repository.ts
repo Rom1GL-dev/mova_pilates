@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { ReservationRepository } from '../../domain/repositories/reservation.repository';
 import { PrismaService } from '../../../../shared/infrastructure/prisma.service';
 import { Reservation } from '../../domain/entities/reservation.entity';
-import { AddReservationDto } from '../../usecases/admin/add-reservation-by-session/add-reservation.dto';
+import { AddReservationBySessionDto } from '../../usecases/admin/add-reservation-by-session/add-reservation-by-session.dto';
 
 @Injectable()
 export class TypeCoursePrismaRepository implements ReservationRepository {
@@ -86,7 +86,7 @@ export class TypeCoursePrismaRepository implements ReservationRepository {
     });
   }
 
-  async addParticipant(data: AddReservationDto): Promise<Reservation> {
+  async addParticipant(data: AddReservationBySessionDto): Promise<Reservation> {
     return this.prisma.reservation.create({
       data: {
         sessionId: data.sessionId,

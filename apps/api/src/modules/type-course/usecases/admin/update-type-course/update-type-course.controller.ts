@@ -13,10 +13,9 @@ export class UpdateTypeCourseController {
     private readonly updateTypeCourseService: UpdateTypeCourseService,
   ) {}
 
-  @Put(routesV1.backoffice.typeCourse.root)
-  @UseGuards(AuthGuard)
   @UseGuards(AuthGuard, RolesGuard)
   @Roles(Role.enum.ADMIN)
+  @Put(routesV1.backoffice.typeCourse.root)
   async execute(
     @Body() updateTypeCourseDto: UpdateTypeCourseDto,
     @Req() request: AuthenticatedRequest,

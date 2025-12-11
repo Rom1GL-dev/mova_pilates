@@ -9,9 +9,9 @@ import { AuthGuard } from '../../../../../shared/applications/guards/auth.guard'
 export class ListSessionController {
   constructor(private readonly listSessionService: ListSessionService) {}
 
-  @Get(routesV1.backoffice.sessions.root)
   @UseGuards(AuthGuard, RolesGuard)
   @Roles(Role.enum.ADMIN)
+  @Get(routesV1.backoffice.sessions.root)
   async list() {
     const sessions = await this.listSessionService.execute();
 

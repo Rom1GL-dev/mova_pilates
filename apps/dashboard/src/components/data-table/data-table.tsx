@@ -19,6 +19,8 @@ import {
   useReactTable
 } from '@tanstack/react-table';
 import * as React from 'react';
+import { useIsMobile } from '@/hooks/use-mobile.ts';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -31,6 +33,7 @@ export function DataTable<TData, TValue>({
   data,
   Toolbar
 }: DataTableProps<TData, TValue>) {
+  const isMobile = useIsMobile();
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -135,7 +138,7 @@ export function DataTable<TData, TValue>({
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
           >
-            Précédent
+            {isMobile ? <ArrowLeft size={10} /> : 'Précédent'}
           </Button>
           <Button
             variant="outline"
@@ -143,7 +146,7 @@ export function DataTable<TData, TValue>({
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
           >
-            Suivant
+            {isMobile ? <ArrowRight size={10} /> : 'Suivant'}
           </Button>
         </div>
       </div>

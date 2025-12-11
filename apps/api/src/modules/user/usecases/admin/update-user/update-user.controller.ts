@@ -4,12 +4,15 @@ import { AuthGuard } from '../../../../../shared/applications/guards/auth.guard'
 import { UpdateUserDto } from './update-user.dto';
 import { AuthenticatedRequest } from '../../../../../types/auth-request';
 import { UpdateUserService } from './update-user.service';
+import { Roles, RolesGuard } from '../../../../auth/config/role.guard';
+import { Role } from '@mova_pilates/shared';
 
 @Controller(routesV1.version)
 export class UpdateUserController {
   constructor(private readonly updateUserService: UpdateUserService) {}
 
-  @UseGuards(AuthGuard)
+  @UseGuards(AuthGuard, RolesGuard)
+  @Roles(Role.enum.ADMIN)
   @Put(routesV1.backoffice.users.root)
   async execute(
     @Body() updateUserDto: UpdateUserDto,

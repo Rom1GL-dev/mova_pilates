@@ -4,7 +4,7 @@ import { Roles, RolesGuard } from '../../../../auth/config/role.guard';
 import { Role } from '@mova_pilates/shared';
 import { AuthGuard } from '../../../../../shared/applications/guards/auth.guard';
 import { AddReservationBySessionService } from './add-reservation-by-session.service';
-import { AddReservationDto } from './add-reservation.dto';
+import { AddReservationBySessionDto } from './add-reservation-by-session.dto';
 import { AuthenticatedRequest } from '../../../../../types/auth-request';
 
 @Controller(routesV1.version)
@@ -17,7 +17,7 @@ export class AddReservationBySessionController {
   @Roles(Role.enum.ADMIN)
   @Post(routesV1.backoffice.reservations.addReservation)
   async add(
-    @Body() body: AddReservationDto,
+    @Body() body: AddReservationBySessionDto,
     @Req() request: AuthenticatedRequest,
   ) {
     const reservation = await this.addReservationBySessionService.execute(

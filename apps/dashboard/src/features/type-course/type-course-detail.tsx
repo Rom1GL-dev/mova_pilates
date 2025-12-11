@@ -1,14 +1,10 @@
 import Layout from '@/components/layout';
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger
-} from '@/components/ui/tabs.tsx';
+import { TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs.tsx';
 import { useGetTypeCourse } from '@/features/type-course/usecases/get-type-course/use-get-type-course.tsx';
 import { TypeCourseTabInformation } from '@/features/type-course/components/type-course-tab-information.tsx';
 import { TypeCoursePacks } from '@/features/type-course/components/type-course-packs.tsx';
 import { Loading } from '@/components/loading.tsx';
+import { UrlTabs } from '@/components/url-tabs.tsx';
 
 interface Props {
   typeCourseId: string;
@@ -29,7 +25,7 @@ export function TypeCourseDetail({ typeCourseId }: Props) {
       title={`Détail de ${typeCourseData.label}`}
       description={`Consulter les informations de ${typeCourseData.label}.`}
     >
-      <Tabs defaultValue={'INFORMATIONS'} className={'space-y-5'}>
+      <UrlTabs defaultValue={'INFORMATIONS'} className={'space-y-5'}>
         <TabsList>
           <TabsTrigger value={'INFORMATIONS'}>Informations</TabsTrigger>
           <TabsTrigger value={'PACKS'}>Packs</TabsTrigger>
@@ -40,7 +36,7 @@ export function TypeCourseDetail({ typeCourseId }: Props) {
         <TabsContent value={'PACKS'}>
           <TypeCoursePacks typeCourse={typeCourseData} />
         </TabsContent>
-      </Tabs>
+      </UrlTabs>
     </Layout>
   );
 }

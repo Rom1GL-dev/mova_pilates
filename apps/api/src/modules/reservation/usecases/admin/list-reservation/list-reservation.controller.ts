@@ -11,9 +11,9 @@ export class ListReservationController {
     private readonly listReservationService: ListReservationService,
   ) {}
 
-  @Get(routesV1.backoffice.reservations.root)
   @UseGuards(AuthGuard, RolesGuard)
   @Roles(Role.enum.ADMIN)
+  @Get(routesV1.backoffice.reservations.root)
   async list() {
     const reservations = await this.listReservationService.execute();
 

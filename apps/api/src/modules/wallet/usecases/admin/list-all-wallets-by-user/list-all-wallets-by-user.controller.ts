@@ -11,9 +11,9 @@ export class ListAllWalletsByUserController {
     private readonly listAllWalletsByUserService: ListAllWalletsByUserService,
   ) {}
 
-  @Get(routesV1.backoffice.wallets.byUserId)
   @UseGuards(AuthGuard, RolesGuard)
   @Roles(Role.enum.ADMIN)
+  @Get(routesV1.backoffice.wallets.byUserId)
   async listAllWalletsByUser(@Param('userId') userId: string) {
     const wallets = await this.listAllWalletsByUserService.execute(userId);
 

@@ -5,194 +5,50 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="53da6d2f-78bc-4241-a6fc-b43e7fabbe7c" name="Changes" comment="fix: build">
-      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/admin/get-admin-user/get-admin-user.controller.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/admin/get-admin-user/get-admin-user.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/admin/logout-admin/logout-admin.controller.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/mobile/forgot-password/forgot-password.controller.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/mobile/forgot-password/forgot-password.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/mobile/forgot-password/forgot-password.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/mobile/logout/logout.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/mobile/update-email/update-email.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/mobile/update-email/update-email.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/mobile/update-password/update-password.controller.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/mobile/update-password/update-password.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/mobile/update-password/update-password.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/images/images.controller.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/images/images.module.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/reservation/usecases/admin/add-reservation-by-session/add-reservation-by-session.controller.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/reservation/usecases/admin/add-reservation-by-session/add-reservation-by-session.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/reservation/usecases/admin/add-reservation-by-session/add-reservation.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/reservation/usecases/admin/list-reservations-by-session/list-reservation-by-session.controller.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/reservation/usecases/admin/list-reservations-by-session/list-reservation-by-session.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/reservation/usecases/admin/list-reservations-by-user-admin/list-reservations-by-user-admin.controller.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/reservation/usecases/admin/list-reservations-by-user-admin/list-reservations-by-user-admin.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/reservation/usecases/mobile/create-reservation-by-user/create-reservation-by-user.controller.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/reservation/usecases/mobile/create-reservation-by-user/create-reservation-by-user.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/reservation/usecases/mobile/create-reservation-by-user/create-reservation-by-user.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/reservation/usecases/mobile/list-reservation-by-user/list-reservation-by-user.controller.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/reservation/usecases/mobile/list-reservation-by-user/list-reservation-by-user.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/session/domain/entities/type-course.entity.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/type-course/usecases/mobile/get-type-course-mobile/get-type-course-mobile.controller.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/type-course/usecases/mobile/get-type-course-mobile/get-type-course-mobile.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/type-course/usecases/mobile/list-type-course-mobile/list-type-course-mobile.controller.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/type-course/usecases/mobile/list-type-course-mobile/list-type-course-mobile.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/user/usecases/mobile/update-profile/update-profile.controller.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/user/usecases/mobile/update-profile/update-profile.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/user/usecases/mobile/update-profile/update-profile.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/components/form-image-drop.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/components/loading.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/components/url-tabs.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/dashboard/components/dashboard-planning-toolbar.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/dashboard/components/dashboard-planning.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/images/api/use-upload-image.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/images/components/form-image-field.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/components/session-participant-add-participant.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/components/session-participant-column.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/components/session-participant-information.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/components/session-participants-delete-dialog.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/components/session-participants-dialogs.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/components/session-participants-reservation-status.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/components/session-participants-table-actions.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/components/session-participants-toolbar.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/context/session-participants-provider.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/types/TSessionParticipants.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/usecases/add-participant/add-participant.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/usecases/add-participant/use-add-participant.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/usecases/delete-participant/delete-participant.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/usecases/delete-participant/use-delete-participant.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/usecases/list-participant-by-session/use-list-reservations-by-session.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/usecases/update-reservation/update-reservation.dto.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/usecases/update-reservation/use-update-reservation.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/user/components/reservations/user-reservations-columns.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/user/components/reservations/user-reservations-listing-toolbar.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/user/components/reservations/user-reservations-tab.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/user/components/reservations/user-reservations-table-actions.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/user/context/user-reservations-provider.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/user/types/TUserReservations.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/features/user/usecases/list-reservations/use-list-user-reservations.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/dashboard/src/hooks/use-url-tab-state.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/config/app.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/config/app.routes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/auth/auth.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/auth/auth.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/auth/middlewares/session.middleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/auth/middlewares/session.middleware.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/admin/get-user/get-user.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/mobile/get-user/get-user.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/admin/get-user/get-user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/mobile/get-user/get-user.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/admin/login-admin/login-admin.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/admin/login-admin/login-admin.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/admin/logout/logout.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/mobile/logout/logout.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/admin/logout/logout.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/admin/logout-admin/logout-admin.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/admin/logout/logout.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/mobile/update-email/update-email.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/admin/register/register.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/mobile/register/register.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/admin/register/register.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/mobile/register/register.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/admin/register/register.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/mobile/register/register.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/mobile/login/login.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/mobile/login/login.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/mobile/login/login.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/mobile/login/login.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/logs/domain/entities/log.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/logs/domain/entities/log.entity.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/analytics/usecases/get-analytics/get-analytics.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/analytics/usecases/get-analytics/get-analytics.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/images/images.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/images/images.controller.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/api/src/modules/logs/usecases/create-log/create-log.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/logs/usecases/create-log/create-log.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/logs/usecases/create-log/create-log.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/logs/usecases/create-log/create-log.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/pack/usecases/admin/create-pack/create-pack.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/pack/usecases/admin/create-pack/create-pack.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/pack/usecases/admin/delete-pack/delete-pack.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/pack/usecases/admin/delete-pack/delete-pack.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/pack/usecases/admin/update-pack/update-pack.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/pack/usecases/admin/update-pack/update-pack.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/reservation/domain/entities/reservation.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/reservation/domain/entities/reservation.entity.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/logs/usecases/get-log/get-log.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/logs/usecases/get-log/get-log.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/logs/usecases/list-log/list-log.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/logs/usecases/list-log/list-log.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/pack/usecases/admin/get-pack/get-pack.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/pack/usecases/admin/get-pack/get-pack.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/pack/usecases/admin/list-pack/list-pack.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/pack/usecases/admin/list-pack/list-pack.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/pack/usecases/admin/update-pack/update-pack.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/pack/usecases/admin/update-pack/update-pack.controller.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/api/src/modules/reservation/domain/repositories/reservation.repository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/reservation/domain/repositories/reservation.repository.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/api/src/modules/reservation/infrastructure/repositories/reservation.prisma.repository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/reservation/infrastructure/repositories/reservation.prisma.repository.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/reservation/reservation.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/reservation/reservation.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/reservation/usecases/admin/create-reservation/create-reservation.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/reservation/usecases/admin/create-reservation/create-reservation.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/reservation/usecases/admin/delete-reservation/delete-reservation.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/reservation/usecases/admin/delete-reservation/delete-reservation.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/reservation/usecases/admin/add-reservation-by-session/add-reservation-by-session.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/reservation/usecases/admin/add-reservation-by-session/add-reservation-by-session.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/reservation/usecases/admin/add-reservation-by-session/add-reservation-by-session.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/reservation/usecases/admin/add-reservation-by-session/add-reservation-by-session.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/reservation/usecases/admin/add-reservation-by-session/add-reservation.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/reservation/usecases/admin/add-reservation-by-session/add-reservation-by-session.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/reservation/usecases/admin/list-reservation/list-reservation.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/reservation/usecases/admin/list-reservation/list-reservation.controller.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/api/src/modules/reservation/usecases/admin/update-reservation/update-reservations.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/reservation/usecases/admin/update-reservation/update-reservations.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/reservation/usecases/admin/update-reservation/update-reservations.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/reservation/usecases/admin/update-reservation/update-reservations.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/reservation/usecases/admin/update-reservation/update-reservations.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/reservation/usecases/admin/update-reservation/update-reservations.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/session/infrastructure/repositories/session.prisma.repository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/session/infrastructure/repositories/session.prisma.repository.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/session/usecases/admin/create-session/create-session.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/session/usecases/admin/create-session/create-session.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/session/usecases/admin/delete-session/delete-session.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/session/usecases/admin/delete-session/delete-session.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/session/usecases/admin/update-session/update-session.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/session/usecases/admin/update-session/update-session.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/type-course/domain/entities/type-course.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/type-course/domain/entities/type-course.entity.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/type-course/infrastructure/repositories/course-type.prisma.repository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/type-course/infrastructure/repositories/course-type.prisma.repository.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/type-course/type-course.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/type-course/type-course.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/type-course/usecases/admin/create-type-course/create-type-course.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/type-course/usecases/admin/create-type-course/create-type-course.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/type-course/usecases/admin/create-type-course/create-type-course.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/type-course/usecases/admin/create-type-course/create-type-course.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/type-course/usecases/admin/delete-type-course/delete-type-course.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/type-course/usecases/admin/delete-type-course/delete-type-course.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/session/usecases/admin/get-session/get-session.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/session/usecases/admin/get-session/get-session.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/session/usecases/admin/list-session/list-session.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/session/usecases/admin/list-session/list-session.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/session/usecases/admin/update-session/update-session.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/session/usecases/admin/update-session/update-session.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/type-course/usecases/admin/delete-type-course/delete-type-course.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/type-course/usecases/admin/delete-type-course/delete-type-course.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/type-course/usecases/admin/get-packs-by-type-course/get-packs-by-type-course.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/type-course/usecases/admin/get-packs-by-type-course/get-packs-by-type-course.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/type-course/usecases/admin/get-type-course/get-type-course.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/type-course/usecases/admin/get-type-course/get-type-course.controller.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/api/src/modules/type-course/usecases/admin/list-type-course/list-type-course.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/type-course/usecases/admin/list-type-course/list-type-course.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/type-course/usecases/admin/update-type-course/update-type-course.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/type-course/usecases/admin/update-type-course/update-type-course.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/type-course/usecases/admin/update-type-course/update-type-course.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/type-course/usecases/admin/update-type-course/update-type-course.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/user/domain/entities/user.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/user/domain/entities/user.entity.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/user/usecases/admin/create-user/create-user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/user/usecases/admin/create-user/create-user.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/user/usecases/admin/delete-user/delete-user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/user/usecases/admin/delete-user/delete-user.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/user/usecases/admin/update-user/update-user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/user/usecases/admin/update-user/update-user.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/user/user.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/user/user.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/wallet/usecases/admin/adjust-credit/adjust-credit.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/wallet/usecases/admin/adjust-credit/adjust-credit.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/types/session.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/types/session.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/dashboard/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/app/provider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/app/provider.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/type-course/usecases/admin/update-type-course/update-type-course.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/type-course/usecases/admin/update-type-course/update-type-course.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/user/usecases/admin/create-user/create-user.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/user/usecases/admin/create-user/create-user.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/user/usecases/admin/delete-user/delete-user.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/user/usecases/admin/delete-user/delete-user.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/user/usecases/admin/get-user/get-user.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/user/usecases/admin/get-user/get-user.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/user/usecases/admin/list-users/list-users.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/user/usecases/admin/list-users/list-users.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/user/usecases/admin/update-user/update-user.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/user/usecases/admin/update-user/update-user.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/wallet/usecases/admin/adjust-credit/adjust-credit.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/wallet/usecases/admin/adjust-credit/adjust-credit.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/wallet/usecases/admin/list-all-wallets-by-user/list-all-wallets-by-user.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/wallet/usecases/admin/list-all-wallets-by-user/list-all-wallets-by-user.controller.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/dashboard/src/components/data-table/data-table.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/components/data-table/data-table.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/features/dashboard/dashboard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/features/dashboard/dashboard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/features/log/components/logs-packs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/features/log/components/logs-packs.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/features/log/types/TLogs.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/features/log/types/TLogs.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/features/log/utils/logs-data.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/features/log/utils/logs-data.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/features/pack/components/pack-create-dialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/features/pack/components/pack-create-dialog.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/features/pack/components/pack-update-form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/features/pack/components/pack-update-form.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/features/dashboard/components/dashboard-planning-toolbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/features/dashboard/components/dashboard-planning-toolbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/features/dashboard/components/dashboard-planning.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/features/dashboard/components/dashboard-planning.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/features/log/components/logs-listing-toolbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/features/log/components/logs-listing-toolbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/features/pack/components/pack-listing-toolbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/features/pack/components/pack-listing-toolbar.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/dashboard/src/features/pack/pack-detail.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/features/pack/pack-detail.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/features/session/components/session-column-type-course-capacity.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/components/session-column-type-course-capacity.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/features/session/components/session-column-type-course.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/components/session-column-type-course.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/features/session/components/session-columns.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/components/session-columns.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/features/session/components/session-create-dialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/components/session-create-dialog.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/features/session/components/session-update-form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/components/session-update-form.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/features/session/session-detail.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/session-detail.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/features/session/sessions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/sessions.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/features/session/usecases/session.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/usecases/session.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/features/session/utils/type-course-data.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/utils/type-course-data.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/features/type-course/components/type-course-create-dialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/features/type-course/components/type-course-create-dialog.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/features/type-course/components/type-course-packs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/features/type-course/components/type-course-packs.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/features/type-course/components/type-course-update-form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/features/type-course/components/type-course-update-form.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/features/session/components/session-listing-toolbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/components/session-listing-toolbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/features/session/components/session-participants-toolbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/features/session/components/session-participants-toolbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/features/type-course/components/type-course-listing-toolbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/features/type-course/components/type-course-listing-toolbar.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/dashboard/src/features/type-course/type-course-detail.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/features/type-course/type-course-detail.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/features/type-course/types/TTypeCourse.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/features/type-course/types/TTypeCourse.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/features/type-course/usecases/create-type-course/create-type-course.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/features/type-course/usecases/create-type-course/create-type-course.dto.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/features/user/components/user-tab-information.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/features/user/components/user-tab-information.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/features/user/usecases/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/features/user/usecases/user.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/features/user/user-detail.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/features/user/user-detail.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/lib/utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/lib/utils.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/.idea/codeStyles/Project.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/.idea/highlightedFiles.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/.idea/my-expo-app.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/.idea/prettier.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/App.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/app-env.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/app.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/babel.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/cesconfig.jsonc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/eslint.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/global.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/metro.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/nativewind-env.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/prettier.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/public/adaptive-icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/public/favicon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/public/icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/public/splash.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/src/app/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/src/app/provider.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/src/app/router.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/src/app/screens/home/home.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/src/config/app.config.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/src/config/routes.config.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/src/env.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/src/global.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/src/libs/fetcher.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/src/libs/react-query.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/src/types/file.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/tailwind.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/tsconfig.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/mobile/yarn.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/database/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/packages/database/prisma/schema.prisma" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/features/user/components/reservations/user-reservations-listing-toolbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/features/user/components/reservations/user-reservations-listing-toolbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/features/user/components/reservations/user-reservations-tab.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/features/user/components/reservations/user-reservations-tab.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/dashboard/src/features/user/components/user-listing-toolbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/dashboard/src/features/user/components/user-listing-toolbar.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -284,7 +140,7 @@
       <workItem from="1764236646431" duration="478000" />
       <workItem from="1764521946543" duration="1351000" />
       <workItem from="1765265727617" duration="16637000" />
-      <workItem from="1765351410336" duration="17903000" />
+      <workItem from="1765351410336" duration="25027000" />
     </task>
     <task id="LOCAL-00001" summary="fix: ci cd + prisma migrate dev">
       <option name="closed" value="true" />

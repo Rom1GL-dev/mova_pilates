@@ -2,6 +2,14 @@
 
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { useIsMobile } from '@/hooks/use-mobile.ts';
+import { Button } from '@/components/ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger
+} from '@/components/ui/dropdown-menu';
+import { ChevronDown } from 'lucide-react';
 
 type DashboardPlanningToolbarProps = {
   label: string;
@@ -16,57 +24,75 @@ export function DashboardPlanningToolbar(props: DashboardPlanningToolbarProps) {
 
   return (
     <div className="flex items-center justify-between border-b bg-white px-4 py-3">
-      <div className="flex items-center gap-2">
-        <button
-          onClick={() => onNavigate('TODAY')}
-          className="cursor-pointer rounded-md bg-[#f3e8de] px-3 py-1.5 text-sm font-medium text-[#b28053]"
-        >
-          Aujourd'hui
-        </button>
+      {isMobile && (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline" className="flex items-center gap-2">
+              Action
+              <ChevronDown className="h-4 w-4" />
+            </Button>
+          </DropdownMenuTrigger>
 
-        <button
-          onClick={() => onNavigate('PREV')}
-          className="cursor-pointer rounded-md bg-gray-100 px-3 py-1.5 text-sm text-gray-700"
-        >
-          Précédent
-        </button>
+          <DropdownMenuContent className="w-40">
+            <DropdownMenuItem onClick={() => onNavigate('TODAY')}>
+              Aujourd'hui
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => onNavigate('PREV')}>
+              Précédent
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => onNavigate('NEXT')}>
+              Suivant
+            </DropdownMenuItem>
 
-        <button
-          onClick={() => onNavigate('NEXT')}
-          className="cursor-pointer rounded-md bg-gray-100 px-3 py-1.5 text-sm text-gray-700"
-        >
-          Suivant
-        </button>
-      </div>
+            <DropdownMenuItem onClick={() => onView('week')}>
+              Vue semaine {view === 'week' && '✓'}
+            </DropdownMenuItem>
 
-      {!isMobile && (
-        <div className="text-lg font-semibold text-gray-800">{label}</div>
+            <DropdownMenuItem onClick={() => onView('day')}>
+              Vue jour {view === 'day' && '✓'}
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       )}
 
-      <div className="flex items-center gap-2">
-        <button
-          onClick={() => onView('week')}
-          className={
-            'cursor-pointer rounded-md px-3 py-1.5 text-sm font-medium ' +
-            (view === 'week'
-              ? 'bg-[#b28053] text-white'
-              : 'bg-gray-100 text-gray-700')
-          }
-        >
-          Semaine
-        </button>
-        <button
-          onClick={() => onView('day')}
-          className={
-            'cursor-pointer rounded-md px-3 py-1.5 text-sm font-medium ' +
-            (view === 'day'
-              ? 'bg-[#b28053] text-white'
-              : 'bg-gray-100 text-gray-700')
-          }
-        >
-          Jour
-        </button>
-      </div>
+      {!isMobile && (
+        <>
+          <div className="flex items-center gap-2">
+            <Button
+              onClick={() => onNavigate('TODAY')}
+              className="bg-[#f3e8de] text-[#b28053] hover:bg-[#C9B9A9]"
+            >
+              Aujourd'hui
+            </Button>
+
+            <Button variant="outline" onClick={() => onNavigate('PREV')}>
+              Précédent
+            </Button>
+
+            <Button variant="outline" onClick={() => onNavigate('NEXT')}>
+              Suivant
+            </Button>
+          </div>
+
+          <div className="text-lg font-semibold text-gray-800">{label}</div>
+
+          <div className="flex items-center gap-2">
+            <Button
+              className="bg-[#f3e8de] text-[#b28053] hover:bg-[#C9B9A9]"
+              onClick={() => onView('week')}
+            >
+              Semaine
+            </Button>
+
+            <Button
+              className="bg-[#f3e8de] text-[#b28053] hover:bg-[#C9B9A9]"
+              onClick={() => onView('day')}
+            >
+              Jour
+            </Button>
+          </div>
+        </>
+      )}
     </div>
   );
 }

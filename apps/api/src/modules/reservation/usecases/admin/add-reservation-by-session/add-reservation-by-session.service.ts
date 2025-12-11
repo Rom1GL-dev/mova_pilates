@@ -1,5 +1,5 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { AddReservationDto } from './add-reservation.dto';
+import { AddReservationBySessionDto } from './add-reservation-by-session.dto';
 import { Session } from '../../../../../types/session';
 import { ReservationRepository } from '../../../domain/repositories/reservation.repository';
 import { CreateLogService } from '../../../../logs/usecases/create-log/create-log.service';
@@ -12,7 +12,7 @@ export class AddReservationBySessionService {
     private readonly createLogService: CreateLogService,
   ) {}
 
-  async execute(data: AddReservationDto, user: Session['user']) {
+  async execute(data: AddReservationBySessionDto, user: Session['user']) {
     if (!user) {
       throw new UnauthorizedException('Vous devez être connecté');
     }

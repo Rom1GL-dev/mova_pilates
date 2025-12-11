@@ -19,6 +19,7 @@ export function UserReservationsTab({ userId }: Props) {
   if (isLoading) {
     return <Loading />;
   }
+
   return (
     <UserReservationsProvider>
       <DataTable

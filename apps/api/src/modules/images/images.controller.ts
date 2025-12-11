@@ -6,6 +6,7 @@ import {
   Post,
   Res,
   UploadedFile,
+  UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
@@ -15,6 +16,9 @@ import * as path from 'path';
 import { Response as ExpressResponse } from 'express';
 import { routesV1 } from '../../config/app.routes';
 import { ConfigService } from '@nestjs/config';
+import { AuthGuard } from '../../shared/applications/guards/auth.guard';
+import { Roles, RolesGuard } from '../auth/config/role.guard';
+import { Role } from '@mova_pilates/shared';
 
 @Controller(routesV1.version)
 export class ImagesController {
@@ -25,6 +29,8 @@ export class ImagesController {
       this.configService.get<string>('UPLOAD_PATH') ?? '/tmp/uploads';
   }
 
+  @UseGuards(AuthGuard, RolesGuard)
+  @Roles(Role.enum.ADMIN)
   @Post(routesV1.image.upload)
   @UseInterceptors(
     FileInterceptor('image', {

@@ -9,6 +9,8 @@ import { localizer } from '@/lib/utils';
 import { useState } from 'react';
 import { useIsMobile } from '@/hooks/use-mobile.ts';
 import { DashboardPlanningToolbar } from '@/features/dashboard/components/dashboard-planning-toolbar.tsx';
+import { useRouter } from '@/hooks/use-router.tsx';
+import { APP_ROUTES } from '@/config/routes.config.tsx';
 
 interface Session {
   id: string;
@@ -21,6 +23,7 @@ interface Session {
 }
 
 export function DashboardPlanning() {
+  const router = useRouter();
   const isMobile = useIsMobile();
   const [view, setView] = useState(isMobile ? Views.DAY : Views.WEEK);
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -36,6 +39,8 @@ export function DashboardPlanning() {
     start: new Date(s.startDate),
     end: new Date(s.endDate)
   }));
+
+  const safeView = isMobile ? Views.DAY : view;
 
   return (
     <Calendar
@@ -53,12 +58,17 @@ export function DashboardPlanning() {
         toolbar: DashboardPlanningToolbar
       }}
       events={events}
-      defaultView={isMobile ? Views.DAY : Views.WEEK}
-      view={view}
-      onView={(v: string) => setView(v)}
+      defaultView={safeView}
+      view={safeView}
+      onView={(v: string) => {
+        if (!isMobile) setView(v);
+      }}
       step={30}
       date={currentDate}
       onNavigate={(date: Date) => setCurrentDate(date)}
+      onSelectEvent={(session: Session) => {
+        router.push(APP_ROUTES.sessions.getHref() + '/' + session.id);
+      }}
       timeslots={2}
       min={dayjs().hour(6).minute(0).toDate()}
       max={dayjs().hour(22).minute(0).toDate()}

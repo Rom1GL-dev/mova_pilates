@@ -9,9 +9,9 @@ import { AuthGuard } from '../../../../../shared/applications/guards/auth.guard'
 export class ListPackController {
   constructor(private readonly listPack: ListPackService) {}
 
-  @Get(routesV1.backoffice.packs.root)
   @UseGuards(AuthGuard, RolesGuard)
   @Roles(Role.enum.ADMIN)
+  @Get(routesV1.backoffice.packs.root)
   async list() {
     const packs = await this.listPack.execute();
 

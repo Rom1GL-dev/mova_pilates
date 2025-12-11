@@ -10,7 +10,7 @@ import { Role } from '@mova_pilates/shared';
 @Controller(routesV1.version)
 export class UpdateReservationsController {
   constructor(
-    private readonly updateReservationservice: UpdateReservationsService,
+    private readonly updateReservationService: UpdateReservationsService,
   ) {}
 
   @Put(routesV1.backoffice.reservations.root)
@@ -20,7 +20,7 @@ export class UpdateReservationsController {
     @Body() updatePackDto: UpdateReservationsDto,
     @Req() request: AuthenticatedRequest,
   ) {
-    const reservation = await this.updateReservationservice.execute(
+    const reservation = await this.updateReservationService.execute(
       updatePackDto,
       request.session.user,
     );

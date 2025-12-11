@@ -12,7 +12,6 @@ export class UpdateSessionController {
   constructor(private readonly updateSessionService: UpdateSessionService) {}
 
   @Put(routesV1.backoffice.sessions.root)
-  @UseGuards(AuthGuard)
   @UseGuards(AuthGuard, RolesGuard)
   @Roles(Role.enum.ADMIN)
   async execute(

@@ -11,9 +11,9 @@ import { Role } from '@mova_pilates/shared';
 export class AdjustCreditController {
   constructor(private readonly adjustCreditService: AdjustCreditService) {}
 
-  @Patch(routesV1.backoffice.wallets.adjustCredit)
   @UseGuards(AuthGuard, RolesGuard)
   @Roles(Role.enum.ADMIN)
+  @Patch(routesV1.backoffice.wallets.adjustCredit)
   async execute(
     @Body() updateTypeCourseDto: AdjustCreditDto,
     @Req() request: AuthenticatedRequest,

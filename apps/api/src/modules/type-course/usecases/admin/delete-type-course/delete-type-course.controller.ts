@@ -13,9 +13,9 @@ export class DeleteTypeCourseController {
     private readonly deleteTypeCourseService: DeleteTypeCourseService,
   ) {}
 
-  @Delete(routesV1.backoffice.typeCourse.root)
   @UseGuards(AuthGuard, RolesGuard)
   @Roles(Role.enum.ADMIN)
+  @Delete(routesV1.backoffice.typeCourse.root)
   async delete(
     @Body() deleteTypeDto: DeleteTypeCourseDto,
     @Req() request: AuthenticatedRequest,

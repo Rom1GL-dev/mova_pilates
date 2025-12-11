@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Reservation } from '../entities/reservation.entity';
-import { AddReservationDto } from '../../usecases/admin/add-reservation-by-session/add-reservation.dto';
+import { AddReservationBySessionDto } from '../../usecases/admin/add-reservation-by-session/add-reservation-by-session.dto';
 
 @Injectable()
 export abstract class ReservationRepository {
@@ -10,7 +10,9 @@ export abstract class ReservationRepository {
   abstract findById(id: string): Promise<Reservation | null>;
   abstract findByUserId(userId: string): Promise<Reservation[]>;
   abstract delete(id: string): Promise<Reservation>;
-  abstract addParticipant(data: AddReservationDto): Promise<Reservation>;
+  abstract addParticipant(
+    data: AddReservationBySessionDto,
+  ): Promise<Reservation>;
   abstract findBySessionAndUserId(
     sessionId: string,
     userId: string,

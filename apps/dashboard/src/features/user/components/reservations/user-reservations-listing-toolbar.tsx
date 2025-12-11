@@ -11,15 +11,16 @@ export function UserReservationsListingToolbar({ table }: Props) {
   const isFiltered = table.getState().columnFilters.length > 0;
 
   return (
-    <div className="flex items-center justify-between gap-2">
-      <div className={'flex items-center gap-x-3'}>
+    <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-x-3">
         <DataTableViewOptions table={table} />
         <DataTableSearch table={table} />
+
         {isFiltered && (
           <Button
             variant="ghost"
             onClick={() => table.resetColumnFilters()}
-            className="h-8 px-2 lg:px-3"
+            className="h-8 self-start px-2 sm:self-auto lg:px-3"
           >
             Annuler
             <Cross2Icon className="ml-2 h-4 w-4" />
