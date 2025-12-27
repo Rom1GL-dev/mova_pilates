@@ -14,6 +14,16 @@ export class CreateReservationByUserService {
       throw new UnauthorizedException('Vous devez être connecté');
     }
 
+    const existingReservation =
+      await this.reservationRepository.findBySessionAndUserId(
+        data.sessionId,
+        data.userId,
+      );
+
+    if (existingReservation) {
+      throw new Error('Vous êtes déjà sur cette réservation');
+    }
+
     const reservationToSave: Reservation = {
       id: uuidv4(),
       status: 'PENDING',
@@ -26,8 +36,8 @@ export class CreateReservationByUserService {
       await this.reservationRepository.create(reservationToSave);
 
     if (!reservationRow) {
-      throw new Error("Le packs n'a pas pu être crée.");
+      throw new Error("La réservation n'a pas pu être crée.");
     }
-    return { message: 'Le packs a bien été crée.' };
+    return { message: 'La réservation a bien été crée.' };
   }
 }

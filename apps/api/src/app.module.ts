@@ -14,6 +14,7 @@ import { WalletModule } from './modules/wallet/wallet.module';
 import { AnalyticsModule } from './modules/analytics/analytics.module';
 import { LogModule } from './modules/logs/log.module';
 import { ImagesModule } from './modules/images/images.module';
+import { PaymentsModule } from './modules/payments/payments.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { ImagesModule } from './modules/images/images.module';
     WalletModule,
     AnalyticsModule,
     ImagesModule,
+    PaymentsModule,
   ],
   controllers: [],
   providers: [

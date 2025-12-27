@@ -28,6 +28,7 @@ export const routesV1 = {
     },
     typeCourse: {
       root: `${typeCourseRoot}`,
+      withPacks: `${typeCourseRoot}/with-packs`,
       byId: `${typeCourseRoot}/:id`,
     },
     profile: {
@@ -37,8 +38,22 @@ export const routesV1 = {
     },
     reservations: {
       root: reservationsRoot,
-      byId: `${reservationsRoot}/:id`,
+      nextReservationbyUser: `${reservationsRoot}/me/next`,
+      statsByUser: `${reservationsRoot}/me/stats`,
+      me: `${reservationsRoot}/me`,
       byUserId: `${reservationsRoot}/user/:userId`,
+      byId: `${reservationsRoot}/:id`,
+    },
+    sessions: {
+      byTypeCourse: `${sessionsRoot}/type-course/:typeCourseId`,
+    },
+    packs: {
+      root: `${packsRoot}`,
+      byId: `${packsRoot}/:id`,
+    },
+    payments: {
+      intent: 'payments/intent',
+      webhook: 'payments/webhook',
     },
   },
   backoffice: {

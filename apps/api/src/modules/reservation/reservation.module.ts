@@ -22,6 +22,10 @@ import { AddReservationBySessionService } from './usecases/admin/add-reservation
 import { LogModule } from '../logs/log.module';
 import { ListReservationByUserAdminController } from './usecases/admin/list-reservations-by-user-admin/list-reservations-by-user-admin.controller';
 import { ListReservationByUserAdminService } from './usecases/admin/list-reservations-by-user-admin/list-reservations-by-user-admin.service';
+import { GetNextReservationByUserController } from './usecases/mobile/get-next-reservation-by-user/get-next-reservation-by-user.controller';
+import { GetNextReservationByUserService } from './usecases/mobile/get-next-reservation-by-user/get-next-reservation-by-user.service';
+import { GetStatsByUserController } from './usecases/mobile/get-stats-by-user/get-stats-by-user.controller';
+import { GetStatsByUserService } from './usecases/mobile/get-stats-by-user/get-stats-by-user.service';
 
 @Module({
   imports: [SharedModule, LogModule],
@@ -35,6 +39,8 @@ import { ListReservationByUserAdminService } from './usecases/admin/list-reserva
     CreateReservationByUserService,
     ListReservationBySessionService,
     ListReservationByUserAdminService,
+    GetNextReservationByUserService,
+    GetStatsByUserService,
 
     {
       provide: ReservationRepository,
@@ -51,6 +57,8 @@ import { ListReservationByUserAdminService } from './usecases/admin/list-reserva
     CreateReservationByUserController,
     ListReservationBySessionController,
     ListReservationByUserAdminController,
+    GetNextReservationByUserController,
+    GetStatsByUserController,
   ],
   exports: [],
 })

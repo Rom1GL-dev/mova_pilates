@@ -1,9 +1,7 @@
-import { Controller, Get, Param, UseGuards } from '@nestjs/common';
+import { Controller, Get, Req } from '@nestjs/common';
 import { routesV1 } from '../../../../../config/app.routes';
 import { ListReservationByUserService } from './list-reservation-by-user.service';
-import { Roles, RolesGuard } from '../../../../auth/config/role.guard';
-import { Role } from '@mova_pilates/shared';
-import { AuthGuard } from '../../../../../shared/applications/guards/auth.guard';
+import { AuthenticatedRequest } from '../../../../../types/auth-request';
 
 @Controller(routesV1.version)
 export class ListReservationByUserController {
@@ -11,12 +9,13 @@ export class ListReservationByUserController {
     private readonly listReservationByUserIdService: ListReservationByUserService,
   ) {}
 
-  @Get(routesV1.mobile.reservations.byUserId)
-  @UseGuards(AuthGuard, RolesGuard)
-  @Roles(Role.enum.USER)
-  async listByUser(@Param('userId') userId: string) {
-    const reservations =
-      await this.listReservationByUserIdService.execute(userId);
+  @Get(routesV1.mobile.reservations.me)
+  // @UseGuards(AuthGuard, RolesGuard)
+  // @Roles(Role.enum.USER)
+  async listByUser(@Req() req: AuthenticatedRequest) {
+    const reservations = await this.listReservationByUserIdService.execute(
+      req.session.user.id,
+    );
 
     return { reservations: reservations };
   }

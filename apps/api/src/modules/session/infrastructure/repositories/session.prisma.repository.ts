@@ -15,23 +15,15 @@ export class SessionPrismaRepository implements SessionRepository {
     });
   }
 
-  async create(pack: Session): Promise<Session> {
-    const typeCourse = await this.prisma.typeCourse.findUnique({
-      where: { id: pack.typeCourseId },
-    });
-
-    if (!typeCourse) {
-      throw new Error('Type de cours non trouvé');
-    }
-
+  async create(session: Session): Promise<Session> {
     return this.prisma.session.create({
       data: {
-        id: pack.id,
-        startDate: pack.startDate,
-        endDate: pack.endDate,
-        typeCourseId: pack.typeCourseId,
-        createdAt: pack.createdAt,
-        updatedAt: pack.updatedAt,
+        id: session.id,
+        startDate: session.startDate,
+        endDate: session.endDate,
+        typeCourseId: session.typeCourseId,
+        createdAt: session.createdAt,
+        updatedAt: session.updatedAt,
       },
       include: {
         typeCourse: true,
@@ -39,22 +31,14 @@ export class SessionPrismaRepository implements SessionRepository {
     });
   }
 
-  async update(pack: Session): Promise<Session> {
-    const typeCourse = await this.prisma.session.findUnique({
-      where: { id: pack.typeCourseId },
-    });
-
-    if (!typeCourse) {
-      throw new Error('Type de cours non trouvé');
-    }
-
+  async update(session: Session): Promise<Session> {
     return this.prisma.session.update({
-      where: { id: pack.id },
+      where: { id: session.id },
       data: {
-        startDate: pack.startDate,
-        endDate: pack.endDate,
-        typeCourseId: pack.typeCourseId,
-        updatedAt: pack.updatedAt ?? new Date(),
+        startDate: session.startDate,
+        endDate: session.endDate,
+        typeCourseId: session.typeCourseId,
+        updatedAt: session.updatedAt ?? new Date(),
       },
       include: {
         typeCourse: true,
@@ -74,6 +58,15 @@ export class SessionPrismaRepository implements SessionRepository {
   async findById(id: string): Promise<Session | null> {
     return this.prisma.session.findUnique({
       where: { id },
+      include: {
+        typeCourse: true,
+      },
+    });
+  }
+
+  async findByTypeCourseId(typeCourseId: string): Promise<Session[]> {
+    return this.prisma.session.findMany({
+      where: { typeCourseId: typeCourseId },
       include: {
         typeCourse: true,
       },

@@ -2,12 +2,10 @@ import { z } from 'zod';
 
 export const SessionSchema = z.object({
   id: z.string(),
-  typeCourseId: z.string(),
-  typeCourse: z
-    .object({
-      capacity: z.number(),
-    })
-    .optional(),
+  typeCourse: z.object({
+    label: z.string(),
+    capacity: z.number(),
+  }),
   startDate: z.date(),
   endDate: z.date(),
   createdAt: z.date(),

@@ -74,6 +74,9 @@ export class TypeCoursePrismaRepository implements ReservationRepository {
     return this.prisma.reservation.findMany({
       where: {
         userId,
+        status: {
+          not: 'CANCELLED',
+        },
       },
       include: {
         user: true,

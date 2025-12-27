@@ -14,6 +14,8 @@ import { TypeCoursePrismaRepository } from './infrastructure/repositories/pack.p
 import { GetPackService } from './usecases/admin/get-pack/get-pack.service';
 import { GetPackController } from './usecases/admin/get-pack/get-pack.controller';
 import { LogModule } from '../logs/log.module';
+import { GetPackMobileService } from './usecases/mobile/get-pack-mobile/get-pack-mobile.service';
+import { GetPackMobileController } from './usecases/mobile/get-pack-mobile/get-pack-mobile.controller';
 
 @Module({
   imports: [SharedModule, LogModule],
@@ -23,6 +25,7 @@ import { LogModule } from '../logs/log.module';
     ListPackService,
     UpdatePackService,
     GetPackService,
+    GetPackMobileService,
     {
       provide: PackRepository,
       useClass: TypeCoursePrismaRepository,
@@ -34,6 +37,7 @@ import { LogModule } from '../logs/log.module';
     ListPackController,
     UpdatePackController,
     GetPackController,
+    GetPackMobileController,
   ],
   exports: [],
 })

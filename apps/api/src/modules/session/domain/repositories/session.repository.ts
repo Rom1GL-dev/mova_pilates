@@ -8,4 +8,5 @@ export abstract class SessionRepository {
   abstract findAll(): Promise<Session[]>;
   abstract findById(id: string): Promise<Session | null>;
   abstract delete(id: string): Promise<Session>;
+  abstract findByTypeCourseId(typeCourseId: string): Promise<Session[]>;
 }

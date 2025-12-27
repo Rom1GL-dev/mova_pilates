@@ -5,6 +5,7 @@ import { RedisCacheStorage } from './infrastructure/adapters/redis-cache-storage
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { HttpModule } from '@nestjs/axios';
 import { MailerService } from './infrastructure/mailer.service';
+import { StripeService } from './infrastructure/stripe.service';
 
 @Global()
 @Module({
@@ -25,6 +26,7 @@ import { MailerService } from './infrastructure/mailer.service';
   providers: [
     PrismaService,
     MailerService,
+    StripeService,
     {
       provide: CacheStorage,
       useFactory: (configService: ConfigService) => {
@@ -37,6 +39,12 @@ import { MailerService } from './infrastructure/mailer.service';
       inject: [ConfigService],
     },
   ],
-  exports: [PrismaService, MailerService, CacheStorage, HttpModule],
+  exports: [
+    PrismaService,
+    MailerService,
+    CacheStorage,
+    HttpModule,
+    StripeService,
+  ],
 })
 export class SharedModule {}

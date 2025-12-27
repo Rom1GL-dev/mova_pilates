@@ -14,6 +14,8 @@ import { SessionPrismaRepository } from './infrastructure/repositories/session.p
 import { GetSessionService } from './usecases/admin/get-session/get-session.service';
 import { GetSessionController } from './usecases/admin/get-session/get-session.controller';
 import { LogModule } from '../logs/log.module';
+import { ListSessionByTypeCourseService } from './usecases/mobile/list-session-by-type-course/list-session-by-type-course.service';
+import { ListSessionByTypeCourseController } from './usecases/mobile/list-session-by-type-course/list-session-by-type-course.controller';
 
 @Module({
   imports: [SharedModule, LogModule],
@@ -23,6 +25,7 @@ import { LogModule } from '../logs/log.module';
     ListSessionService,
     UpdateSessionService,
     GetSessionService,
+    ListSessionByTypeCourseService,
     {
       provide: SessionRepository,
       useClass: SessionPrismaRepository,
@@ -34,6 +37,7 @@ import { LogModule } from '../logs/log.module';
     ListSessionController,
     UpdateSessionController,
     GetSessionController,
+    ListSessionByTypeCourseController,
   ],
   exports: [],
 })
