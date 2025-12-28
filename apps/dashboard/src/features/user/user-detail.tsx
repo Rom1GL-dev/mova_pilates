@@ -6,6 +6,7 @@ import { UserTabInformation } from '@/features/user/components/user-tab-informat
 import { UserLogs } from '@/features/user/components/user-logs.tsx';
 import { UserReservationsTab } from '@/features/user/components/reservations/user-reservations-tab.tsx';
 import { Loading } from '@/components/loading.tsx';
+import { UserOrdersTab } from '@/features/user/components/orders/user-orders-tab.tsx';
 
 interface Props {
   userId: string;
@@ -46,7 +47,9 @@ export function UserDetail({ userId }: Props) {
           <UserReservationsTab userId={userId} />
         </TabsContent>
 
-        <TabsContent value="ACHATS">Achats</TabsContent>
+        <TabsContent value="ACHATS">
+          <UserOrdersTab userId={userId} />
+        </TabsContent>
 
         <TabsContent value="LOGS">
           <UserLogs userId={userId} />

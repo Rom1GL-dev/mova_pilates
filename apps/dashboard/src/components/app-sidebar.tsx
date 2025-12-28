@@ -40,7 +40,7 @@ const data = {
     },
     {
       title: 'Paiements',
-      url: '',
+      url: APP_ROUTES.order.getHref(),
       icon: EuroIcon
     }
   ],

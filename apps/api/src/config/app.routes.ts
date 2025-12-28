@@ -9,6 +9,7 @@ const wallets = '/wallets';
 const analyticsRoot = '/analytics';
 const logsRoot = '/logs';
 const profileRoot = '/profile';
+const ordersRoot = '/orders';
 const imagesRoot = '/images';
 
 const v1 = 'v1';
@@ -102,6 +103,10 @@ export const routesV1 = {
     logs: {
       root: `${backofficeRoot}${logsRoot}`,
       byId: `${backofficeRoot}${logsRoot}/:id`,
+    },
+    orders: {
+      root: `${backofficeRoot}${ordersRoot}`,
+      byId: `${backofficeRoot}${ordersRoot}/:id`,
     },
   },
   image: {

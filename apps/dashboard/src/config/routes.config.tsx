@@ -46,7 +46,7 @@ export const APP_ROUTES = {
       getHref: () => `/sessions/:id`
     }
   },
-  buying: {
+  order: {
     path: '/paiements',
     getHref: () => '/paiements',
     details: {

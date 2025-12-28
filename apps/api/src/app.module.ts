@@ -15,6 +15,7 @@ import { AnalyticsModule } from './modules/analytics/analytics.module';
 import { LogModule } from './modules/logs/log.module';
 import { ImagesModule } from './modules/images/images.module';
 import { PaymentsModule } from './modules/payments/payments.module';
+import { OrderModule } from './modules/orders/order.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { PaymentsModule } from './modules/payments/payments.module';
     AnalyticsModule,
     ImagesModule,
     PaymentsModule,
+    OrderModule,
   ],
   controllers: [],
   providers: [

@@ -54,6 +54,7 @@ model User {
   reservations Reservation[]
   Wallet       Wallet[]
   Log          Log[]
+  Order        Order[]
 }
 
 model Reservation {
@@ -108,6 +109,7 @@ model Pack {
   updatedAt    DateTime @updatedAt
 
   typeCourse TypeCourse @relation(fields: [typeCourseId], references: [id])
+  Order      Order[]
 }
 
 model Wallet {
@@ -133,4 +135,23 @@ model Log {
   createdAt DateTime @default(now())
 
   User User @relation(fields: [userId], references: [id])
+}
+
+enum PaymentStatus {
+  SUCCESS
+  FAILED
+}
+
+model Order {
+  id             String        @id @default(uuid())
+  stripeIntentId String        @unique
+  userId         String
+  packId         String
+  amount         Float
+  status         PaymentStatus
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  user User @relation(fields: [userId], references: [id])
+  pack Pack @relation(fields: [packId], references: [id])
 }

@@ -15,6 +15,7 @@ import PackDetailsRoot from '@/app/routes/packs/pack-details.tsx';
 import SessionsRoot from '@/app/routes/sessions/sessions.tsx';
 import SessionDetailsRoot from '@/app/routes/sessions/session-details.tsx';
 import LogsRoute from '@/app/routes/log/logs.tsx';
+import OrdersRoot from '@/app/routes/orders/orders.tsx';
 
 const queryClient = new QueryClient();
 
@@ -90,6 +91,14 @@ export const createAppRouter = () =>
       element: (
         <ProtectedRoute>
           <SessionsRoot />
+        </ProtectedRoute>
+      )
+    },
+    {
+      path: APP_ROUTES.order.getHref(),
+      element: (
+        <ProtectedRoute>
+          <OrdersRoot />
         </ProtectedRoute>
       )
     },
