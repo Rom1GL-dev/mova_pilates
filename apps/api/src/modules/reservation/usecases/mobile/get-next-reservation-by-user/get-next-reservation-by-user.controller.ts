@@ -13,7 +13,6 @@ export class GetNextReservationByUserController {
   @Get(routesV1.mobile.reservations.nextReservationbyUser)
   @UseGuards(AuthGuard)
   async getNextReservation(@Req() req: AuthenticatedRequest) {
-    console.log('je suis la');
     const reservation = await this.getNextReservationByUser.execute(
       req.session.user.id,
     );

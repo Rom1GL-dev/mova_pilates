@@ -55,7 +55,7 @@ export class CreateReservationByUserService {
       throw new BadRequestException('Crédits insuffisants');
     }
 
-    const alreadyReserved = await this.prisma.reservation.findUnique({
+    const existingReservation = await this.prisma.reservation.findUnique({
       where: {
         sessionId_userId: {
           sessionId: data.sessionId,
@@ -64,8 +64,11 @@ export class CreateReservationByUserService {
       },
     });
 
-    if (alreadyReserved) {
-      throw new BadRequestException('Déjà réservé');
+    if (
+      existingReservation?.status === 'CONFIRMED' ||
+      existingReservation?.status === 'PRESENT'
+    ) {
+      throw new BadRequestException('Vous avez déjà réservé cette séance');
     }
 
     return this.prisma.$transaction(async (tx) => {
@@ -81,17 +84,33 @@ export class CreateReservationByUserService {
         },
       });
 
-      const reservation = await tx.reservation.create({
-        data: {
-          userId: user.id,
-          sessionId: data.sessionId,
-          status: 'CONFIRMED',
-        },
-      });
+      let reservation;
+
+      if (existingReservation?.status === 'CANCELLED') {
+        reservation = await tx.reservation.update({
+          where: {
+            sessionId_userId: {
+              sessionId: data.sessionId,
+              userId: user.id,
+            },
+          },
+          data: {
+            status: 'CONFIRMED',
+          },
+        });
+      } else {
+        reservation = await tx.reservation.create({
+          data: {
+            userId: user.id,
+            sessionId: data.sessionId,
+            status: 'CONFIRMED',
+          },
+        });
+      }
 
       await this.createLog.execute(
         {
-          message: `Nouvelle réservation pour la session ${session.id} par l'utilisateur ${user.id}`,
+          message: `Réservation confirmée pour la session ${session.id}`,
           logType: LogType.RESERVATION,
           appType: AppType.MOBILE,
         },

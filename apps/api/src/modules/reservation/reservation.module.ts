@@ -26,6 +26,8 @@ import { GetNextReservationByUserController } from './usecases/mobile/get-next-r
 import { GetNextReservationByUserService } from './usecases/mobile/get-next-reservation-by-user/get-next-reservation-by-user.service';
 import { GetStatsByUserController } from './usecases/mobile/get-stats-by-user/get-stats-by-user.controller';
 import { GetStatsByUserService } from './usecases/mobile/get-stats-by-user/get-stats-by-user.service';
+import { CancelReservationController } from './usecases/mobile/cancel-reservation/cancel-reservation.controller';
+import { CancelReservationService } from './usecases/mobile/cancel-reservation/cancel-reservation.service';
 
 @Module({
   imports: [SharedModule, LogModule],
@@ -41,7 +43,7 @@ import { GetStatsByUserService } from './usecases/mobile/get-stats-by-user/get-s
     ListReservationByUserAdminService,
     GetNextReservationByUserService,
     GetStatsByUserService,
-
+    CancelReservationService,
     {
       provide: ReservationRepository,
       useClass: TypeCoursePrismaRepository,
@@ -59,6 +61,7 @@ import { GetStatsByUserService } from './usecases/mobile/get-stats-by-user/get-s
     ListReservationByUserAdminController,
     GetNextReservationByUserController,
     GetStatsByUserController,
+    CancelReservationController,
   ],
   exports: [],
 })

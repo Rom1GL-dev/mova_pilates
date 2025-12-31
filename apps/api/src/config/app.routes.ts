@@ -46,6 +46,7 @@ export const routesV1 = {
       me: `${reservationsRoot}/me`,
       byUserId: `${reservationsRoot}/user/:userId`,
       byId: `${reservationsRoot}/:id`,
+      cancel: `${reservationsRoot}/:reservationId/cancel`,
     },
     sessions: {
       byTypeCourse: `${sessionsRoot}/type-course/:typeCourseId`,

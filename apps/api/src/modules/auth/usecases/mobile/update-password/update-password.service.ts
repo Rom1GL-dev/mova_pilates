@@ -8,10 +8,15 @@ import { comparePasswords } from '../../../config/sessions';
 import { UpdatePasswordDto } from './update-password.dto';
 import { hashPassword } from '../../../../../shared/utils/hashPassword';
 import { Session } from '../../../../../types/session';
+import { AppType, LogType } from '../../../../logs/domain/entities/log.entity';
+import { CreateLogService } from '../../../../logs/usecases/create-log/create-log.service';
 
 @Injectable()
 export class UpdatePasswordService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly createLogService: CreateLogService,
+  ) {}
 
   async execute(dto: UpdatePasswordDto, user: Session['user']) {
     const userRaw = await this.prisma.user.findUnique({
@@ -40,6 +45,15 @@ export class UpdatePasswordService {
       where: { id: user.id },
       data: { password: newHashed },
     });
+
+    await this.createLogService.execute(
+      {
+        appType: AppType.MOBILE,
+        logType: LogType.UPDATE,
+        message: `L'utilisateur a mis à jour son mot de passe.`,
+      },
+      user.id,
+    );
 
     return true;
   }

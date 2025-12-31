@@ -59,7 +59,9 @@ export class UpdateProfileService {
       {
         appType: AppType.MOBILE,
         logType: LogType.UPDATE,
-        message: `Utilisateur : ${updatedUser.firstname} ${updatedUser.lastname}`,
+        message: `Profil modifié :
+AVANT -> firstname: ${existingUser.firstname}, lastname: ${existingUser.lastname}, tel: ${existingUser.tel}, dob: ${existingUser.dob}
+APRÈS -> firstname: ${updatedUser.firstname}, lastname: ${updatedUser.lastname}, tel: ${updatedUser.tel}, dob: ${updatedUser.dob}`,
       },
       user.id,
     );
