@@ -1,4 +1,4 @@
-import { UserPlus, Users } from 'lucide-react';
+import { Box, UserPlus, Users } from 'lucide-react';
 import Layout from '@/components/layout.tsx';
 import { DashboardStatsCard } from '@/features/dashboard/components/dashboard-stats-card.tsx';
 import { useMe } from '@/lib/auth.tsx';
@@ -39,6 +39,16 @@ export function Dashboard() {
               : 0
           }
           optional="ce mois-ci"
+        />
+        <DashboardStatsCard
+          icon={Box}
+          label="Pack le plus acheté"
+          value={
+            analytics.mostPurchasedPack.count > 0
+              ? `+${analytics.mostPurchasedPack.count}`
+              : 0
+          }
+          optional={analytics.mostPurchasedPack.packLabel}
         />
       </div>
       <DashboardPlanning />

@@ -20,7 +20,10 @@ export class WalletPrismaRepository implements WalletRepository {
       const wallet = wallets.find((w) => w.typeCourseId === course.id);
       return {
         typeCourseId: course.id,
-        label: course.label,
+        label:
+          course.label +
+          ' - ' +
+          (course.capacity > 1 ? 'Collectif' : 'Individuel'),
         balance: wallet ? wallet.balance : 0,
       };
     });

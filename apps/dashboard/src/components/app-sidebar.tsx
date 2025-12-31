@@ -8,6 +8,7 @@ import {
   EuroIcon,
   LayoutDashboardIcon,
   LogsIcon,
+  Scale,
   Users
 } from 'lucide-react';
 
@@ -64,6 +65,11 @@ const data = {
       title: 'Type de logs',
       url: APP_ROUTES.logs.getHref(),
       icon: LogsIcon
+    },
+    {
+      title: 'Légal',
+      url: APP_ROUTES.legal.getHref(),
+      icon: Scale
     }
   ]
 };

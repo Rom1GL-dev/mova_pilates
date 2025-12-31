@@ -22,6 +22,8 @@ import { GetTypeCourseMobileService } from './usecases/mobile/get-type-course-mo
 import { GetTypeCourseMobileController } from './usecases/mobile/get-type-course-mobile/get-type-course-mobile.controller';
 import { ListTypeCourseWithPacksController } from './usecases/mobile/list-type-course-with-packs/list-type-course-with-packs.controller';
 import { ListTypeCourseWithPacksService } from './usecases/mobile/list-type-course-with-packs/list-type-course-with-packs.service';
+import { ListCourseScheduleService } from './usecases/mobile/list-course-schedule/list-course-schedule.service';
+import { ListCourseScheduleController } from './usecases/mobile/list-course-schedule/list-course-schedule.controller';
 
 @Module({
   imports: [SharedModule, LogModule],
@@ -35,6 +37,7 @@ import { ListTypeCourseWithPacksService } from './usecases/mobile/list-type-cour
     ListTypeCourseMobileService,
     GetTypeCourseMobileService,
     ListTypeCourseWithPacksService,
+    ListCourseScheduleService,
     {
       provide: TypeCourseRepository,
       useClass: TypeCoursePrismaRepository,
@@ -50,6 +53,7 @@ import { ListTypeCourseWithPacksService } from './usecases/mobile/list-type-cour
     GetPacksByTypeCourseController,
     ListTypeCourseMobileController,
     GetTypeCourseMobileController,
+    ListCourseScheduleController,
   ],
   exports: [],
 })

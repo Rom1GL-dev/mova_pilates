@@ -1,7 +1,8 @@
-import { Controller, Get, Req } from '@nestjs/common';
+import { Controller, Get, Req, UseGuards } from '@nestjs/common';
 import { routesV1 } from '../../../../../config/app.routes';
 import { GetNextReservationByUserService } from './get-next-reservation-by-user.service';
 import { AuthenticatedRequest } from '../../../../../types/auth-request';
+import { AuthGuard } from '../../../../../shared/applications/guards/auth.guard';
 
 @Controller(routesV1.version)
 export class GetNextReservationByUserController {
@@ -10,9 +11,9 @@ export class GetNextReservationByUserController {
   ) {}
 
   @Get(routesV1.mobile.reservations.nextReservationbyUser)
-  // @UseGuards(AuthGuard, RolesGuard)
-  // @Roles(Role.enum.USER)
+  @UseGuards(AuthGuard)
   async getNextReservation(@Req() req: AuthenticatedRequest) {
+    console.log('je suis la');
     const reservation = await this.getNextReservationByUser.execute(
       req.session.user.id,
     );

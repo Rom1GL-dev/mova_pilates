@@ -11,6 +11,7 @@ const logsRoot = '/logs';
 const profileRoot = '/profile';
 const ordersRoot = '/orders';
 const imagesRoot = '/images';
+const legalsRoot = '/legals';
 
 const v1 = 'v1';
 
@@ -29,6 +30,7 @@ export const routesV1 = {
     },
     typeCourse: {
       root: `${typeCourseRoot}`,
+      schedule: `${typeCourseRoot}/schedule/:id`,
       withPacks: `${typeCourseRoot}/with-packs`,
       byId: `${typeCourseRoot}/:id`,
     },
@@ -55,6 +57,13 @@ export const routesV1 = {
     payments: {
       intent: 'payments/intent',
       webhook: 'payments/webhook',
+    },
+    wallets: {
+      byTypeCourseId: `${wallets}/type-course/:typeCourseId`,
+      byUserId: `${wallets}/:id`,
+    },
+    legals: {
+      type: `${legalsRoot}/:type`,
     },
   },
   backoffice: {
@@ -107,6 +116,10 @@ export const routesV1 = {
     orders: {
       root: `${backofficeRoot}${ordersRoot}`,
       byId: `${backofficeRoot}${ordersRoot}/:id`,
+    },
+    legals: {
+      root: `${backofficeRoot}${legalsRoot}`,
+      type: `${backofficeRoot}${legalsRoot}/:type`,
     },
   },
   image: {

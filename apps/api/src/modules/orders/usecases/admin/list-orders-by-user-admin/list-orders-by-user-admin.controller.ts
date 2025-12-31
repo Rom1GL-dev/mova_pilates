@@ -1,8 +1,8 @@
 import { Controller, Get, Param, UseGuards } from '@nestjs/common';
 import { Role } from '@mova_pilates/shared';
-import { routesV1 } from '../../../../config/app.routes';
-import { AuthGuard } from '../../../../shared/applications/guards/auth.guard';
-import { Roles, RolesGuard } from '../../../auth/config/role.guard';
+import { routesV1 } from '../../../../../config/app.routes';
+import { AuthGuard } from '../../../../../shared/applications/guards/auth.guard';
+import { Roles, RolesGuard } from '../../../../auth/config/role.guard';
 import { ListOrdersByUserAdminService } from './list-orders-by-user-admin.service';
 
 @Controller(routesV1.version)

@@ -53,5 +53,9 @@ export const APP_ROUTES = {
       path: '/paiements/:id',
       getHref: () => `/paiements/:id`
     }
+  },
+  legal: {
+    path: '/legal',
+    getHref: () => '/legal'
   }
 };

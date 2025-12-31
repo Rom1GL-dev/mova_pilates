@@ -16,6 +16,7 @@ import { LogModule } from './modules/logs/log.module';
 import { ImagesModule } from './modules/images/images.module';
 import { PaymentsModule } from './modules/payments/payments.module';
 import { OrderModule } from './modules/orders/order.module';
+import { LegalModule } from './modules/legal/legal.module';
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import { OrderModule } from './modules/orders/order.module';
     ImagesModule,
     PaymentsModule,
     OrderModule,
+    LegalModule,
   ],
   controllers: [],
   providers: [

@@ -155,3 +155,18 @@ model Order {
   user User @relation(fields: [userId], references: [id])
   pack Pack @relation(fields: [packId], references: [id])
 }
+
+enum LegalType {
+  POLITIQUE_DE_CONFIDENTIALITE
+  CONDITIONS_D_UTILISATION
+  CONDITIONS_DE_VENTE
+  MENTIONS_LEGALES
+}
+
+model LegalDocument {
+  id        String    @id @default(uuid())
+  type      LegalType @unique
+  content   String
+  updatedAt DateTime  @updatedAt
+  createdAt DateTime  @default(now())
+}

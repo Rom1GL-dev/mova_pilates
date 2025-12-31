@@ -3,10 +3,15 @@ import { UpdateReservationsDto } from './update-reservations.dto';
 import { Session } from '../../../../../types/session';
 import { ReservationRepository } from '../../../domain/repositories/reservation.repository';
 import { Reservation } from '../../../domain/entities/reservation.entity';
+import { CreateLogService } from '../../../../logs/usecases/create-log/create-log.service';
+import { AppType, LogType } from '../../../../logs/domain/entities/log.entity';
 
 @Injectable()
 export class UpdateReservationsService {
-  constructor(private readonly reservationRepository: ReservationRepository) {}
+  constructor(
+    private readonly reservationRepository: ReservationRepository,
+    private readonly createLogService: CreateLogService,
+  ) {}
 
   async execute(data: UpdateReservationsDto, user: Session['user']) {
     const existingReservation = await this.reservationRepository.findById(
@@ -36,6 +41,16 @@ export class UpdateReservationsService {
     if (!reservationRaw) {
       throw new Error("La reservation n'a pas pu être crée.");
     }
+
+    await this.createLogService.execute(
+      {
+        appType: AppType.ADMIN,
+        logType: LogType.RESERVATION,
+        message: `Modification de la réservation de ${reservationRaw.userId}`,
+      },
+      user.id,
+    );
+
     return { message: 'La reservation a bien été modifié.' };
   }
 }

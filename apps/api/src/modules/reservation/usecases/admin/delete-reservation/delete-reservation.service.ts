@@ -28,7 +28,7 @@ export class DeleteReservationService {
       {
         appType: AppType.ADMIN,
         logType: LogType.DELETE,
-        message: `Réservation`,
+        message: `Suppression de la réservation de ${reservationRow.userId}`,
       },
       user.id,
     );

@@ -70,7 +70,7 @@ export class StripeWebhookService {
         userId,
         appType: 'MOBILE',
         logType: 'PAYMENT',
-        message: `Achat du pack ${pack.label}`,
+        message: `Achat du pack ${pack.label} à ${(intent.amount_received / 100).toFixed(2)}€ réussi.`,
       },
     });
   }

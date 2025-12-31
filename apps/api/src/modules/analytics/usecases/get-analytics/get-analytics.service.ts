@@ -10,9 +10,13 @@ export class GetAnalyticsService {
     const totalNewMemberCurrentMonth =
       await this.analyticsRepository.getTotalNewMemberCurrentMonth();
 
+    const mostPurchasedPack =
+      await this.analyticsRepository.getMostPurchasedPack();
+
     return {
-      totalUsers: totalUsers,
-      totalNewMemberCurrentMonth: totalNewMemberCurrentMonth,
+      totalUsers,
+      totalNewMemberCurrentMonth,
+      mostPurchasedPack,
     };
   }
 }

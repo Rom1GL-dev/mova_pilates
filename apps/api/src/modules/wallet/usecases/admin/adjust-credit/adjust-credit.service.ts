@@ -32,11 +32,12 @@ export class AdjustCreditService {
     if (!adjustCreditRaw) {
       throw new Error("Le crédit n'a pas pu être modifié.");
     }
+
     await this.createLogService.execute(
       {
         appType: AppType.ADMIN,
         logType: LogType.UPDATE,
-        message: `Crédit : ${adjustCreditRaw.userId}`,
+        message: `Le crédit de l'utilisateur ${data.userId} pour le type de cours ${data.typeCourseId} a été ajusté à ${data.balance}.`,
       },
       user.id,
     );
