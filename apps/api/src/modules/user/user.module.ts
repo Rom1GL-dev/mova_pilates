@@ -16,6 +16,8 @@ import { GetUserController } from './usecases/admin/get-user/get-user.controller
 import { LogModule } from '../logs/log.module';
 import { UpdateProfileService } from './usecases/mobile/update-profile/update-profile.service';
 import { UpdateProfileController } from './usecases/mobile/update-profile/update-profile.controller';
+import { DeleteAccountService } from './usecases/mobile/delete-account/delete-account.service';
+import { DeleteAccountController } from './usecases/mobile/delete-account/delete-account.controller';
 
 @Module({
   imports: [SharedModule, LogModule],
@@ -26,6 +28,7 @@ import { UpdateProfileController } from './usecases/mobile/update-profile/update
     UpdateUserService,
     GetUserService,
     UpdateProfileService,
+    DeleteAccountService,
     {
       provide: UserRepository,
       useClass: UserPrismaRepository,
@@ -38,6 +41,7 @@ import { UpdateProfileController } from './usecases/mobile/update-profile/update
     UpdateUserController,
     GetUserController,
     UpdateProfileController,
+    DeleteAccountController,
   ],
   exports: [],
 })

@@ -1,18 +1,25 @@
 import {
   ForbiddenException,
   Injectable,
+  Logger,
   NotFoundException,
 } from '@nestjs/common';
 import { PrismaService } from '../../../../../shared/infrastructure/prisma.service';
 import { addHours, isBefore } from 'date-fns';
 import { CreateLogService } from '../../../../logs/usecases/create-log/create-log.service';
 import { AppType, LogType } from '../../../../logs/domain/entities/log.entity';
+import { MailerService } from '../../../../../shared/infrastructure/mailer.service';
+import { EmailTemplateService } from '../../../../../shared/infrastructure/email-template.service';
 
 @Injectable()
 export class CancelReservationService {
+  private readonly logger = new Logger(CancelReservationService.name);
+
   constructor(
     private readonly prisma: PrismaService,
     private createLogService: CreateLogService,
+    private readonly mailer: MailerService,
+    private readonly emailTemplate: EmailTemplateService,
   ) {}
 
   async execute(sessionId: string, userId: string) {
@@ -24,6 +31,7 @@ export class CancelReservationService {
         },
       },
       include: {
+        user: true,
         session: {
           include: { typeCourse: true },
         },
@@ -54,7 +62,7 @@ export class CancelReservationService {
       userId,
     );
 
-    return this.prisma.$transaction(async (tx) => {
+    const result = await this.prisma.$transaction(async (tx) => {
       await tx.reservation.update({
         where: {
           sessionId_userId: {
@@ -82,5 +90,26 @@ export class CancelReservationService {
 
       return reservation;
     });
+
+    // Email de confirmation d'annulation (non bloquant)
+    const cancelEmail = this.emailTemplate.reservationCancellation(
+      reservation.user.firstname,
+      reservation.session.typeCourse.label,
+      reservation.session.startDate,
+    );
+    this.mailer
+      .sendMail({
+        to: reservation.user.email,
+        subject: cancelEmail.subject,
+        html: cancelEmail.html,
+      })
+      .catch((error) => {
+        this.logger.error(
+          `Erreur envoi confirmation annulation à ${reservation.user.email}`,
+          error,
+        );
+      });
+
+    return result;
   }
 }

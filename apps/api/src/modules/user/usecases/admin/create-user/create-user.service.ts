@@ -12,6 +12,7 @@ import { AppType, LogType } from '../../../../logs/domain/entities/log.entity';
 import { CreateLogService } from '../../../../logs/usecases/create-log/create-log.service';
 import { generateAndHashPassword } from '../../../../../shared/utils/generate-password';
 import { MailerService } from '../../../../../shared/infrastructure/mailer.service';
+import { EmailTemplateService } from '../../../../../shared/infrastructure/email-template.service';
 
 @Injectable()
 export class CreateUserService {
@@ -19,6 +20,7 @@ export class CreateUserService {
     private readonly prisma: PrismaService,
     private readonly createLogService: CreateLogService,
     private readonly mailer: MailerService,
+    private readonly emailTemplate: EmailTemplateService,
   ) {}
 
   async execute(data: CreateUserDto, user: Session['user']) {
@@ -55,10 +57,14 @@ export class CreateUserService {
       },
     });
 
+    const tempPasswordEmail = this.emailTemplate.temporaryPassword(
+      data.firstname,
+      plain,
+    );
     await this.mailer.sendMail({
       to: data.email,
-      subject: 'Votre mot de passe OTP Mova Pilates',
-      html: `<p>Voici votre mot de passe : <b>${plain}</b></p>`,
+      subject: tempPasswordEmail.subject,
+      html: tempPasswordEmail.html,
     });
 
     await this.createLogService.execute(

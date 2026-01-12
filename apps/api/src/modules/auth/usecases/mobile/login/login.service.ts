@@ -1,8 +1,4 @@
-import {
-  BadGatewayException,
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { PrismaService } from '../../../../../shared/infrastructure/prisma.service';
 import { CacheStorage } from '../../../../../shared/ports/cache-storage';
 import { LoginDto } from './login.dto';
@@ -27,17 +23,13 @@ export class LoginService {
       where: { email: loginDto.email },
     });
 
-    if (!user) {
-      throw new NotFoundException('USER_NOT_FOUND');
-    }
+    // Protection contre user enumeration : même message d'erreur
+    const passwordMatch = user
+      ? await comparePasswords(loginDto.password, user.password)
+      : false;
 
-    const passwordMatch = await comparePasswords(
-      loginDto.password,
-      user.password,
-    );
-
-    if (!passwordMatch) {
-      throw new BadGatewayException('INVALID_PASSWORD');
+    if (!user || !passwordMatch) {
+      throw new BadRequestException('Email ou mot de passe incorrect');
     }
 
     const sessionId = generateSessionId();

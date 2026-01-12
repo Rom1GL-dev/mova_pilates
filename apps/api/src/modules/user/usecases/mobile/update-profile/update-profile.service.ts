@@ -60,8 +60,8 @@ export class UpdateProfileService {
         appType: AppType.MOBILE,
         logType: LogType.UPDATE,
         message: `Profil modifié :
-AVANT -> firstname: ${existingUser.firstname}, lastname: ${existingUser.lastname}, tel: ${existingUser.tel}, dob: ${existingUser.dob}
-APRÈS -> firstname: ${updatedUser.firstname}, lastname: ${updatedUser.lastname}, tel: ${updatedUser.tel}, dob: ${updatedUser.dob}`,
+AVANT -> firstname: ${existingUser.firstname}, lastname: ${existingUser.lastname}, tel: ${existingUser.tel}, dob: ${existingUser.dob?.toISOString() ?? 'N/A'}
+APRÈS -> firstname: ${updatedUser.firstname}, lastname: ${updatedUser.lastname}, tel: ${updatedUser.tel}, dob: ${updatedUser.dob?.toISOString() ?? 'N/A'}`,
       },
       user.id,
     );

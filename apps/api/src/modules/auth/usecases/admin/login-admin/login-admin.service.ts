@@ -5,6 +5,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { MailerService } from '../../../../../shared/infrastructure/mailer.service';
+import { EmailTemplateService } from '../../../../../shared/infrastructure/email-template.service';
 import { PrismaService } from '../../../../../shared/infrastructure/prisma.service';
 import { CacheStorage } from '../../../../../shared/ports/cache-storage';
 import { generateOtpCode } from '../../../../../shared/utils/generate-otp';
@@ -23,6 +24,7 @@ export class LoginAdminService {
     private readonly prisma: PrismaService,
     private readonly cache: CacheStorage,
     private readonly mailer: MailerService,
+    private readonly emailTemplate: EmailTemplateService,
     private readonly createLogService: CreateLogService,
   ) {}
 
@@ -62,10 +64,11 @@ export class LoginAdminService {
 
     await this.cache.set(cacheKey, otp, 120);
 
+    const otpEmail = this.emailTemplate.otpCode(otp, 2);
     await this.mailer.sendMail({
       to: user.email,
-      subject: 'Votre code OTP Mova Pilates',
-      html: `<p>Voici votre code OTP : <b>${otp}</b></p>`,
+      subject: otpEmail.subject,
+      html: otpEmail.html,
     });
 
     return { email: user.email, message: 'Code envoyé par e-mail' };

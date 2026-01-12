@@ -1,6 +1,7 @@
 import {
   BadRequestException,
   Injectable,
+  Logger,
   NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
@@ -9,12 +10,18 @@ import { CreateReservationByUserDto } from './create-reservation-by-user.dto';
 import { PrismaService } from '../../../../../shared/infrastructure/prisma.service';
 import { CreateLogService } from '../../../../logs/usecases/create-log/create-log.service';
 import { AppType, LogType } from '../../../../logs/domain/entities/log.entity';
+import { MailerService } from '../../../../../shared/infrastructure/mailer.service';
+import { EmailTemplateService } from '../../../../../shared/infrastructure/email-template.service';
 
 @Injectable()
 export class CreateReservationByUserService {
+  private readonly logger = new Logger(CreateReservationByUserService.name);
+
   constructor(
     private readonly prisma: PrismaService,
     private readonly createLog: CreateLogService,
+    private readonly mailer: MailerService,
+    private readonly emailTemplate: EmailTemplateService,
   ) {}
 
   async execute(data: CreateReservationByUserDto, user: Session['user']) {
@@ -116,6 +123,25 @@ export class CreateReservationByUserService {
         },
         user.id,
       );
+
+      // Email de confirmation de réservation (non bloquant)
+      const confirmEmail = this.emailTemplate.reservationConfirmation(
+        user.firstname,
+        session.typeCourse.label,
+        session.startDate,
+      );
+      this.mailer
+        .sendMail({
+          to: user.email,
+          subject: confirmEmail.subject,
+          html: confirmEmail.html,
+        })
+        .catch((error) => {
+          this.logger.error(
+            `Erreur envoi confirmation réservation à ${user.email}`,
+            error,
+          );
+        });
 
       return reservation;
     });

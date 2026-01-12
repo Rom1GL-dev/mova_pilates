@@ -6,6 +6,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { HttpModule } from '@nestjs/axios';
 import { MailerService } from './infrastructure/mailer.service';
 import { StripeService } from './infrastructure/stripe.service';
+import { EmailTemplateService } from './infrastructure/email-template.service';
 
 @Global()
 @Module({
@@ -27,6 +28,7 @@ import { StripeService } from './infrastructure/stripe.service';
     PrismaService,
     MailerService,
     StripeService,
+    EmailTemplateService,
     {
       provide: CacheStorage,
       useFactory: (configService: ConfigService) => {
@@ -42,6 +44,7 @@ import { StripeService } from './infrastructure/stripe.service';
   exports: [
     PrismaService,
     MailerService,
+    EmailTemplateService,
     CacheStorage,
     HttpModule,
     StripeService,

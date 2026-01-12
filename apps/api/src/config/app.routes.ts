@@ -38,6 +38,7 @@ export const routesV1 = {
       update: `${profileRoot}/update`,
       updatePassword: `${profileRoot}/update-password`,
       updateEmail: `${profileRoot}/update-email`,
+      delete: `${profileRoot}/delete`,
     },
     reservations: {
       root: reservationsRoot,

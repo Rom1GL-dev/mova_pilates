@@ -48,6 +48,7 @@ model User {
   password  String
   tel       String?
   dob       DateTime?
+  deletedAt DateTime?
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
 

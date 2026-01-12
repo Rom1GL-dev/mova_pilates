@@ -5,16 +5,39 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="53da6d2f-78bc-4241-a6fc-b43e7fabbe7c" name="Changes" comment="fix: build">
-      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/reservation/usecases/mobile/cancel-reservation/cancel-reservation.controller.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/reservation/usecases/mobile/cancel-reservation/cancel-reservation.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CLAUDE.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/user/usecases/mobile/delete-account/delete-account.controller.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/user/usecases/mobile/delete-account/delete-account.dto.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/src/modules/user/usecases/mobile/delete-account/delete-account.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/api/src/shared/infrastructure/email-template.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/database/prisma/migrations/20260112153840_add_deleted/migration.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/app.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/api/src/config/app.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/config/app.routes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/mobile/update-password/update-password.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/mobile/update-password/update-password.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/payments/usecases/stripe-webhook/stripe-webhook.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/payments/usecases/stripe-webhook/stripe-webhook.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/reservation/reservation.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/reservation/reservation.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/admin/login-admin/login-admin.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/admin/login-admin/login-admin.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/mobile/forgot-password/forgot-password.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/mobile/forgot-password/forgot-password.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/mobile/forgot-password/forgot-password.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/mobile/forgot-password/forgot-password.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/mobile/forgot-password/forgot-password.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/mobile/forgot-password/forgot-password.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/mobile/login/login.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/mobile/login/login.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/mobile/login/login.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/mobile/login/login.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/mobile/login/login.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/mobile/login/login.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/mobile/register/register.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/mobile/register/register.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/mobile/register/register.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/mobile/register/register.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/mobile/register/register.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/mobile/register/register.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/mobile/update-email/update-email.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/auth/usecases/mobile/update-email/update-email.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/payments/usecases/stripe-webhook/stripe-webhook.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/payments/usecases/stripe-webhook/stripe-webhook.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/reservation/usecases/mobile/cancel-reservation/cancel-reservation.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/reservation/usecases/mobile/cancel-reservation/cancel-reservation.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/api/src/modules/reservation/usecases/mobile/create-reservation-by-user/create-reservation-by-user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/reservation/usecases/mobile/create-reservation-by-user/create-reservation-by-user.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/reservation/usecases/mobile/get-next-reservation-by-user/get-next-reservation-by-user.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/reservation/usecases/mobile/get-next-reservation-by-user/get-next-reservation-by-user.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/user/usecases/admin/create-user/create-user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/user/usecases/admin/create-user/create-user.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/user/usecases/admin/delete-user/delete-user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/user/usecases/admin/delete-user/delete-user.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/api/src/modules/user/usecases/mobile/update-profile/update-profile.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/user/usecases/mobile/update-profile/update-profile.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/modules/user/user.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/modules/user/user.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/shared/shared.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/shared/shared.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/api/src/types/express.ts" beforeDir="false" afterPath="$PROJECT_DIR$/apps/api/src/types/express.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/database/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/packages/database/prisma/schema.prisma" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,25 +58,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/romaingilot/Desktop/Personnel/projects/marie/apps/api/src/modules/wallet/usecases/mobile",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.standard": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.standard": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "pnpm",
-    "prettierjs.PrettierConfiguration.Package": "/Users/romaingilot/Desktop/Personnel/projects/marie/node_modules/prettier",
-    "rearrange.code.on.save": "true",
-    "settings.editor.selected.configurable": "actions.on.save",
-    "ts.external.directory.path": "/Users/romaingilot/Desktop/Personnel/projects/marie/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/romaingilot/Desktop/Personnel/projects/marie/apps/api/src/modules/wallet/usecases/mobile&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;pnpm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/romaingilot/Desktop/Personnel/projects/marie/node_modules/prettier&quot;,
+    &quot;rearrange.code.on.save&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;actions.on.save&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/romaingilot/Desktop/Personnel/projects/marie/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/apps/api/src/modules/wallet/usecases/mobile" />
@@ -108,7 +131,9 @@
       <workItem from="1765265727617" duration="16637000" />
       <workItem from="1765351410336" duration="32314000" />
       <workItem from="1766247861923" duration="4290000" />
-      <workItem from="1766591925875" duration="44671000" />
+      <workItem from="1766591925875" duration="45823000" />
+      <workItem from="1767724631599" duration="2931000" />
+      <workItem from="1768232043657" duration="1496000" />
     </task>
     <task id="LOCAL-00001" summary="fix: ci cd + prisma migrate dev">
       <option name="closed" value="true" />
@@ -227,7 +252,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/apps/api/src/modules/auth/usecases/mobile/register/register.controller.ts</url>
-          <line>17</line>
+          <line>19</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -238,19 +263,16 @@
         <line-breakpoint enabled="true" log-message="true" suspend="NONE" type="javascript">
           <url>file://$PROJECT_DIR$/apps/api/src/modules/payments/usecases/stripe-webhook/stripe-webhook.controller.ts</url>
           <line>5</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/apps/api/src/modules/wallet/usecases/mobile/list-all-wallets-by-user-mobile/list-all-wallets-by-user-mobile.controller.ts</url>
           <line>12</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/apps/api/src/modules/reservation/usecases/mobile/list-reservation-by-user/list-reservation-by-user.controller.ts</url>
           <line>19</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>

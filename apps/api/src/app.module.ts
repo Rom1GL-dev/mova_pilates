@@ -6,6 +6,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { UserModule } from './modules/user/user.module';
 import { RolesGuard } from './modules/auth/config/role.guard';
 import { APP_GUARD } from '@nestjs/core';
+import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
 import { TypeCourseModule } from './modules/type-course/type-course.module';
 import { PackModule } from './modules/pack/pack.module';
 import { SessionModule } from './modules/session/session.module';
@@ -23,6 +24,23 @@ import { LegalModule } from './modules/legal/legal.module';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
+    ThrottlerModule.forRoot([
+      {
+        name: 'short',
+        ttl: 1000,
+        limit: 3,
+      },
+      {
+        name: 'medium',
+        ttl: 10000,
+        limit: 20,
+      },
+      {
+        name: 'long',
+        ttl: 60000,
+        limit: 100,
+      },
+    ]),
     SharedModule,
     LogModule,
     AuthModule,
@@ -40,6 +58,10 @@ import { LegalModule } from './modules/legal/legal.module';
   ],
   controllers: [],
   providers: [
+    {
+      provide: APP_GUARD,
+      useClass: ThrottlerGuard,
+    },
     {
       provide: APP_GUARD,
       useClass: RolesGuard,

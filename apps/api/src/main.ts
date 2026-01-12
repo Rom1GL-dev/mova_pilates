@@ -2,6 +2,7 @@ import { ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import * as cookieParser from 'cookie-parser';
+import helmet from 'helmet';
 import { AppModule } from './app.module';
 import * as bodyParser from 'body-parser';
 
@@ -11,6 +12,8 @@ async function bootstrap() {
   });
 
   app.use('/v1/payments/webhook', bodyParser.raw({ type: 'application/json' }));
+
+  app.use(helmet());
 
   const configService = app.get(ConfigService);
 
