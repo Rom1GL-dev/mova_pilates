@@ -7,6 +7,9 @@ export function useLegal(type: string) {
     queryFn: async () => {
       const res = await api.get(`/v1/backoffice/legals/${type}`);
       return res.data;
-    }
+    },
+    staleTime: 0, // Toujours périmé = refetch à chaque fois
+    refetchOnMount: 'always', // Refetch à chaque montage
+    refetchOnWindowFocus: false,
   });
 }

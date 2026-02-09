@@ -1,0 +1,37 @@
+{
+  "model": "claude-sonnet-4-5-20250929",
+  "maxIterations": 5,
+  "maxFileSize": 51200,
+  "maxFilesToRead": 20,
+  "timeout": 300000,
+  "autoContext": false,
+  "smartContext": true,
+  "includePatterns": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.js",
+    "src/**/*.jsx",
+    "prisma/**/*.prisma",
+    "*.json",
+    "*.md"
+  ],
+  "excludePatterns": [
+    "node_modules/**",
+    "dist/**",
+    "build/**",
+    ".next/**",
+    "coverage/**",
+    ".git/**",
+    "*.log",
+    "*.lock",
+    "package-lock.json",
+    "yarn.lock",
+    "pnpm-lock.yaml",
+    ".env*",
+    "*.min.js",
+    "*.map"
+  ],
+  "confirmBeforeApply": true,
+  "autoFix": false,
+  "verbose": false
+}

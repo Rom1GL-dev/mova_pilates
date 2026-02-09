@@ -10,7 +10,10 @@ export class WalletPrismaRepository implements WalletRepository {
   async findAllWalletsByUser(
     userId: string,
   ): Promise<{ typeCourseId: string; label: string; balance: number }[]> {
-    const courses = await this.prisma.typeCourse.findMany();
+    // Ne récupérer que les types de cours non archivés
+    const courses = await this.prisma.typeCourse.findMany({
+      where: { archivedAt: null },
+    });
 
     const wallets = await this.prisma.wallet.findMany({
       where: { userId },

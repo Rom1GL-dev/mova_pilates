@@ -5,10 +5,12 @@ import { Loading } from '@/components/loading.tsx';
 
 export function SessionColumnTypeCourseCapacity({
   typeCourseId,
-  sessionId
+  sessionId,
+  customCapacity
 }: {
   typeCourseId: string;
   sessionId: string;
+  customCapacity?: number | null;
 }) {
   const { data: typeCourseResponse, isLoading } = useListTypesCourse();
 
@@ -27,9 +29,12 @@ export function SessionColumnTypeCourseCapacity({
     return <Loading size={'small'} />;
   }
 
+  // Utilise customCapacity en priorité, sinon la capacité par défaut du type de cours
+  const effectiveCapacity = customCapacity ?? typeCourse.capacity;
+
   return (
     <>
-      {reservations.reservations.length} / {typeCourse.capacity}
+      {reservations.reservations.length} / {effectiveCapacity}
     </>
   );
 }

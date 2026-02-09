@@ -8,8 +8,10 @@ import { TypeCourseRepository } from '../../domain/repositories/type-course.repo
 export class TypeCoursePrismaRepository implements TypeCourseRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  async findAll(): Promise<TypeCourseEntity[]> {
-    const typesCourse = await this.prisma.typeCourse.findMany({});
+  async findAll(includeArchived = false): Promise<TypeCourseEntity[]> {
+    const typesCourse = await this.prisma.typeCourse.findMany({
+      where: includeArchived ? {} : { archivedAt: null },
+    });
     return typesCourse.map((u) => ({
       id: u.id,
       label: u.label,
@@ -102,6 +104,7 @@ export class TypeCoursePrismaRepository implements TypeCourseRepository {
     return this.prisma.pack.findMany({
       where: {
         typeCourseId: id,
+        archivedAt: null,
       },
       include: { typeCourse: true },
     });

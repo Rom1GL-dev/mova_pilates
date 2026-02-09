@@ -1,6 +1,7 @@
+import { randomInt } from 'crypto';
+
 export function generateOtpCode(length = 6): string {
-  return Math.floor(
-    Math.pow(10, length - 1) +
-      Math.random() * (Math.pow(10, length) - Math.pow(10, length - 1) - 1),
-  ).toString();
+  const min = Math.pow(10, length - 1);
+  const max = Math.pow(10, length);
+  return randomInt(min, max).toString();
 }

@@ -1,14 +1,19 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { DeleteSessionDto } from './delete-session.dto';
 import { Session } from '../../../../../types/session';
-import { SessionRepository } from '../../../domain/repositories/session.repository';
 import { AppType, LogType } from '../../../../logs/domain/entities/log.entity';
 import { CreateLogService } from '../../../../logs/usecases/create-log/create-log.service';
+import { PrismaService } from '../../../../../shared/infrastructure/prisma.service';
 
 @Injectable()
 export class DeleteSessionService {
   constructor(
-    private readonly sessionRepository: SessionRepository,
+    private readonly prisma: PrismaService,
     private readonly createLogService: CreateLogService,
   ) {}
 
@@ -18,20 +23,34 @@ export class DeleteSessionService {
         'Demande non autorisée. Veuillez vous connecter.',
       );
     }
-    const sessionRaw = await this.sessionRepository.delete(data.id);
 
-    if (!sessionRaw) {
-      throw new Error("La session n'a pas pu être supprimé.");
+    const session = await this.prisma.session.findUnique({
+      where: { id: data.id },
+    });
+
+    if (!session) {
+      throw new NotFoundException('Session introuvable.');
     }
+
+    if (session.archivedAt) {
+      throw new BadRequestException('Cette session est déjà archivée.');
+    }
+
+    // Archiver la session au lieu de la supprimer
+    await this.prisma.session.update({
+      where: { id: data.id },
+      data: { archivedAt: new Date() },
+    });
 
     await this.createLogService.execute(
       {
         appType: AppType.ADMIN,
         logType: LogType.DELETE,
-        message: `Session : ${sessionRaw.startDate.toString()} - ${sessionRaw.endDate.toString()}`,
+        message: `Session archivée : ${session.startDate.toISOString()} - ${session.endDate.toISOString()}`,
       },
       user.id,
     );
-    return { message: 'La session a bien été supprimé.' };
+
+    return { message: 'La session a bien été archivée.' };
   }
 }

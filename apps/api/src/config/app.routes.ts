@@ -77,6 +77,7 @@ export const routesV1 = {
       logout: `${backofficeRoot}${authRoot}/logout`,
       me: `${backofficeRoot}${authRoot}/me`,
       verifyOtp: `${backofficeRoot}${authRoot}/verify-otp`,
+      csrfToken: `${backofficeRoot}${authRoot}/csrf-token`,
     },
     users: {
       root: `${backofficeRoot}${usersRoot}`,

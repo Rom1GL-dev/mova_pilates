@@ -71,7 +71,6 @@
     "prettier": "^3.5.3",
     "quill": "2.0.3",
     "react": "^19.0.0",
-    "react-big-calendar": "^1.19.4",
     "react-day-picker": "^9.8.1",
     "react-dom": "^19.0.0",
     "react-error-boundary": "^5.0.0",

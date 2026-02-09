@@ -51,6 +51,11 @@ export function UserTabInformation({ user }: Props) {
                 (type: TTypeCourse) => type.id === wallet.typeCourseId
               );
 
+              // Ne pas afficher les wallets dont le type de cours est archivé
+              if (!typeCourse) {
+                return null;
+              }
+
               const typeCourseData =
                 TYPE_COURSE_DATA[typeCourse.typeCourse as TypeOfCourse];
               return (

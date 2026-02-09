@@ -34,7 +34,7 @@ export class CreateReservationByUserService {
       include: { typeCourse: true },
     });
 
-    if (!session) {
+    if (!session || session.archivedAt) {
       throw new NotFoundException('Session introuvable');
     }
 
@@ -45,7 +45,13 @@ export class CreateReservationByUserService {
       },
     });
 
-    if (confirmedCount >= session.typeCourse.capacity) {
+    // Utilise customCapacity si défini, sinon la capacité du type de cours
+    const effectiveCapacity = session.customCapacity ?? session.typeCourse.capacity;
+
+    // Prend en compte les invités dans le calcul de places disponibles
+    const totalOccupied = confirmedCount + (session.guestCount ?? 0);
+
+    if (totalOccupied >= effectiveCapacity) {
       throw new BadRequestException('Séance complète');
     }
 

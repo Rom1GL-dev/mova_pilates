@@ -3,4 +3,6 @@ export interface TSession {
   startDate: Date;
   endDate: Date;
   typeCourseId: string;
+  customCapacity?: number;
+  guestCount?: number;
 }

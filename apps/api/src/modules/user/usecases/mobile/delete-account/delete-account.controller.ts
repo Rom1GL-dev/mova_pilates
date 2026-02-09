@@ -1,8 +1,8 @@
 import {
   Body,
   Controller,
-  Delete,
   HttpStatus,
+  Post,
   Req,
   Res,
   UseGuards,
@@ -19,7 +19,7 @@ export class DeleteAccountController {
   constructor(private readonly deleteAccountService: DeleteAccountService) {}
 
   @UseGuards(AuthGuard)
-  @Delete(routesV1.mobile.profile.delete)
+  @Post(routesV1.mobile.profile.delete)
   async deleteAccount(
     @Body() dto: DeleteAccountDto,
     @Req() req: AuthenticatedRequest,
@@ -31,7 +31,7 @@ export class DeleteAccountController {
       req.session.id,
     );
 
-    res.clearCookie('session_id');
+    res.clearCookie('sessionId');
     res.status(HttpStatus.OK).json(result);
   }
 }

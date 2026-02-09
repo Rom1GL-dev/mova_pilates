@@ -10,6 +10,8 @@ export const SessionSchema = z.object({
     .optional(),
   startDate: z.date(),
   endDate: z.date(),
+  customCapacity: z.number().nullable().optional(),
+  guestCount: z.number().default(0),
   createdAt: z.date(),
   updatedAt: z.date().optional(),
 });

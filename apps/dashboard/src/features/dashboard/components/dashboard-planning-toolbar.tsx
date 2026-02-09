@@ -1,6 +1,5 @@
 'use client';
 
-import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { useIsMobile } from '@/hooks/use-mobile.ts';
 import { Button } from '@/components/ui/button';
 import {

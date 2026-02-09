@@ -8,8 +8,10 @@ export class ListTypeCourseWithPacksService {
 
   async execute() {
     const typesCourse = await this.prisma.typeCourse.findMany({
+      where: { archivedAt: null },
       include: {
         packs: {
+          where: { archivedAt: null },
           orderBy: {
             nbCourse: 'asc',
           },

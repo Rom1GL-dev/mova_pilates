@@ -18,6 +18,8 @@ import { AppType, LogType } from '../../../../logs/domain/entities/log.entity';
 import { CreateLogService } from '../../../../logs/usecases/create-log/create-log.service';
 import { LoginDto } from './login.dto';
 
+const OTP_TTL_SECONDS = 600; // 10 minutes
+
 @Injectable()
 export class LoginAdminService {
   constructor(
@@ -62,9 +64,9 @@ export class LoginAdminService {
     const otp = generateOtpCode(6);
     const cacheKey = `otp:${user.email}`;
 
-    await this.cache.set(cacheKey, otp, 120);
+    await this.cache.set(cacheKey, otp, OTP_TTL_SECONDS);
 
-    const otpEmail = this.emailTemplate.otpCode(otp, 2);
+    const otpEmail = this.emailTemplate.otpCode(otp, 10);
     await this.mailer.sendMail({
       to: user.email,
       subject: otpEmail.subject,

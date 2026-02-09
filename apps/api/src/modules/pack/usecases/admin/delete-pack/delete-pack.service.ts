@@ -1,14 +1,19 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { DeletePackDto } from './delete-pack.dto';
 import { Session } from '../../../../../types/session';
-import { PackRepository } from '../../../domain/repositories/pack.repository';
 import { AppType, LogType } from '../../../../logs/domain/entities/log.entity';
 import { CreateLogService } from '../../../../logs/usecases/create-log/create-log.service';
+import { PrismaService } from '../../../../../shared/infrastructure/prisma.service';
 
 @Injectable()
 export class DeletePackService {
   constructor(
-    private readonly packRepository: PackRepository,
+    private readonly prisma: PrismaService,
     private readonly createLogService: CreateLogService,
   ) {}
 
@@ -18,20 +23,34 @@ export class DeletePackService {
         'Demande non autorisée. Veuillez vous connecter.',
       );
     }
-    const packRow = await this.packRepository.delete(data.id);
 
-    if (!packRow) {
-      throw new Error("Le packs n'a pas pu être supprimé.");
+    const pack = await this.prisma.pack.findUnique({
+      where: { id: data.id },
+    });
+
+    if (!pack) {
+      throw new NotFoundException('Pack introuvable.');
     }
+
+    if (pack.archivedAt) {
+      throw new BadRequestException('Ce pack est déjà archivé.');
+    }
+
+    // Archiver le pack au lieu de le supprimer
+    await this.prisma.pack.update({
+      where: { id: data.id },
+      data: { archivedAt: new Date() },
+    });
 
     await this.createLogService.execute(
       {
         appType: AppType.ADMIN,
         logType: LogType.DELETE,
-        message: `Pack : ${packRow.label}`,
+        message: `Pack archivé : ${pack.label}`,
       },
       user.id,
     );
-    return { message: 'Le packs a bien été supprimé.' };
+
+    return { message: 'Le pack a bien été archivé.' };
   }
 }

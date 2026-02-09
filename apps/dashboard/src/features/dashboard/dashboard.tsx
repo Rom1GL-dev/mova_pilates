@@ -9,9 +9,9 @@ import { Loading } from '@/components/loading.tsx';
 export function Dashboard() {
   const me = useMe();
   const { data: analyticsResponse, isLoading } = useGetAnalytics();
-  const analytics = analyticsResponse?.data.analytics;
+  const analytics = analyticsResponse?.data?.analytics;
 
-  if (isLoading) {
+  if (isLoading || !analytics) {
     return <Loading />;
   }
 
@@ -44,11 +44,11 @@ export function Dashboard() {
           icon={Box}
           label="Pack le plus acheté"
           value={
-            analytics.mostPurchasedPack.count > 0
+            analytics.mostPurchasedPack?.count > 0
               ? `+${analytics.mostPurchasedPack.count}`
               : 0
           }
-          optional={analytics.mostPurchasedPack.packLabel}
+          optional={analytics.mostPurchasedPack?.packLabel}
         />
       </div>
       <DashboardPlanning />

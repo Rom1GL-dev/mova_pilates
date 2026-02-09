@@ -8,7 +8,7 @@ export class ListCourseScheduleService {
 
   async execute(typeCourseId: string) {
     const baseCourse = await this.prisma.typeCourse.findUnique({
-      where: { id: typeCourseId },
+      where: { id: typeCourseId, archivedAt: null },
     });
 
     if (!baseCourse) {
@@ -16,11 +16,12 @@ export class ListCourseScheduleService {
     }
 
     const relatedCourses = await this.prisma.typeCourse.findMany({
-      where: { label: baseCourse.label },
+      where: { label: baseCourse.label, archivedAt: null },
       include: {
         sessions: {
           where: {
             startDate: { gte: new Date() },
+            archivedAt: null,
           },
           orderBy: { startDate: 'asc' },
         },

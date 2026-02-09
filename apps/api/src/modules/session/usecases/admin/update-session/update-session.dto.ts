@@ -1,4 +1,4 @@
-import { IsDate, IsOptional, IsString } from 'class-validator';
+import { IsDate, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class UpdateSessionDto {
   @IsString()
@@ -12,6 +12,14 @@ export class UpdateSessionDto {
 
   @IsString()
   typeCourseId: string;
+
+  @IsNumber()
+  @IsOptional()
+  customCapacity?: number;
+
+  @IsNumber()
+  @IsOptional()
+  guestCount?: number;
 
   @IsDate()
   @IsOptional()

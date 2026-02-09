@@ -41,7 +41,14 @@ export class StripeWebhookService {
     });
 
     if (!pack) {
+      this.logger.error(`Pack not found: ${packId}`);
       throw new Error('Pack not found');
+    }
+
+    // Vérifier que le pack n'est pas archivé
+    if (pack.archivedAt) {
+      this.logger.error(`Pack is archived: ${packId}`);
+      throw new Error('Pack is archived');
     }
 
     const user = await this.prisma.user.findUnique({
@@ -49,7 +56,17 @@ export class StripeWebhookService {
     });
 
     if (!user) {
+      this.logger.error(`User not found: ${userId}`);
       throw new Error('User not found');
+    }
+
+    // Vérifier que le montant payé correspond au prix du pack
+    const expectedAmount = Math.round(pack.price * 100); // Stripe utilise les centimes
+    if (intent.amount_received !== expectedAmount) {
+      this.logger.error(
+        `Payment amount mismatch for pack ${packId}. Expected: ${expectedAmount}, Received: ${intent.amount_received}`,
+      );
+      throw new Error('Payment amount does not match pack price');
     }
 
     await this.prisma.order.create({

@@ -21,6 +21,8 @@ import { UpdateEmailController } from './usecases/mobile/update-email/update-ema
 import { UpdateEmailService } from './usecases/mobile/update-email/update-email.service';
 import { ForgotPasswordService } from './usecases/mobile/forgot-password/forgot-password.service';
 import { ForgotPasswordController } from './usecases/mobile/forgot-password/forgot-password.controller';
+import { GetCsrfTokenController } from './usecases/admin/get-csrf-token/get-csrf-token.controller';
+import { GetCsrfTokenService } from './usecases/admin/get-csrf-token/get-csrf-token.service';
 
 @Module({
   imports: [SharedModule, LogModule],
@@ -35,6 +37,7 @@ import { ForgotPasswordController } from './usecases/mobile/forgot-password/forg
     UpdatePasswordService,
     UpdateEmailService,
     ForgotPasswordService,
+    GetCsrfTokenService,
   ],
   controllers: [
     GetUserController,
@@ -47,6 +50,7 @@ import { ForgotPasswordController } from './usecases/mobile/forgot-password/forg
     UpdatePasswordController,
     UpdateEmailController,
     ForgotPasswordController,
+    GetCsrfTokenController,
   ],
   exports: [],
 })

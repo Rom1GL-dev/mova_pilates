@@ -25,20 +25,24 @@ export function SessionParticipantsDeleteDialog({
   const deleteMutation = useDeleteParticipant();
   const handleDelete = async () => {
     const response = await deleteMutation.mutateAsync({
-      id: reservation.reservationId
+      id: reservation.reservationId,
+      sessionId: reservation.sessionId,
+      isGuest: reservation.isGuest ?? false
     });
 
     if (response) {
       showToast({
         type: 'success',
-        message: 'Réservation supprimé avec succès'
+        message: reservation.isGuest
+          ? 'Invité supprimé avec succès'
+          : 'Réservation supprimée avec succès'
       });
       onOpenChange(false);
     } else {
       showToast({
         type: 'error',
         message:
-          "Une erreur s'est produite lors de la suppression de la réservation"
+          "Une erreur s'est produite lors de la suppression"
       });
     }
   };

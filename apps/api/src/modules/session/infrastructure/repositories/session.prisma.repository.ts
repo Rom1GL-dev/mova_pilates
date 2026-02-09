@@ -7,8 +7,9 @@ import { Session } from '../../domain/entities/session.entity';
 export class SessionPrismaRepository implements SessionRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  async findAll(): Promise<Session[]> {
+  async findAll(includeArchived = false): Promise<Session[]> {
     return this.prisma.session.findMany({
+      where: includeArchived ? {} : { archivedAt: null },
       include: {
         typeCourse: true,
       },
@@ -22,6 +23,8 @@ export class SessionPrismaRepository implements SessionRepository {
         startDate: session.startDate,
         endDate: session.endDate,
         typeCourseId: session.typeCourseId,
+        customCapacity: session.customCapacity,
+        guestCount: session.guestCount,
         createdAt: session.createdAt,
         updatedAt: session.updatedAt,
       },
@@ -38,6 +41,8 @@ export class SessionPrismaRepository implements SessionRepository {
         startDate: session.startDate,
         endDate: session.endDate,
         typeCourseId: session.typeCourseId,
+        customCapacity: session.customCapacity,
+        guestCount: session.guestCount,
         updatedAt: session.updatedAt ?? new Date(),
       },
       include: {
@@ -66,7 +71,7 @@ export class SessionPrismaRepository implements SessionRepository {
 
   async findByTypeCourseId(typeCourseId: string): Promise<Session[]> {
     return this.prisma.session.findMany({
-      where: { typeCourseId: typeCourseId },
+      where: { typeCourseId: typeCourseId, archivedAt: null },
       include: {
         typeCourse: true,
       },

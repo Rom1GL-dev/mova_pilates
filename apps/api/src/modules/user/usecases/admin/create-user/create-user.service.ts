@@ -57,15 +57,15 @@ export class CreateUserService {
       },
     });
 
-    const tempPasswordEmail = this.emailTemplate.temporaryPassword(
-      data.firstname,
-      plain,
-    );
-    await this.mailer.sendMail({
-      to: data.email,
-      subject: tempPasswordEmail.subject,
-      html: tempPasswordEmail.html,
-    });
+    // const tempPasswordEmail = this.emailTemplate.temporaryPassword(
+    //   data.firstname,
+    //   plain,
+    // );
+    // await this.mailer.sendMail({
+    //   to: data.email,
+    //   subject: tempPasswordEmail.subject,
+    //   html: tempPasswordEmail.html,
+    // });
 
     await this.createLogService.execute(
       {

@@ -2,11 +2,13 @@ import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { SharedModule } from './shared/shared.module';
 import { SessionMiddleware } from './modules/auth/middlewares/session.middleware';
+import { CsrfMiddleware } from './modules/auth/middlewares/csrf.middleware';
 import { AuthModule } from './modules/auth/auth.module';
 import { UserModule } from './modules/user/user.module';
 import { RolesGuard } from './modules/auth/config/role.guard';
 import { APP_GUARD } from '@nestjs/core';
-import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
+import { ThrottlerModule } from '@nestjs/throttler';
+import { CustomThrottlerGuard } from './shared/guards/custom-throttler.guard';
 import { TypeCourseModule } from './modules/type-course/type-course.module';
 import { PackModule } from './modules/pack/pack.module';
 import { SessionModule } from './modules/session/session.module';
@@ -60,7 +62,7 @@ import { LegalModule } from './modules/legal/legal.module';
   providers: [
     {
       provide: APP_GUARD,
-      useClass: ThrottlerGuard,
+      useClass: CustomThrottlerGuard,
     },
     {
       provide: APP_GUARD,
@@ -70,6 +72,10 @@ import { LegalModule } from './modules/legal/legal.module';
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(SessionMiddleware).forRoutes('*');
+    consumer
+      .apply(SessionMiddleware)
+      .forRoutes('*')
+      .apply(CsrfMiddleware)
+      .forRoutes('*');
   }
 }

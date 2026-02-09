@@ -75,13 +75,14 @@ model Reservation {
 }
 
 model TypeCourse {
-  id          String   @id @default(uuid())
+  id          String    @id @default(uuid())
   label       String
   capacity    Int
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
   image       String?
   description String?
+  archivedAt  DateTime?
 
   packs    Pack[]
   sessions Session[]
@@ -89,25 +90,29 @@ model TypeCourse {
 }
 
 model Session {
-  id           String   @id @default(uuid())
-  typeCourseId String
-  startDate    DateTime
-  endDate      DateTime
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  id             String    @id @default(uuid())
+  typeCourseId   String
+  startDate      DateTime
+  endDate        DateTime
+  customCapacity Int?
+  guestCount     Int       @default(0)
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  archivedAt     DateTime?
 
   typeCourse  TypeCourse    @relation(fields: [typeCourseId], references: [id])
   Reservation Reservation[]
 }
 
 model Pack {
-  id           String   @id @default(uuid())
+  id           String    @id @default(uuid())
   typeCourseId String
   label        String
   nbCourse     Int
   price        Float
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  archivedAt   DateTime?
 
   typeCourse TypeCourse @relation(fields: [typeCourseId], references: [id])
   Order      Order[]

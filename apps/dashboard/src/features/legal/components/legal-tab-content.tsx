@@ -4,6 +4,7 @@ import { LegalEditor } from '@/features/legal/components/legal-editor';
 import { useLegal } from '@/features/legal/usecases/use-legal.tsx';
 import { useUpdateLegal } from '@/features/legal/usecases/use-update-legal.tsx';
 import { toast } from 'react-toastify';
+import { Loading } from '@/components/loading';
 
 type Props = {
   type: string;
@@ -11,14 +12,22 @@ type Props = {
 };
 
 export function LegalTabContent({ type, title }: Props) {
-  const { data, isLoading } = useLegal(type);
+  const { data, isLoading, isFetching } = useLegal(type);
   const updateLegal = useUpdateLegal();
 
   const [content, setContent] = useState('');
 
+  // Réinitialise le contenu quand le type change
   useEffect(() => {
-    if (data) setContent(data.content);
-  }, [data]);
+    setContent('');
+  }, [type]);
+
+  // Met à jour le contenu quand les données arrivent
+  useEffect(() => {
+    if (data?.content !== undefined) {
+      setContent(data.content);
+    }
+  }, [data?.content]);
 
   const handleSubmit = () => {
     updateLegal.mutate({
@@ -28,15 +37,25 @@ export function LegalTabContent({ type, title }: Props) {
 
     toast.success('Texte légal mis à jour avec succès');
   };
+
+  // Affiche le loading si en cours de chargement OU si pas de données
+  const showLoading = isLoading || isFetching || !data;
+
   return (
     <div className="space-y-6">
       <h2 className="text-2xl font-semibold tracking-tight">{title}</h2>
 
-      {isLoading ? (
-        <p className="text-muted-foreground text-sm">Chargement…</p>
+      {showLoading ? (
+        <div className="flex items-center justify-center py-12">
+          <Loading />
+        </div>
       ) : (
         <>
-          <LegalEditor value={content} onChange={setContent} />
+          <LegalEditor
+            key={`${type}-${data?.content?.substring(0, 50)}`}
+            value={content}
+            onChange={setContent}
+          />
 
           <div className="flex justify-end">
             <Button onClick={handleSubmit} disabled={updateLegal.isPending}>

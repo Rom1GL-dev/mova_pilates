@@ -6,7 +6,7 @@ import { Pack } from '../entities/pack.entity';
 export abstract class TypeCourseRepository {
   abstract create(pack: TypeCourse): Promise<TypeCourse>;
   abstract update(pack: TypeCourse): Promise<TypeCourse>;
-  abstract findAll(): Promise<TypeCourse[]>;
+  abstract findAll(includeArchived?: boolean): Promise<TypeCourse[]>;
   abstract delete(id: string): Promise<TypeCourse>;
   abstract findById(id: string): Promise<TypeCourse | null>;
   abstract findByTypeCourseId(id: string): Promise<Pack[] | null>;

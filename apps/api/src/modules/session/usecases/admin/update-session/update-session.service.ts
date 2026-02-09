@@ -25,6 +25,8 @@ export class UpdateSessionService {
       startDate: data.startDate,
       endDate: data.endDate,
       typeCourseId: data.typeCourseId,
+      customCapacity: data.customCapacity,
+      guestCount: data.guestCount ?? 0,
       createdAt: data.createdAt,
       updatedAt: new Date(),
     };

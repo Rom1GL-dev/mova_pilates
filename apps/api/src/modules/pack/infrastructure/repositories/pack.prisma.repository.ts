@@ -7,8 +7,9 @@ import { Pack } from '../../domain/entities/pack.entity';
 export class TypeCoursePrismaRepository implements PackRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  async findAll(): Promise<Pack[]> {
+  async findAll(includeArchived = false): Promise<Pack[]> {
     return this.prisma.pack.findMany({
+      where: includeArchived ? {} : { archivedAt: null },
       include: {
         typeCourse: true,
       },
@@ -58,8 +59,8 @@ export class TypeCoursePrismaRepository implements PackRepository {
   }
 
   async findById(id: string): Promise<Pack | null> {
-    return this.prisma.pack.findUnique({
-      where: { id },
+    return this.prisma.pack.findFirst({
+      where: { id, archivedAt: null },
       include: {
         typeCourse: true,
       },

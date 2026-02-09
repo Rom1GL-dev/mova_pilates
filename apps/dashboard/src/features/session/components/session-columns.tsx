@@ -49,12 +49,13 @@ export const sessionColumns: ColumnDef<TSession>[] = [
     accessorKey: 'typeCourseCapacity',
     header: 'Capacité',
     cell: ({ row }) => {
-      const { typeCourseId, id } = row.original;
+      const { typeCourseId, id, customCapacity } = row.original;
       return (
         <>
           <SessionColumnTypeCourseCapacity
             typeCourseId={typeCourseId}
             sessionId={id}
+            customCapacity={customCapacity}
           />
         </>
       );

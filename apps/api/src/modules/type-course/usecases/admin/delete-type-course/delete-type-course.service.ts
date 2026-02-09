@@ -1,14 +1,19 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { DeleteTypeCourseDto } from './delete-type-course.dto';
 import { Session } from '../../../../../types/session';
-import { TypeCourseRepository } from '../../../domain/repositories/type-course.repository';
 import { CreateLogService } from '../../../../logs/usecases/create-log/create-log.service';
 import { AppType, LogType } from '../../../../logs/domain/entities/log.entity';
+import { PrismaService } from '../../../../../shared/infrastructure/prisma.service';
 
 @Injectable()
 export class DeleteTypeCourseService {
   constructor(
-    private readonly typeCourse: TypeCourseRepository,
+    private readonly prisma: PrismaService,
     private readonly createLogService: CreateLogService,
   ) {}
 
@@ -18,21 +23,34 @@ export class DeleteTypeCourseService {
         'Demande non autorisée. Veuillez vous connecter.',
       );
     }
-    const typeCourseRaw = await this.typeCourse.delete(data.id);
 
-    if (!typeCourseRaw) {
-      throw new Error("Le type de cours n'a pas pu être supprimé.");
+    const typeCourse = await this.prisma.typeCourse.findUnique({
+      where: { id: data.id },
+    });
+
+    if (!typeCourse) {
+      throw new NotFoundException('Type de cours introuvable.');
     }
+
+    if (typeCourse.archivedAt) {
+      throw new BadRequestException('Ce type de cours est déjà archivé.');
+    }
+
+    // Archiver le type de cours au lieu de le supprimer
+    await this.prisma.typeCourse.update({
+      where: { id: data.id },
+      data: { archivedAt: new Date() },
+    });
 
     await this.createLogService.execute(
       {
         appType: AppType.ADMIN,
         logType: LogType.DELETE,
-        message: `Type de cours : ${typeCourseRaw.label}`,
+        message: `Type de cours archivé : ${typeCourse.label}`,
       },
       user.id,
     );
 
-    return { message: 'Le type de cours a bien été supprimé.' };
+    return { message: 'Le type de cours a bien été archivé.' };
   }
 }
