@@ -55,15 +55,9 @@ export class ImagesController {
   uploadImage(
     @UploadedFile() file: Multer.File,
     @Param('category') category: string,
-    @Body() body: any,
   ) {
     if (!file) {
       return { message: 'No file uploaded.' };
-    }
-
-    const title = body.title;
-    if (!title) {
-      return { message: 'TitleCours is required.' };
     }
 
     const imagePath = path.join(this.basePath, category, file.filename);
