@@ -82,7 +82,6 @@ export class StripeWebhookService {
       await this.discordAlertService.warning(
         '⚠️ Paiement pour pack archivé',
         `Un paiement a été reçu pour un pack archivé`,
-        undefined,
         {
           'Pack': pack.label,
           'Pack ID': packId,

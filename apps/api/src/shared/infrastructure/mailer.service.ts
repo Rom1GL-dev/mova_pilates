@@ -52,16 +52,16 @@ export class MailerService {
 
       // Envoyer une alerte Discord
       await this.discordAlertService.error(
-        'Échec d\'envoi d\'email',
+        "Échec d'envoi d'email",
         `Impossible d'envoyer un email à ${to}`,
         error as Error,
         {
-          'Destinataire': to,
-          'Sujet': subject,
+          Destinataire: to,
+          Sujet: subject,
         },
       );
 
-      throw new Error('Impossible d'envoyer le mail');
+      throw new Error(`Impossible d'envoyer le mail`);
     }
   }
 }
