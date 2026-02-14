@@ -8,17 +8,18 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, CopyIcon } from 'lucide-react';
 
 type DashboardPlanningToolbarProps = {
   label: string;
   view: string;
   onNavigate: (action: any) => void;
   onView: (view: string) => void;
+  onDuplicateWeek?: () => void;
 };
 
 export function DashboardPlanningToolbar(props: DashboardPlanningToolbarProps) {
-  const { label, onNavigate, onView, view } = props;
+  const { label, onNavigate, onView, view, onDuplicateWeek } = props;
   const isMobile = useIsMobile();
 
   return (
@@ -42,6 +43,12 @@ export function DashboardPlanningToolbar(props: DashboardPlanningToolbarProps) {
             <DropdownMenuItem onClick={() => onNavigate('NEXT')}>
               Suivant
             </DropdownMenuItem>
+
+            {onDuplicateWeek && (
+              <DropdownMenuItem onClick={onDuplicateWeek}>
+                Dupliquer semaine
+              </DropdownMenuItem>
+            )}
 
             <DropdownMenuItem onClick={() => onView('week')}>
               Vue semaine {view === 'week' && '✓'}
@@ -71,6 +78,17 @@ export function DashboardPlanningToolbar(props: DashboardPlanningToolbarProps) {
             <Button variant="outline" onClick={() => onNavigate('NEXT')}>
               Suivant
             </Button>
+
+            {onDuplicateWeek && (
+              <Button
+                variant="outline"
+                onClick={onDuplicateWeek}
+                className="flex items-center gap-2"
+              >
+                <CopyIcon className="h-4 w-4" />
+                Dupliquer semaine
+              </Button>
+            )}
           </div>
 
           <div className="text-lg font-semibold text-gray-800">{label}</div>

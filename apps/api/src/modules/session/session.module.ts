@@ -16,6 +16,8 @@ import { GetSessionController } from './usecases/admin/get-session/get-session.c
 import { LogModule } from '../logs/log.module';
 import { ListSessionByTypeCourseService } from './usecases/mobile/list-session-by-type-course/list-session-by-type-course.service';
 import { ListSessionByTypeCourseController } from './usecases/mobile/list-session-by-type-course/list-session-by-type-course.controller';
+import { DuplicateWeekService } from './usecases/admin/duplicate-week/duplicate-week.service';
+import { DuplicateWeekController } from './usecases/admin/duplicate-week/duplicate-week.controller';
 
 @Module({
   imports: [SharedModule, LogModule],
@@ -26,6 +28,7 @@ import { ListSessionByTypeCourseController } from './usecases/mobile/list-sessio
     UpdateSessionService,
     GetSessionService,
     ListSessionByTypeCourseService,
+    DuplicateWeekService,
     {
       provide: SessionRepository,
       useClass: SessionPrismaRepository,
@@ -38,6 +41,7 @@ import { ListSessionByTypeCourseController } from './usecases/mobile/list-sessio
     UpdateSessionController,
     GetSessionController,
     ListSessionByTypeCourseController,
+    DuplicateWeekController,
   ],
   exports: [],
 })

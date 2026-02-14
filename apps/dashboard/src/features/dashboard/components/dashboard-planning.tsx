@@ -27,6 +27,9 @@ import { Button } from '@/components/ui/button.tsx';
 import { useDeleteSession } from '@/features/session/usecases/delete-session/use-delete-session.tsx';
 import { useToast } from '@/providers/toast-provider.tsx';
 import { Trash2Icon } from 'lucide-react';
+import { SessionCreateDialog } from '@/features/session/components/session-create-dialog.tsx';
+import { setHours, setMinutes } from 'date-fns';
+import { DuplicateWeekDialog } from '@/features/dashboard/components/dashboard-duplicate-week-dialog.tsx';
 
 interface Session {
   id: string;
@@ -47,6 +50,12 @@ export function DashboardPlanning() {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [selectedSession, setSelectedSession] = useState<Session | null>(null);
+  const [createDialogOpen, setCreateDialogOpen] = useState(false);
+  const [prefilledData, setPrefilledData] = useState<{
+    startDate: Date;
+    endDate: Date;
+  } | null>(null);
+  const [duplicateWeekDialogOpen, setDuplicateWeekDialogOpen] = useState(false);
 
   const { data: sessionResponse } = useListSession();
   const sessions = sessionResponse?.data?.sessions || [];
@@ -142,7 +151,7 @@ export function DashboardPlanning() {
       });
       setDeleteDialogOpen(false);
       setSelectedSession(null);
-    } catch (error) {
+    } catch {
       showToast({
         type: 'error',
         message: "Une erreur s'est produite lors de la suppression",
@@ -155,6 +164,15 @@ export function DashboardPlanning() {
     setDeleteDialogOpen(true);
   };
 
+  // Handle click on empty slot to create session
+  const handleSlotClick = (day: Date, hour: number) => {
+    const startDate = setMinutes(setHours(day, hour), 0);
+    const endDate = setMinutes(setHours(day, hour + 1), 0); // Default 1 hour duration
+
+    setPrefilledData({ startDate, endDate });
+    setCreateDialogOpen(true);
+  };
+
   return (
     <div className="rounded-lg border bg-white shadow-sm overflow-hidden">
       <DashboardPlanningToolbar
@@ -162,6 +180,7 @@ export function DashboardPlanning() {
         view={view}
         onNavigate={handleNavigate}
         onView={handleViewChange}
+        onDuplicateWeek={() => setDuplicateWeekDialogOpen(true)}
       />
 
       <div className="overflow-x-auto">
@@ -214,40 +233,59 @@ export function DashboardPlanning() {
                     <div
                       key={dayIdx}
                       className={cn(
-                        'border-r relative',
+                        'border-r relative cursor-pointer hover:bg-gray-50/50 transition-colors',
                         isSameDay(day, new Date()) && 'bg-[#fef9f5]'
                       )}
+                      onClick={(e) => {
+                        // Only trigger if clicking on empty space (not on session)
+                        if (e.target === e.currentTarget || (e.target as HTMLElement).closest('.half-hour-line')) {
+                          handleSlotClick(day, hour);
+                        }
+                      }}
                     >
                       {/* Half-hour line */}
-                      <div className="absolute top-1/2 left-0 right-0 border-t border-gray-100" />
+                      <div className="absolute top-1/2 left-0 right-0 border-t border-gray-100 half-hour-line pointer-events-none" />
 
                       {/* Sessions */}
                       {sessionsInSlot.map((session: Session) => {
                         const style = getSessionStyle(session);
                         return (
-                          <div
-                            key={session.id}
-                            className="absolute left-1 right-1 bg-[#b28053] text-white rounded-lg p-2 cursor-pointer hover:bg-[#9a6d47] transition-colors shadow-md overflow-hidden"
-                            style={style}
-                            onClick={() => {
-                              router.push(
-                                APP_ROUTES.sessions.getHref() + '/' + session.id
-                              );
-                            }}
-                          >
-                            <div className="text-xs font-semibold truncate">
-                              {session.typeCourse.label}
-                            </div>
-                            <div className="text-[10px] opacity-90">
-                              {session.typeCourse.capacity > 1
-                                ? 'Collectif'
-                                : 'Individuel'}
-                            </div>
-                            <div className="text-[10px] opacity-75">
-                              {format(new Date(session.startDate), 'HH:mm', { locale: fr })} -{' '}
-                              {format(new Date(session.endDate), 'HH:mm', { locale: fr })}
-                            </div>
-                          </div>
+                          <ContextMenu key={session.id}>
+                            <ContextMenuTrigger asChild>
+                              <div
+                                className="absolute left-1 right-1 bg-[#b28053] text-white rounded-lg p-2 cursor-pointer hover:bg-[#9a6d47] transition-colors shadow-md overflow-hidden"
+                                style={style}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  router.push(
+                                    APP_ROUTES.sessions.getHref() + '/' + session.id
+                                  );
+                                }}
+                              >
+                                <div className="text-xs font-semibold truncate">
+                                  {session.typeCourse.label}
+                                </div>
+                                <div className="text-[10px] opacity-90">
+                                  {session.typeCourse.capacity > 1
+                                    ? 'Collectif'
+                                    : 'Individuel'}
+                                </div>
+                                <div className="text-[10px] opacity-75">
+                                  {format(new Date(session.startDate), 'HH:mm', { locale: fr })} -{' '}
+                                  {format(new Date(session.endDate), 'HH:mm', { locale: fr })}
+                                </div>
+                              </div>
+                            </ContextMenuTrigger>
+                            <ContextMenuContent>
+                              <ContextMenuItem
+                                variant="destructive"
+                                onClick={() => handleContextMenu(session)}
+                              >
+                                <Trash2Icon />
+                                Supprimer la session
+                              </ContextMenuItem>
+                            </ContextMenuContent>
+                          </ContextMenu>
                         );
                       })}
                     </div>
@@ -258,6 +296,52 @@ export function DashboardPlanning() {
           </div>
         </div>
       </div>
+
+      {/* Delete Confirmation Dialog */}
+      <Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Supprimer la session</DialogTitle>
+            <DialogDescription>
+              Êtes-vous sûr de vouloir supprimer cette session ?
+              {selectedSession && (
+                <div className="mt-2 text-sm">
+                  <strong>{selectedSession.typeCourse.label}</strong> -{' '}
+                  {format(new Date(selectedSession.startDate), "EEEE d MMMM 'à' HH:mm", { locale: fr })}
+                </div>
+              )}
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button
+              variant="outline"
+              onClick={() => setDeleteDialogOpen(false)}
+            >
+              Annuler
+            </Button>
+            <Button
+              variant="destructive"
+              onClick={handleDeleteSession}
+              disabled={deleteMutation.isPending}
+            >
+              {deleteMutation.isPending ? 'Suppression...' : 'Supprimer'}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Create Session Dialog (controlled) */}
+      <SessionCreateDialog
+        open={createDialogOpen}
+        onOpenChange={setCreateDialogOpen}
+        prefilledData={prefilledData ?? undefined}
+      />
+
+      {/* Duplicate Week Dialog */}
+      <DuplicateWeekDialog
+        open={duplicateWeekDialogOpen}
+        onOpenChange={setDuplicateWeekDialogOpen}
+      />
     </div>
   );
 }

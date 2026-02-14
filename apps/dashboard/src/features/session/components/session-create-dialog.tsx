@@ -34,12 +34,29 @@ import { cn } from '@/lib/utils';
 import { useToast } from '@/providers/toast-provider.tsx';
 import { Badge } from '@mui/material';
 import { PlusIcon } from '@radix-ui/react-icons';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Loading } from '@/components/loading.tsx';
+import { format } from 'date-fns';
 
-export function SessionCreateDialog() {
-  const [open, setOpen] = useState(false);
+interface SessionCreateDialogProps {
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  prefilledData?: {
+    startDate: Date;
+    endDate: Date;
+  };
+}
+
+export function SessionCreateDialog({
+  open: controlledOpen,
+  onOpenChange,
+  prefilledData
+}: SessionCreateDialogProps = {}) {
+  const [internalOpen, setInternalOpen] = useState(false);
+  const isControlled = controlledOpen !== undefined;
+  const open = isControlled ? controlledOpen : internalOpen;
+  const setOpen = isControlled ? (onOpenChange ?? setInternalOpen) : setInternalOpen;
   const createMutation = useCreateSession();
   const { showToast } = useToast();
   const { data: typeCourseResponse, isLoading } = useListTypesCourse();
@@ -48,6 +65,22 @@ export function SessionCreateDialog() {
   };
 
   const form = useForm<TSession>();
+
+  // Prefill form when dialog opens with prefilled data
+  useEffect(() => {
+    if (open && prefilledData) {
+      const formatDateTimeLocal = (date: Date) => {
+        return format(date, "yyyy-MM-dd'T'HH:mm");
+      };
+
+      form.reset({
+        startDate: formatDateTimeLocal(prefilledData.startDate) as any,
+        endDate: formatDateTimeLocal(prefilledData.endDate) as any,
+      });
+    } else if (open && !prefilledData) {
+      form.reset({});
+    }
+  }, [open, prefilledData, form]);
 
   const handleSave = async (data: TSession) => {
     try {
@@ -81,11 +114,13 @@ export function SessionCreateDialog() {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button className="flex cursor-pointer items-center gap-2 bg-[#b28053] text-white hover:bg-[#8b6f55] hover:text-white">
-          <PlusIcon className="h-4 w-4" /> Ajouter une session
-        </Button>
-      </DialogTrigger>
+      {!isControlled && (
+        <DialogTrigger asChild>
+          <Button className="flex cursor-pointer items-center gap-2 bg-[#b28053] text-white hover:bg-[#8b6f55] hover:text-white">
+            <PlusIcon className="h-4 w-4" /> Ajouter une session
+          </Button>
+        </DialogTrigger>
+      )}
       <DialogContent className="max-h-[90vh] max-w-2xl overflow-y-auto">
         <Form {...form}>
           <form

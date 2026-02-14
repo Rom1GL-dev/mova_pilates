@@ -96,6 +96,7 @@ export const routesV1 = {
     sessions: {
       root: `${backofficeRoot}${sessionsRoot}`,
       byId: `${backofficeRoot}${sessionsRoot}/:id`,
+      duplicateWeek: `${backofficeRoot}${sessionsRoot}/duplicate-week`,
     },
     reservations: {
       root: `${backofficeRoot}${reservationsRoot}`,

@@ -4,6 +4,7 @@ import { DeleteSessionDto } from '@/features/session/usecases/delete-session/del
 import { CreateSessionForm } from '@/features/session/usecases/create-session/create-session.dto.ts';
 import { UpdateReservationDto } from '@/features/session/usecases/update-reservation/update-reservation.dto.ts';
 import { AddParticipantDto } from '@/features/session/usecases/add-participant/add-participant.dto.ts';
+import { DuplicateWeekDto } from '@/features/session/usecases/duplicate-week/duplicate-week.dto.ts';
 
 export class SessionService {
   readonly _uri: string = '/v1/backoffice/sessions';
@@ -48,6 +49,10 @@ export class SessionService {
 
   async deleteParticipant(data: DeleteSessionDto) {
     return api.delete(this._ReservationUri, { data });
+  }
+
+  async duplicateWeek(data: DuplicateWeekDto) {
+    return api.post<DuplicateWeekDto>(this._uri + '/duplicate-week', data);
   }
 }
 
