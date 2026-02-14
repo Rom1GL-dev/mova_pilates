@@ -13,13 +13,27 @@ import { Input } from '@/components/ui/input.tsx';
 import { useDuplicateWeek } from '@/features/session/usecases/duplicate-week/use-duplicate-week.tsx';
 import { useToast } from '@/providers/toast-provider.tsx';
 import { useState } from 'react';
-import { format, startOfWeek } from 'date-fns';
+import { format, startOfWeek, setWeek, startOfYear } from 'date-fns';
 import { fr } from 'date-fns/locale';
 
 interface DuplicateWeekDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }
+
+// Helper function to parse week input format (YYYY-Www) to Date
+const parseWeekInput = (weekString: string): Date => {
+  // Format is "2024-W07"
+  const [yearStr, weekStr] = weekString.split('-W');
+  const year = parseInt(yearStr, 10);
+  const week = parseInt(weekStr, 10);
+
+  // Start with January 1st of the given year
+  const date = startOfYear(new Date(year, 0, 1));
+
+  // Set the week number (ISO week)
+  return setWeek(date, week, { weekStartsOn: 1, firstWeekContainsDate: 4 });
+};
 
 export function DuplicateWeekDialog({
   open,
@@ -41,8 +55,8 @@ export function DuplicateWeekDialog({
 
     try {
       // Convert week input (YYYY-Www) to Date
-      const sourceDate = new Date(sourceWeek);
-      const destinationDate = new Date(destinationWeek);
+      const sourceDate = parseWeekInput(sourceWeek);
+      const destinationDate = parseWeekInput(destinationWeek);
 
       const result: any = await duplicateMutation.mutateAsync({
         sourceWeekStart: startOfWeek(sourceDate, { weekStartsOn: 1 }),
@@ -69,10 +83,14 @@ export function DuplicateWeekDialog({
 
   const getWeekLabel = (weekString: string) => {
     if (!weekString) return '';
-    const date = new Date(weekString);
-    return format(startOfWeek(date, { weekStartsOn: 1 }), 'EEEE d MMMM yyyy', {
-      locale: fr,
-    });
+    try {
+      const date = parseWeekInput(weekString);
+      return format(startOfWeek(date, { weekStartsOn: 1 }), 'EEEE d MMMM yyyy', {
+        locale: fr,
+      });
+    } catch (error) {
+      return '';
+    }
   };
 
   return (

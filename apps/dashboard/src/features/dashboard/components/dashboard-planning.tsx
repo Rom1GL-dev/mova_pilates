@@ -1,7 +1,7 @@
 'use client';
 
 import { useListSession } from '@/features/session/usecases/list-session/use-list-session';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useIsMobile } from '@/hooks/use-mobile.ts';
 import { DashboardPlanningToolbar } from '@/features/dashboard/components/dashboard-planning-toolbar.tsx';
 import { useRouter } from '@/hooks/use-router.tsx';
@@ -57,10 +57,39 @@ export function DashboardPlanning() {
   } | null>(null);
   const [duplicateWeekDialogOpen, setDuplicateWeekDialogOpen] = useState(false);
 
+  // Drag selection state
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStart, setDragStart] = useState<{ day: Date; hour: number } | null>(null);
+  const [dragEnd, setDragEnd] = useState<{ day: Date; hour: number } | null>(null);
+
   const { data: sessionResponse } = useListSession();
   const sessions = sessionResponse?.data?.sessions || [];
   const { showToast } = useToast();
   const deleteMutation = useDeleteSession();
+
+  // Handle global mouse up (in case user releases mouse outside grid)
+  useEffect(() => {
+    const handleGlobalMouseUp = () => {
+      if (isDragging) {
+        handleDragEnd();
+      }
+    };
+
+    const handleGlobalMouseMove = (e: MouseEvent) => {
+      if (isDragging) {
+        // Prevent text selection during drag
+        e.preventDefault();
+      }
+    };
+
+    document.addEventListener('mouseup', handleGlobalMouseUp);
+    document.addEventListener('mousemove', handleGlobalMouseMove);
+
+    return () => {
+      document.removeEventListener('mouseup', handleGlobalMouseUp);
+      document.removeEventListener('mousemove', handleGlobalMouseMove);
+    };
+  }, [isDragging, dragStart, dragEnd]);
 
   // Generate time slots (6h-22h)
   const timeSlots = Array.from({ length: 16 }, (_, i) => i + 6);
@@ -81,12 +110,11 @@ export function DashboardPlanning() {
     return sessions.filter((session: Session) => {
       const sessionStart = new Date(session.startDate);
       const sessionHour = sessionStart.getHours();
-      const sessionMinutes = sessionStart.getMinutes();
 
+      // Show sessions that start within this hour (e.g., 8:00 to 8:59)
       return (
         isSameDay(sessionStart, day) &&
-        sessionHour === hour &&
-        sessionMinutes === 0
+        sessionHour === hour
       );
     });
   };
@@ -164,17 +192,71 @@ export function DashboardPlanning() {
     setDeleteDialogOpen(true);
   };
 
-  // Handle click on empty slot to create session
-  const handleSlotClick = (day: Date, hour: number) => {
-    const startDate = setMinutes(setHours(day, hour), 0);
-    const endDate = setMinutes(setHours(day, hour + 1), 0); // Default 1 hour duration
+  // Handle drag start
+  const handleDragStart = (day: Date, hour: number) => {
+    setIsDragging(true);
+    setDragStart({ day, hour });
+    setDragEnd({ day, hour });
+  };
 
-    setPrefilledData({ startDate, endDate });
-    setCreateDialogOpen(true);
+  // Handle drag move
+  const handleDragMove = (day: Date, hour: number) => {
+    if (isDragging && dragStart) {
+      // Only allow dragging on the same day
+      if (isSameDay(day, dragStart.day)) {
+        setDragEnd({ day, hour });
+      }
+    }
+  };
+
+  // Handle drag end
+  const handleDragEnd = () => {
+    if (isDragging && dragStart && dragEnd) {
+      // Calculate start and end hours
+      const startHour = Math.min(dragStart.hour, dragEnd.hour);
+      const endHour = Math.max(dragStart.hour, dragEnd.hour) + 1; // +1 to include the end hour
+
+      const startDate = setMinutes(setHours(dragStart.day, startHour), 0);
+      const endDate = setMinutes(setHours(dragStart.day, endHour), 0);
+
+      setPrefilledData({ startDate, endDate });
+      setCreateDialogOpen(true);
+
+      // Reset drag state
+      setIsDragging(false);
+      setDragStart(null);
+      setDragEnd(null);
+    }
+  };
+
+  // Handle click on empty slot to create session (fallback for simple click)
+  const handleSlotClick = (day: Date, hour: number) => {
+    // Only trigger if not dragging
+    if (!isDragging) {
+      const startDate = setMinutes(setHours(day, hour), 0);
+      const endDate = setMinutes(setHours(day, hour + 1), 0); // Default 1 hour duration
+
+      setPrefilledData({ startDate, endDate });
+      setCreateDialogOpen(true);
+    }
+  };
+
+  // Check if this is the starting slot of the drag selection (where we show the preview)
+  const isPreviewSlot = (day: Date, hour: number) => {
+    if (!isDragging || !dragStart || !dragEnd) return false;
+    if (!isSameDay(day, dragStart.day)) return false;
+
+    const minHour = Math.min(dragStart.hour, dragEnd.hour);
+    return hour === minHour && isSameDay(day, dragStart.day);
   };
 
   return (
-    <div className="rounded-lg border bg-white shadow-sm overflow-hidden">
+    <div
+      className={cn(
+        "rounded-lg border bg-white shadow-sm overflow-hidden",
+        isDragging && "select-none"
+      )}
+    >
       <DashboardPlanningToolbar
         label={getLabel()}
         view={view}
@@ -236,6 +318,19 @@ export function DashboardPlanning() {
                         'border-r relative cursor-pointer hover:bg-gray-50/50 transition-colors',
                         isSameDay(day, new Date()) && 'bg-[#fef9f5]'
                       )}
+                      onMouseDown={(e) => {
+                        // Only trigger if clicking on empty space (not on session)
+                        if (e.target === e.currentTarget || (e.target as HTMLElement).closest('.half-hour-line')) {
+                          e.preventDefault();
+                          handleDragStart(day, hour);
+                        }
+                      }}
+                      onMouseEnter={() => {
+                        handleDragMove(day, hour);
+                      }}
+                      onMouseUp={() => {
+                        handleDragEnd();
+                      }}
                       onClick={(e) => {
                         // Only trigger if clicking on empty space (not on session)
                         if (e.target === e.currentTarget || (e.target as HTMLElement).closest('.half-hour-line')) {
@@ -245,6 +340,24 @@ export function DashboardPlanning() {
                     >
                       {/* Half-hour line */}
                       <div className="absolute top-1/2 left-0 right-0 border-t border-gray-100 half-hour-line pointer-events-none" />
+
+                      {/* Drag preview - only show on the starting slot */}
+                      {isPreviewSlot(day, hour) && (
+                        <div
+                          className="absolute left-1 right-1 bg-gray-300/60 border-2 border-gray-400 border-dashed rounded-lg p-2 pointer-events-none shadow-md"
+                          style={{
+                            top: '0',
+                            height: `${(Math.abs(dragEnd.hour - dragStart.hour) + 1) * 100}%`,
+                          }}
+                        >
+                          <div className="text-xs font-semibold text-gray-600">
+                            Nouveau créneau
+                          </div>
+                          <div className="text-[10px] text-gray-500">
+                            {Math.min(dragStart.hour, dragEnd.hour)}:00 - {Math.max(dragStart.hour, dragEnd.hour) + 1}:00
+                          </div>
+                        </div>
+                      )}
 
                       {/* Sessions */}
                       {sessionsInSlot.map((session: Session) => {

@@ -8,15 +8,11 @@ import { Loading } from '@/components/loading.tsx';
 
 export function Dashboard() {
   const me = useMe();
-  const { data: analyticsResponse, isLoading, isError, error } = useGetAnalytics();
+  const { data: analyticsResponse, isLoading, isError } = useGetAnalytics();
   const analytics = analyticsResponse?.data?.analytics;
 
   if (isError) {
     // If error is 401 or 403, redirect to login
-    if ((error as any)?.response?.status === 401 || (error as any)?.response?.status === 403) {
-      window.location.href = '/login';
-      return <Loading />;
-    }
   }
 
   if (isLoading || !analytics) {
