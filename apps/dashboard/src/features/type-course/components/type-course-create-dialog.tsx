@@ -70,9 +70,9 @@ export function TypeCourseCreateDialog() {
 
       if (!validationResult.success) {
         const fieldErrors: Record<string, string> = {};
-        validationResult.error.errors.forEach((err) => {
-          if (err.path[0]) {
-            fieldErrors[err.path[0].toString()] = err.message;
+        validationResult.error.issues.forEach((issue) => {
+          if (issue.path[0]) {
+            fieldErrors[issue.path[0].toString()] = issue.message;
           }
         });
         setErrors(fieldErrors);

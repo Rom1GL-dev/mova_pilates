@@ -9,6 +9,24 @@ import { APP_ROUTES } from '@/config/routes.config.tsx';
 import { format, addDays, startOfWeek, isSameDay } from 'date-fns';
 import { fr } from 'date-fns/locale';
 import { cn } from '@/lib/utils';
+import {
+  ContextMenu,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuTrigger,
+} from '@/components/ui/context-menu.tsx';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog.tsx';
+import { Button } from '@/components/ui/button.tsx';
+import { useDeleteSession } from '@/features/session/usecases/delete-session/use-delete-session.tsx';
+import { useToast } from '@/providers/toast-provider.tsx';
+import { Trash2Icon } from 'lucide-react';
 
 interface Session {
   id: string;
@@ -27,9 +45,13 @@ export function DashboardPlanning() {
   const isMobile = useIsMobile();
   const [view, setView] = useState<ViewType>(isMobile ? 'day' : 'week');
   const [currentDate, setCurrentDate] = useState(new Date());
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [selectedSession, setSelectedSession] = useState<Session | null>(null);
 
   const { data: sessionResponse } = useListSession();
   const sessions = sessionResponse?.data?.sessions || [];
+  const { showToast } = useToast();
+  const deleteMutation = useDeleteSession();
 
   // Generate time slots (6h-22h)
   const timeSlots = Array.from({ length: 16 }, (_, i) => i + 6);
@@ -106,6 +128,31 @@ export function DashboardPlanning() {
       top: `${(minutes / 60) * 100}%`,
       height: `${(duration / 60) * 100}%`,
     };
+  };
+
+  // Handle session deletion
+  const handleDeleteSession = async () => {
+    if (!selectedSession) return;
+
+    try {
+      await deleteMutation.mutateAsync({ id: selectedSession.id });
+      showToast({
+        type: 'success',
+        message: 'Session supprimée avec succès',
+      });
+      setDeleteDialogOpen(false);
+      setSelectedSession(null);
+    } catch (error) {
+      showToast({
+        type: 'error',
+        message: "Une erreur s'est produite lors de la suppression",
+      });
+    }
+  };
+
+  const handleContextMenu = (session: Session) => {
+    setSelectedSession(session);
+    setDeleteDialogOpen(true);
   };
 
   return (
