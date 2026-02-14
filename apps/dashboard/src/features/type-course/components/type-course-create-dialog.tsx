@@ -13,7 +13,8 @@ import { Input } from '@/components/ui/input.tsx';
 import { Label } from '@/components/ui/label.tsx';
 import {
   CreateTypeCourseDto,
-  CreateTypeCourseForm
+  CreateTypeCourseForm,
+  createTypeCourseForm
 } from '@/features/type-course/usecases/create-type-course/create-type-course.dto.ts';
 import { useCreateTypeCourse } from '@/features/type-course/usecases/create-type-course/use-create-type-course.tsx';
 import { PlusIcon } from '@radix-ui/react-icons';
@@ -22,19 +23,23 @@ import { Textarea } from '@/components/ui/textarea.tsx';
 import { FormImageField } from '@/features/images/components/form-image-field';
 import { useUploadImage } from '@/features/images/api/use-upload-image';
 import { generateImageName, renameFile } from '@/lib/utils';
+import { useToast } from '@/providers/toast-provider';
 
 export function TypeCourseCreateDialog() {
   const [open, setOpen] = useState(false);
+  const { showToast } = useToast();
 
   const createMutation = useCreateTypeCourse();
   const uploadImageMutation = useUploadImage();
 
   const [formData, setFormData] = useState<CreateTypeCourseForm>({
     label: '',
-    capacity: 0,
+    capacity: 1,
     description: '',
     image: ''
   });
+
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const handleInputChange = (
     field: keyof CreateTypeCourseDto,
@@ -52,6 +57,32 @@ export function TypeCourseCreateDialog() {
 
   const handleSave = async () => {
     try {
+      // Reset errors
+      setErrors({});
+
+      // Validate form data with Zod
+      const validationResult = createTypeCourseForm.safeParse({
+        label: formData.label,
+        capacity: Number(formData.capacity),
+        description: formData.description,
+        image: formData.image
+      });
+
+      if (!validationResult.success) {
+        const fieldErrors: Record<string, string> = {};
+        validationResult.error.errors.forEach((err) => {
+          if (err.path[0]) {
+            fieldErrors[err.path[0].toString()] = err.message;
+          }
+        });
+        setErrors(fieldErrors);
+        showToast({
+          type: 'error',
+          message: 'Veuillez corriger les erreurs dans le formulaire'
+        });
+        return;
+      }
+
       let imageToSave: string | undefined = undefined;
 
       if (formData.image instanceof File) {
@@ -75,15 +106,27 @@ export function TypeCourseCreateDialog() {
 
       await createMutation.mutateAsync(payload);
 
+      showToast({
+        type: 'success',
+        message: 'Type de cours créé avec succès'
+      });
       setOpen(false);
       setFormData({
         label: '',
-        capacity: 0,
+        capacity: 1,
         description: '',
         image: ''
       });
+      setErrors({});
     } catch (error) {
       console.error('Erreur lors de la création du type de cours :', error);
+      showToast({
+        type: 'error',
+        message:
+          error instanceof Error
+            ? error.message
+            : 'Erreur lors de la création du type de cours'
+      });
     }
   };
 
@@ -107,7 +150,11 @@ export function TypeCourseCreateDialog() {
               value={formData.label}
               onChange={(e) => handleInputChange('label', e.target.value)}
               placeholder="Ex: Pilates"
+              className={errors.label ? 'border-red-500' : ''}
             />
+            {errors.label && (
+              <p className="text-sm text-red-500">{errors.label}</p>
+            )}
           </div>
 
           <div className="grid gap-2">
@@ -115,12 +162,17 @@ export function TypeCourseCreateDialog() {
             <Input
               id="capacity"
               type="number"
+              min="1"
               value={formData.capacity}
               onChange={(e) =>
                 handleInputChange('capacity', Number(e.target.value))
               }
-              placeholder="0"
+              placeholder="1"
+              className={errors.capacity ? 'border-red-500' : ''}
             />
+            {errors.capacity && (
+              <p className="text-sm text-red-500">{errors.capacity}</p>
+            )}
           </div>
 
           <div className="grid gap-2">
@@ -130,29 +182,43 @@ export function TypeCourseCreateDialog() {
               value={formData.description || ''}
               onChange={(e) => handleInputChange('description', e.target.value)}
               placeholder="Description du type de cours"
+              className={errors.description ? 'border-red-500' : ''}
             />
+            {errors.description && (
+              <p className="text-sm text-red-500">{errors.description}</p>
+            )}
           </div>
 
           <div className="grid gap-2">
             <FormImageField
               category="typeCourse"
               name="image"
-              required={true}
+              required={false}
               image={formData.image ?? ''}
               onImageChange={handleImageChange}
             />
+            {errors.image && (
+              <p className="text-sm text-red-500">{errors.image}</p>
+            )}
           </div>
         </div>
 
         <DialogFooter className="gap-2">
-          <Button variant="outline" onClick={() => setOpen(false)}>
+          <Button
+            variant="outline"
+            onClick={() => setOpen(false)}
+            disabled={createMutation.isPending || uploadImageMutation.isPending}
+          >
             Fermer
           </Button>
           <Button
             onClick={handleSave}
+            disabled={createMutation.isPending || uploadImageMutation.isPending}
             className="bg-[#b28053] text-white hover:bg-[#8b6f55] hover:text-white"
           >
-            Enregistrer
+            {createMutation.isPending || uploadImageMutation.isPending
+              ? 'Enregistrement...'
+              : 'Enregistrer'}
           </Button>
         </DialogFooter>
       </DialogContent>
