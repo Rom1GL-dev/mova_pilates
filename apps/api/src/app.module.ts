@@ -6,7 +6,8 @@ import { CsrfMiddleware } from './modules/auth/middlewares/csrf.middleware';
 import { AuthModule } from './modules/auth/auth.module';
 import { UserModule } from './modules/user/user.module';
 import { RolesGuard } from './modules/auth/config/role.guard';
-import { APP_GUARD } from '@nestjs/core';
+import { APP_GUARD, APP_FILTER } from '@nestjs/core';
+import { GlobalExceptionFilter } from './shared/filters/global-exception.filter';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { CustomThrottlerGuard } from './shared/guards/custom-throttler.guard';
 import { TypeCourseModule } from './modules/type-course/type-course.module';
@@ -67,6 +68,10 @@ import { LegalModule } from './modules/legal/legal.module';
     {
       provide: APP_GUARD,
       useClass: RolesGuard,
+    },
+    {
+      provide: APP_FILTER,
+      useClass: GlobalExceptionFilter,
     },
   ],
 })

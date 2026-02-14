@@ -14,6 +14,14 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
+      # 📝 Extraire les infos du commit
+      - name: Get commit info
+        id: commit
+        run: |
+          echo "short_sha=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+          echo "message=$(git log -1 --pretty=%s)" >> $GITHUB_OUTPUT
+          echo "author=$(git log -1 --pretty=%an)" >> $GITHUB_OUTPUT
+
       # 2️⃣ Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -68,3 +76,43 @@ jobs:
             docker pull rom1dev/mova_pilates_dashboard:latest
             docker pull rom1dev/mova_pilates_api:latest
             docker compose --env-file .env -f docker-compose.prod.yml up -d
+
+      # 🔔 Notification Discord - Succès
+      - name: Discord - Success
+        if: success()
+        run: |
+          curl -H "Content-Type: application/json" \
+            -d "{
+              \"embeds\": [{
+                \"title\": \"MOVA Pilates - Deploy OK ✅\",
+                \"description\": \"Le déploiement a réussi.\",
+                \"color\": 4437377,
+                \"fields\": [
+                  { \"name\": \"Commit\", \"value\": \"\`${{ steps.commit.outputs.short_sha }}\` ${{ steps.commit.outputs.message }}\", \"inline\": false },
+                  { \"name\": \"Auteur\", \"value\": \"${{ steps.commit.outputs.author }}\", \"inline\": true },
+                  { \"name\": \"Branche\", \"value\": \"main\", \"inline\": true }
+                ],
+                \"timestamp\": \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\"
+              }]
+            }" \
+            "${{ secrets.DISCORD_WEBHOOK_URL }}"
+
+      # 🔔 Notification Discord - Échec
+      - name: Discord - Failure
+        if: failure()
+        run: |
+          curl -H "Content-Type: application/json" \
+            -d "{
+              \"embeds\": [{
+                \"title\": \"MOVA Pilates - Deploy ÉCHOUÉ ❌\",
+                \"description\": \"Le déploiement a échoué.\",
+                \"color\": 15548997,
+                \"fields\": [
+                  { \"name\": \"Commit\", \"value\": \"\`${{ steps.commit.outputs.short_sha }}\` ${{ steps.commit.outputs.message }}\", \"inline\": false },
+                  { \"name\": \"Auteur\", \"value\": \"${{ steps.commit.outputs.author }}\", \"inline\": true },
+                  { \"name\": \"Logs\", \"value\": \"[Voir les logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})\", \"inline\": true }
+                ],
+                \"timestamp\": \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\"
+              }]
+            }" \
+            "${{ secrets.DISCORD_WEBHOOK_URL }}"

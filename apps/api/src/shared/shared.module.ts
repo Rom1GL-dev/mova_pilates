@@ -7,6 +7,7 @@ import { HttpModule } from '@nestjs/axios';
 import { MailerService } from './infrastructure/mailer.service';
 import { StripeService } from './infrastructure/stripe.service';
 import { EmailTemplateService } from './infrastructure/email-template.service';
+import { DiscordAlertService } from './services/discord-alert.service';
 
 @Global()
 @Module({
@@ -29,6 +30,7 @@ import { EmailTemplateService } from './infrastructure/email-template.service';
     MailerService,
     StripeService,
     EmailTemplateService,
+    DiscordAlertService,
     {
       provide: CacheStorage,
       useFactory: (configService: ConfigService) => {
@@ -48,6 +50,7 @@ import { EmailTemplateService } from './infrastructure/email-template.service';
     CacheStorage,
     HttpModule,
     StripeService,
+    DiscordAlertService,
   ],
 })
 export class SharedModule {}
