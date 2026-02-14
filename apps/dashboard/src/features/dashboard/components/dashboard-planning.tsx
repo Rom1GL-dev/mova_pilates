@@ -342,7 +342,7 @@ export function DashboardPlanning() {
                       <div className="absolute top-1/2 left-0 right-0 border-t border-gray-100 half-hour-line pointer-events-none" />
 
                       {/* Drag preview - only show on the starting slot */}
-                      {isPreviewSlot(day, hour) && (
+                      {isPreviewSlot(day, hour) && dragStart && dragEnd && (
                         <div
                           className="absolute left-1 right-1 bg-gray-300/60 border-2 border-gray-400 border-dashed rounded-lg p-2 pointer-events-none shadow-md"
                           style={{
